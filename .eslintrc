@@ -1,0 +1,25 @@
+{
+  "env": {
+    "browser": true,
+    "jest": true,
+    "es6": true
+  },
+  "parser": "babel-eslint",
+  "plugins": ["import", "react-hooks", "react"],
+  "extends": ["eslint:recommended","plugin:prettier/recommended"],
+  "parserOptions": {
+    "ecmaVersion": 2018,
+    "sourceType": "module"
+  },
+  "rules": {
+    "jsx-quotes": ["error", "prefer-single"],
+    "no-console": "warn",
+    "no-eval": "error",
+    "import/first": "error",
+    "react/jsx-uses-react": "error",
+    "react/jsx-uses-vars": "error",
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn",
+    "camelcase": "warn"
+  }
+}

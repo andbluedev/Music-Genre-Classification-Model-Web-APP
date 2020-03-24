@@ -1,10 +1,15 @@
-FROM maven:3.6-jdk-11-slim as builder
-COPY . .
-RUN mvn package -DskipTests
-
-FROM openjdk:11-jre-slim
+# build environment
+FROM node:12.2.0-alpine as build
 WORKDIR /app
-COPY --from=builder target/app.jar .
+ENV PATH /app/node_modules/.bin:$PATH
+COPY package.json /app/package.json
+RUN npm install --silent
+RUN npm install react-scripts@3.0.1 -g --silent
+COPY . /app
+RUN npm run build
 
-EXPOSE 8000
-ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom", "-Dspring.profiles.active=production","-jar","app.jar"]
+# production environment
+FROM nginx:1.16.0-alpine
+COPY --from=build /app/build /usr/share/nginx/html
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]

@@ -1,0 +1,30 @@
+@import '../../../../../style/theme';
+@import '../../../../../style/mixins';
+
+
+.env-wrapper {
+  padding: 1rem;
+  background-color: $background-color;
+  border-radius: 3px;
+
+  div.env-item {
+    padding: 1rem;
+    background-color: $background-color;
+    border-radius: 1rem;
+    font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+
+    span.env-item_key {
+      font-weight: bold;
+      color: $color-warning;
+    }
+
+    span.env-item_value {
+
+
+    }
+
+  }
+
+
+}

@@ -1,0 +1,14 @@
+@import "../style/theme";
+
+
+body {
+  margin: 0;
+  background-color: $background-color;
+  font-family: $font-stack,
+  sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: $text-color;
+}
+
+

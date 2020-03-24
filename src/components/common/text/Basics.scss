@@ -1,0 +1,22 @@
+@import '../../../../style/theme';
+
+.title-wrapper {
+  h1 {
+    font-weight: bolder;
+  }
+
+  hr {
+    border: 0;
+    height: 1px;
+    background: linear-gradient(to right, $text-color,rgba($text-color, .5) , rgba($text-color, .2));
+  }
+  margin-bottom: 2rem;
+}
+
+.subtitle-wrapper {
+  margin: .5rem 0;
+  h2 {
+    font-weight: bold;
+    border-bottom: #263238 2px;
+  }
+}
