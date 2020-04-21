@@ -4,12 +4,11 @@
 
 .env-wrapper {
   padding: 1rem;
-  background-color: $background-color;
-  border-radius: 3px;
+  background-color: $background-color-light;
+  border-radius: 5px;
 
   div.env-item {
     padding: 1rem;
-    background-color: $background-color;
     border-radius: 1rem;
     font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;

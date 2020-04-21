@@ -1,7 +1,7 @@
 import React from 'react';
 import './EnvVariables.scss';
 
-export const EnvVariables = (props) => {
+export const EnvVariables = () => {
   const envArray = Object.entries(process.env);
 
   return (

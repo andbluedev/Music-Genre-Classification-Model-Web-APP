@@ -1,5 +1,5 @@
 import React from 'react';
-import { SubTitle, Title } from '../../common/text';
+import { SubTitle, Title } from '../../common/text/Basics';
 
 export function FilePage() {
   return (

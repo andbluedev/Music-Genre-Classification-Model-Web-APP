@@ -4,69 +4,28 @@
 
 $nav-height: 10vh;
 
+.navbar-brand {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-brand > img {
+  padding: 7px 14px;
+  max-width: 100px;
+}
+
 nav.nav-wrapper {
   top: 0;
+  font-family: $font-title-regular;
   width: 100%;
   display: flex;
   margin-bottom: 1rem;
   flex-direction: row;
   justify-content: space-between;
   height: $nav-height;
-  background: $color-primary;
+  background: $color-light;
 
-  @include sm {
-    margin-bottom: -.5rem;
-  }
-  // Window width >= 992px
-  @include lg {
-    margin-bottom: 1rem;
-  }
-
-
-  @include box_shadow(2);
-
-  div.nav-side_left {
-
-    ul.nav-side_left {
-      list-style: none;
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-
-      .nav-link {
-        margin: 1.3rem;
-
-        font-size: 1.5rem;
-        color: $primary-text;
-
-        text-decoration: none;
-        transition: text-shadow .5s;
-
-        &:hover {
-          text-shadow: 0 0 .65px $primary-text, 0 0 .65px $primary-text
-        }
-
-
-      }
-    }
-
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    .nav-logo {
-      padding: 2%;
-
-      max-height: $nav-height - 1vh;
-      width: 100px;
-
-    }
-
-  }
-
-  .nav-side_right {
-    width: 20%;
-  }
+  @include box_shadow(1);
 
 }
 

@@ -1,33 +1,55 @@
+@import "~bootstrap/scss/bootstrap";
 /**
   App Theme used throughout the App.
  */
 
 $background-color: rgba(38, 50, 56, 0.07);
-$background-color-light: rgba(55, 71, 79, 0);
+$background-color-light: rgba(115, 158, 165, 0.07);
+
 $primary-text: #212121;
+
+$body-bg: $background-color;
 $secondary-text: #BDBDBD;
+
+
 $divider-color: #BDBDBD;
 $text-icons: #212121;
 
 
-$color-accent: #03A9F4;
+
+
+$color-accent: #57A0D3;
 $color-accent-light: rgba(3, 169, 244, 0.29);
 $color-accent-dark: #022a3b;
 
 
-$color-primary: #FF9800;
-$color-primary-light: #FFE0B2;
-$color-primary-dark: #F57C00;
+$color-primary: #FDA50F;
+$color-primary-light: rgba(253, 165, 15, 0.45);
+$color-primary-dark: #573b06;
 
-$color-warning: #ff2f00;
-$color-warning-light: #ffc1b3;
-$color-warning-dark: #ff1d00;
+$color-warning: #91262D;
+$color-warning-light: #ff1d00;
+$color-warning-dark: #4b0b00;
 
 
-$color-success: #00695c;
+$color-success: #4AB052;
 $color-success-light: #60ad5e;
 $color-success-dark: #005005;
 
+$color-light: #F9F9F9;
+$color-dark: #323232;
 
-$font-stack: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-"Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue";
+
+$theme-colors: (
+        "primary": $color-primary,
+        "secondary": $color-accent,
+        "danger": $color-warning,
+        "success": $color-success,
+        "info": $info,
+        "warning": $color-warning-light,
+        "light": $color-accent-dark,
+        "dark": $color-accent-dark
+);
+
+$font-title-regular: 'Montserrat', sans-serif;
+$font-body: 'Roboto', sans-serif;
