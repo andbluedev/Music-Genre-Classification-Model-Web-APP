@@ -1,7 +1,7 @@
 import React from 'react';
 import './AppNav.scss';
 import { NavLink } from 'react-router-dom';
-import { ReactLogo } from '../../common/logo';
+import { RoomfixLogo } from '../../common/logo/RoomfixLogo';
 
 const active = { textDecoration: 'underline' };
 
@@ -9,7 +9,7 @@ export function AppNav() {
   return (
     <nav className='nav-wrapper'>
       <div className='nav-side_left'>
-        <ReactLogo className='nav-logo' />
+        <RoomfixLogo className='nav-logo' />
         <ul className='nav-side_left'>
           <li>
             <NavLink className='nav-link' to='/' exact activeStyle={active}>

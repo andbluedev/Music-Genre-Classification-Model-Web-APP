@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.scss';
 import { AppRouter } from './components/routes/AppRouter';
-import { AppNav } from './components/layout';
+import { AppNav } from './components/layout/navbar/AppNav';
 import { AppRoutes } from './components/routes';
 import UserContext, {
   emptyUser as initialUser,
@@ -14,9 +14,9 @@ function App() {
     <div className='app'>
       <UserContext.Provider value={{ state, dispatch }}>
         <AppRouter>
-          <AppNav />
+          <AppNav/>
           <div className='app-wrapper'>
-            <AppRoutes />
+            <AppRoutes/>
           </div>
         </AppRouter>
       </UserContext.Provider>

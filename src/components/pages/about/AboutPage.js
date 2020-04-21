@@ -1,8 +1,8 @@
 import React from 'react';
-import { Title, SubTitle } from '../../common';
-import { EnvVariables } from './EnvSection';
-import { ContextDisplay } from './ContextSection';
-import { TokenDisplay } from './TokenSection';
+import { Title, SubTitle } from '../../common/text/Basics';
+import { EnvVariables } from './envSection/EnvVariables';
+import { ContextDisplay } from './contextSection/ContextDisplay';
+import { TokenDisplay } from './tokenSection/TokenDisplay';
 
 export function AboutPage() {
   return (

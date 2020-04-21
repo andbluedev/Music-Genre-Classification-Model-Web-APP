@@ -1,6 +1,7 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
-import { AboutPage, HomePage } from '../pages';
+import { HomePage } from '../pages/home/HomePage';
+import { AboutPage } from '../pages/about/AboutPage';
 
 export const AppRoutes = () => (
   <Switch>
