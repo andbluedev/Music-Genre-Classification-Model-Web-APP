@@ -14,9 +14,9 @@ function App() {
     <div className='app'>
       <UserContext.Provider value={{ state, dispatch }}>
         <AppRouter>
-          <AppNav/>
+          <AppNav />
           <div className='app-wrapper'>
-            <AppRoutes/>
+            <AppRoutes />
           </div>
         </AppRouter>
       </UserContext.Provider>

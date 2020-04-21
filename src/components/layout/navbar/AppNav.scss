@@ -37,13 +37,13 @@ nav.nav-wrapper {
         margin: 1.3rem;
 
         font-size: 1.5rem;
-        color: $text-color;
+        color: $primary-text;
 
         text-decoration: none;
         transition: text-shadow .5s;
 
         &:hover {
-          text-shadow: 0 0 .65px $text-color, 0 0 .65px $text-color
+          text-shadow: 0 0 .65px $primary-text, 0 0 .65px $primary-text
         }
 
 
@@ -53,20 +53,12 @@ nav.nav-wrapper {
 
     display: flex;
     justify-content: center;
-
+    align-items: center;
     .nav-logo {
+      padding: 2%;
+
       max-height: $nav-height - 1vh;
       width: 100px;
-      transition: all 2s cubic-bezier(.21, 1, .84, 1.01);
-
-      &:before, &:after {
-        transition: inherit;
-      }
-
-      &:hover {
-        max-height: $nav-height;
-        cursor: pointer;
-      }
 
     }
 
