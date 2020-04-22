@@ -1,9 +1,5 @@
 import React from 'react';
-import { SubTitle, Title } from '../../common/text';
-
-
-;
-}
+import { SubTitle, Title } from '../../common/text/Basics';
 
 export function FilePage() {
   return (
@@ -11,7 +7,6 @@ export function FilePage() {
       <Title>TP React</Title>
       <SubTitle>Compteur</SubTitle>
       <SubTitle>Upload</SubTitle>
-
     </div>
   );
 }

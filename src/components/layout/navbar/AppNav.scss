@@ -4,77 +4,28 @@
 
 $nav-height: 10vh;
 
+.navbar-brand {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-brand > img {
+  padding: 7px 14px;
+  max-width: 100px;
+}
+
 nav.nav-wrapper {
   top: 0;
+  font-family: $font-title-regular;
   width: 100%;
   display: flex;
   margin-bottom: 1rem;
   flex-direction: row;
   justify-content: space-between;
   height: $nav-height;
-  background: $color-primary;
+  background: $color-light;
 
-  @include sm {
-    margin-bottom: -.5rem;
-  }
-  // Window width >= 992px
-  @include lg {
-    margin-bottom: 1rem;
-  }
-
-
-  @include box_shadow(2);
-
-  div.nav-side_left {
-
-    ul.nav-side_left {
-      list-style: none;
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-
-      .nav-link {
-        margin: 1.3rem;
-
-        font-size: 1.5rem;
-        color: $text-color;
-
-        text-decoration: none;
-        transition: text-shadow .5s;
-
-        &:hover {
-          text-shadow: 0 0 .65px $text-color, 0 0 .65px $text-color
-        }
-
-
-      }
-    }
-
-
-    display: flex;
-    justify-content: center;
-
-    .nav-logo {
-      max-height: $nav-height - 1vh;
-      width: 100px;
-      transition: all 2s cubic-bezier(.21, 1, .84, 1.01);
-
-      &:before, &:after {
-        transition: inherit;
-      }
-
-      &:hover {
-        max-height: $nav-height;
-        cursor: pointer;
-      }
-
-    }
-
-  }
-
-  .nav-side_right {
-    width: 20%;
-  }
+  @include box_shadow(1);
 
 }
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import './TokenDisplay.scss';
-import { getTokenValue } from '../../../../data/auth';
+import { getTokenValue } from '../../../../data/auth/token';
 
 export function TokenDisplay() {
   const currentToken = getTokenValue();

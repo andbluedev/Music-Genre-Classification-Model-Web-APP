@@ -1,7 +1,7 @@
-@import '../style/theme';
 @import '../style/mixins';
 @import '../style/breakpoints';
 @import './components/layout/navbar/AppNav';
+
 
 
 div.app-wrapper {
@@ -23,3 +23,10 @@ div.app-wrapper {
   }
 
 }
+
+.app-pages_container {
+  padding: 1rem;
+
+}
+
+
