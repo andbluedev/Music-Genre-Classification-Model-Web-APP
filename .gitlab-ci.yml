@@ -1,8 +1,5 @@
 image: docker:19.03.0
 
-services:
-  - docker:19.03.0-dind
-
 cache:
   paths:
     - .yarn
@@ -14,10 +11,7 @@ stages:
   
 variables:
   CONTAINER_IMAGE_MASTER: $DOCKER_REGISTRY_URI/roomfix-front:${CI_COMMIT_SHORT_SHA}
-
-before_script:
-  - docker login -u $DOCKER_REGISTRY_USER -p $DOCKER_REGISTRY_PASSWORD $DOCKER_REGISTRY_URI
-
+  
 build-master:
   stage: build
   image: node
@@ -31,8 +25,11 @@ build-master:
     - master
 
 build-push-image-master:
+  services:
+    - docker:19.03.0-dind
   stage: push-built-image
   script:
+    - docker login -u $DOCKER_REGISTRY_USER -p $DOCKER_REGISTRY_PASSWORD $DOCKER_REGISTRY_URI
     - docker build -t ${CONTAINER_IMAGE_MASTER} .
     - docker push ${CONTAINER_IMAGE_MASTER}
   only:
