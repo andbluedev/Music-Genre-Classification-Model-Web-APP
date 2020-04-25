@@ -36,14 +36,14 @@ build-push-image-master:
     - master
   cache: {}
 
-# deploy-image-master:
-#   image:
-#     name: bitnami/kubectl:1.14
-#     entrypoint: [""]
-#   stage: deploy-image
-#   script:
-#     - echo -n $KUBERNETIX_CONFIG | base64 -d > ./kubeconfig
-#     - kubectl set image deployment searchix-front searchix-front=${CONTAINER_IMAGE_MASTER} --kubeconfig ./kubeconfig --namespace default
-#   only:
-#     - master
-#   cache: {}
+deploy-image-master:
+  image:
+    name: bitnami/kubectl:1.14
+    entrypoint: [""]
+  stage: deploy-image
+  script:
+    - echo -n $KUBERNETES_CONFIG | base64 -d > ./kubeconfig
+    - kubectl set image deployment roomfix-front-master roomfix-front-master=$CONTAINER_IMAGE_MASTER --kubeconfig ./kubeconfig --namespace default
+  only:
+    - master
+  cache: {}
