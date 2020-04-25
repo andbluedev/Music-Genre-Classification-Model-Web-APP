@@ -3,7 +3,10 @@ image: docker:19.03.0
 stages:
   - build
   - build-push-image
-  - deploy-image
+  # - deploy-image
+
+services:
+  - docker:19.03-dind
 
 
 variables:
