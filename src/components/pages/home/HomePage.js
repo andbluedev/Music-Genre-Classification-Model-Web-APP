@@ -7,7 +7,7 @@ import Col from 'react-bootstrap/Col';
 
 const PlaceHolder = ({ style }) => (
   <div className='placeholder_box' style={style}>
-    lorem
+    test
   </div>
 );
 
