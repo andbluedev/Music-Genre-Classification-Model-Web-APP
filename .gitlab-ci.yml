@@ -5,11 +5,11 @@ stages:
   - build-push-image
   - deploy-image
 
-cache:
-  paths:
-    - node_modules/
-    - .yarn
-    - public/
+# cache:
+#   paths:
+#     - node_modules/
+#     - .yarn
+#     - public/
 
 variables:
   CONTAINER_IMAGE_MASTER: $DOCKER_REGISTRY_URI/$roomfix-front:${CI_COMMIT_SHORT_SHA}
