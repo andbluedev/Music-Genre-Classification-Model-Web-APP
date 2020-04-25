@@ -30,8 +30,8 @@ build-push-image-master:
   stage: push-built-image
   script:
     - docker login -u $DOCKER_REGISTRY_USER -p $DOCKER_REGISTRY_PASSWORD $DOCKER_REGISTRY_URI
-    - docker build -t ${CONTAINER_IMAGE_MASTER} .
-    - docker push ${CONTAINER_IMAGE_MASTER}
+    - docker build -t $CONTAINER_IMAGE_MASTER .
+    - docker push $CONTAINER_IMAGE_MASTER
   only:
     - master
   cache: {}
