@@ -1,5 +1,5 @@
 import React from 'react';
-import { setTokenValue } from '../auth';
+import { setTokenValue } from '../auth/token';
 
 /**
  * Example

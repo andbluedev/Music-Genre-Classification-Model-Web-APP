@@ -1,6 +1,8 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
-import { AboutPage, HomePage } from '../pages';
+import { HomePage } from '../pages/home/HomePage';
+import { AboutPage } from '../pages/about/AboutPage';
+import { FilePage } from '../pages/Tp/TpPage';
 
 export const AppRoutes = () => (
   <Switch>
@@ -10,6 +12,10 @@ export const AppRoutes = () => (
 
     <Route path='/'>
       <HomePage />
+    </Route>
+
+    <Route path='/tp'>
+      <FilePage />
     </Route>
   </Switch>
 );

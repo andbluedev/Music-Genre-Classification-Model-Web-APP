@@ -2,7 +2,7 @@
 
 .token-display-wrapper {
   padding: 2rem;
-  background-color: $background-color;
+  background-color: $background-color-light;
   border-radius: 3px;
 
   span.token-display_text {
@@ -15,7 +15,7 @@
   }
 
   span.token-display-value_set {
-    color: $text-color;
+    color: $primary-text;
   }
 
 }
