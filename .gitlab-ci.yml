@@ -1,14 +1,15 @@
 image: docker:19.03.0
 
+services:
+    - docker:19.03.0-dind
+
+
+
 stages:
   - build
-  - build-push-image
+  - push-built-image
   # - deploy-image
-
-services:
-  - docker:19.03-dind
-
-
+  
 variables:
   CONTAINER_IMAGE_MASTER: $DOCKER_REGISTRY_URI/roomfix-front:${CI_COMMIT_SHORT_SHA}
 
@@ -28,9 +29,7 @@ build-master:
     - master
 
 build-push-image-master:
-  services:
-    - docker:19.03.0-dind
-  stage: build-push-image
+  stage: push-built-image
   script:
     - docker build -t ${CONTAINER_IMAGE_MASTER} .
     - docker push ${CONTAINER_IMAGE_MASTER}
