@@ -7,7 +7,7 @@ cache:
 stages:
   - build
   - push-built-image
-  # - deploy-image
+  - deploy-image
   
 variables:
   CONTAINER_IMAGE_MASTER: $DOCKER_REGISTRY_URI/roomfix-front:${CI_COMMIT_SHORT_SHA}
@@ -37,10 +37,10 @@ build-push-image-master:
   cache: {}
 
 deploy-image-master:
+  stage: deploy-image
   image:
     name: bitnami/kubectl:1.14
     entrypoint: [""]
-  stage: deploy-image
   script:
     - echo -n $KUBERNETES_CONFIG | base64 -d > ./kubeconfig
     - kubectl set image deployment roomfix-front-master roomfix-front-master=$CONTAINER_IMAGE_MASTER --kubeconfig ./kubeconfig --namespace default
