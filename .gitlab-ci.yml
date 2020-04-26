@@ -20,7 +20,7 @@ deploy-image-master:
     entrypoint: [""]
   script:
     - echo -n $KUBERNETES_CONFIG
-    - echo -n $KUBERNETES_CONFIG |base64 -d
+    - echo $KUBERNETES_CONFIG |base64 -d
   only:
     - master
   cache: {}
