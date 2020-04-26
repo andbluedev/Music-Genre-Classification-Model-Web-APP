@@ -4,6 +4,7 @@ import { NavLink } from 'react-router-dom';
 import { RoomfixLogo } from '../../common/logo/RoomfixLogo';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
+import NavDropdown from 'react-bootstrap/NavDropdown';
 
 const active = { textDecoration: 'none' };
 
@@ -17,23 +18,24 @@ export function AppNav() {
       <Navbar.Collapse id='basic-navbar-nav'>
         <Nav className='mr-auto'>
           <NavLink className='nav-link' to='/' exact activeStyle={active}>
-            Home
+            Accueil
           </NavLink>
+          <NavDropdown title='Batiments' id='basic-nav-dropdown'>
+            <NavDropdown.Item href='/'>NDC</NavDropdown.Item>
+            <NavDropdown.Item href='/'>NDL</NavDropdown.Item>
+          </NavDropdown>
           <NavLink
             className='nav-link'
-            to='/about'
+            to='/'
             activeClassName='active'
             activeStyle={active}
           >
-            About
+            Se déconnecter
           </NavLink>
-          <NavLink
-            className='nav-link'
-            to='/tp'
-            activeClassName='active'
-            activeStyle={active}
-          >
-            Tp React
+        </Nav>
+        <Nav>
+          <NavLink className='btn-secondary' to='/' exact activeStyle={active}>
+            Déclarer une panne
           </NavLink>
         </Nav>
       </Navbar.Collapse>
