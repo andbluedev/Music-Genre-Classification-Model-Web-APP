@@ -19,8 +19,8 @@ deploy-image-master:
     name: bitnami/kubectl:1.14
     entrypoint: [""]
   script:
-    - echo -n $KUBERNETES_CONFIG
-    - echo $KUBERNETES_CONFIG |base64 -d
+    - cat $KUBERNETES_CONFIG
+    - cat $KUBERNETES_CONFIG |base64 -d
   only:
     - master
   cache: {}
