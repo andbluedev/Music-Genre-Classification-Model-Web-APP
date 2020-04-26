@@ -5,57 +5,46 @@ cache:
     - .yarn
 
 stages:
-  - debug
-  # - build
-  # - push-built-image
-  # - deploy-image
+  - build
+  - push-built-image
+  - deploy-image
   
 variables:
   CONTAINER_IMAGE_MASTER: $DOCKER_REGISTRY_URI/roomfix-front:${CI_COMMIT_SHORT_SHA}
   
+
+build-master:
+  stage: build
+  image: node
+  script:
+    - yarn install --ignore-optional --frozen-lockfile
+    - REACT_APP_API_URI=/api yarn build:prod
+  artifacts:
+    paths:
+      - build
+  only:
+    - master
+
+build-push-image-master:
+  services:
+    - docker:19.03.0-dind
+  stage: push-built-image
+  script:
+    - docker login -u $DOCKER_REGISTRY_USER -p $DOCKER_REGISTRY_PASSWORD $DOCKER_REGISTRY_URI
+    - docker build -t $CONTAINER_IMAGE_MASTER .
+    - docker push $CONTAINER_IMAGE_MASTER
+  only:
+    - master
+  cache: {}
+
 deploy-image-master:
-  stage: debug
+  stage: deploy-image
   image:
     name: bitnami/kubectl:1.14
     entrypoint: [""]
   script:
-    - cat $KUBERNETES_CONFIG
-    - cat $KUBERNETES_CONFIG |base64 -d
+    - cat $KUBERNETES_CONFIG | base64 -d > ./kubeconfig
+    - kubectl set image deployment roomfix-front-master roomfix-front-master=$CONTAINER_IMAGE_MASTER --kubeconfig ./kubeconfig --namespace default
   only:
     - master
   cache: {}
-# build-master:
-#   stage: build
-#   image: node
-#   script:
-#     - yarn install --ignore-optional --frozen-lockfile
-#     - REACT_APP_API_URI=/api yarn build:prod
-#   artifacts:
-#     paths:
-#       - build
-#   only:
-#     - master
-
-# build-push-image-master:
-#   services:
-#     - docker:19.03.0-dind
-#   stage: push-built-image
-#   script:
-#     - docker login -u $DOCKER_REGISTRY_USER -p $DOCKER_REGISTRY_PASSWORD $DOCKER_REGISTRY_URI
-#     - docker build -t $CONTAINER_IMAGE_MASTER .
-#     - docker push $CONTAINER_IMAGE_MASTER
-#   only:
-#     - master
-#   cache: {}
-
-# deploy-image-master:
-#   stage: deploy-image
-#   image:
-#     name: bitnami/kubectl:1.14
-#     entrypoint: [""]
-#   script:
-#     - echo -n $KUBERNETES_CONFIG | base64 -d > ./kubeconfig
-#     - kubectl set image deployment roomfix-front-master roomfix-front-master=$CONTAINER_IMAGE_MASTER --kubeconfig ./kubeconfig --namespace default
-#   only:
-#     - master
-#   cache: {}
