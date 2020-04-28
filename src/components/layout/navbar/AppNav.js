@@ -29,11 +29,11 @@ export function AppNav() {
           </NavLink>
           <NavLink
             className='nav-link'
-            to='/tp'
+            to='/room'
             activeClassName='active'
             activeStyle={active}
           >
-            Tp React
+            Salle
           </NavLink>
         </Nav>
       </Navbar.Collapse>
