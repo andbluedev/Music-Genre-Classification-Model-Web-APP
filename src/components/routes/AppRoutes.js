@@ -11,7 +11,7 @@ export const AppRoutes = () => (
       <AboutPage />
     </Route>
 
-    <Route path='/'>
+    <Route exact path='/'>
       <HomePage />
     </Route>
 
