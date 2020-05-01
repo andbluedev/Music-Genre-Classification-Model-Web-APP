@@ -7,8 +7,7 @@ import Col from 'react-bootstrap/Col';
 function CampusButton({ campusName }) {
   return (
     <button className='campus'>
-      {' '}
-      <p className='name'> {campusName}</p>{' '}
+      <p className='name'> {campusName}</p>
     </button>
   );
 }
@@ -29,3 +28,5 @@ export function HomePage() {
     </div>
   );
 }
+
+// center row + href
