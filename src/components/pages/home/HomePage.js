@@ -4,13 +4,6 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
-
-const Campus = ({ style }) => (
-  <div className='campus_box' style={style}>
-    test
-  </div>
-);
-
 function CampusButton({ campusName }) {
   return (
     <button className='campus'>
