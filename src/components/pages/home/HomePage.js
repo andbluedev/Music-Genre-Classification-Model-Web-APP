@@ -4,24 +4,32 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
+
 const Campus = ({ style }) => (
   <div className='campus_box' style={style}>
     test
   </div>
 );
 
-// Have a look at this https://react-bootstrap.github.io/layout/grid/
+function CampusButton({ campusName }) {
+  return (
+    <button className='campus'>
+      {' '}
+      <p className='name'> {campusName}</p>{' '}
+    </button>
+  );
+}
+
 export function HomePage() {
   return (
     <div>
       <Container fluid>
         <Row fluid>
-          {/* A ROW IS 12  sm is small width, md: is long width*/}
           <Col sm='12' md='6'>
-            <Campus style={{ backgroundColor: '#F9F9F9' }} />
+            <CampusButton campusName='NDC' href='#' />
           </Col>
           <Col sm='12' md='6'>
-            <Campus style={{ backgroundColor: 'rgba(195,126,10,0.21)' }} />
+            <CampusButton campusName='NDL' href='#' />
           </Col>
         </Row>
       </Container>
