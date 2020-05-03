@@ -48,9 +48,15 @@ export function useLogin() {
           });
         }
         setError('Mot-de-passe invalide ou compte non existant');
+        setPassword('');
+        setMail('');
         return dispatch({ type: UserActionType.AUTH_FAILURE });
       })
-      .catch(() => setError("Quelque chose de non prévu s'est passé!"))
+      .catch(() => {
+        setError("Quelque chose de non prévu s'est passé!");
+        setPassword('');
+        setMail('');
+      })
       .finally(() => setIsLoading(false));
   };
 
@@ -60,6 +66,7 @@ export function useLogin() {
     error,
     password,
     setPassword,
+    setError,
     username: mail,
     setUsername: setMail,
     submitLogin
