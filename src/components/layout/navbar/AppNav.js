@@ -17,7 +17,7 @@ export function AppNav() {
       <Navbar.Collapse id='basic-navbar-nav'>
         <Nav className='mr-auto'>
           <NavLink className='nav-link' to='/' exact activeStyle={active}>
-            Home
+            Logout
           </NavLink>
           <NavLink
             className='nav-link'

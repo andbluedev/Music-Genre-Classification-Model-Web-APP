@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import './ContextDisplay.scss';
-import UserContext from '../../../../data/context/UserContext';
+import { UserContext } from '../../../../data/auth/UserContext';
 import { Brackets, Item } from '../../../common/text/code/JavascriptObject';
 
 export function ContextDisplay() {
