@@ -11,11 +11,11 @@ export const AuthWrapper = (props) => {
 
   useEffect(() => {
     if (getTokenValue()) {
-      get('/account/check-credentials').then((result) => {
+      get('/account/me').then((result) => {
         if (result.statusCode === HttpStatusCode.OK) {
           dispatch({
             type: UserActionType.AUTH_SUCCESS,
-            payload: result.payload.username
+            payload: result.payload
           });
         } else {
           history.push('/login');
@@ -24,6 +24,7 @@ export const AuthWrapper = (props) => {
       });
     } else {
       history.push('/login');
+      dispatch({ type: UserActionType.AUTH_FAILURE });
     }
   }, [history]);
   return <React.Fragment>{props.children}</React.Fragment>;

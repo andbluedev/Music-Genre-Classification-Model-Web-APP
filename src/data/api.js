@@ -39,16 +39,16 @@ export async function api(path, method, body, authorize = true) {
   return { statusCode: res.status, payload: await res.json() };
 }
 
-export async function get(path) {
-  return api(path, HttpMethods.GET, undefined);
+export async function get(path, authorized = true) {
+  return api(path, HttpMethods.GET, undefined, authorized);
 }
 
 export async function del(path) {
   return api(path, HttpMethods.DELETE, undefined);
 }
 
-export async function post(path, body) {
-  return api(path, HttpMethods.POST, body);
+export async function post(path, body, authorized = true) {
+  return api(path, HttpMethods.POST, body, authorized);
 }
 
 export async function put(path, body) {

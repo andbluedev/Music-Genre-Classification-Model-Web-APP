@@ -8,14 +8,14 @@ export function useLogin() {
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [password, _setPassword] = useState('');
-  const [username, _setUsername] = useState('');
+  const [mail, _setMail] = useState('');
 
   const history = useHistory();
   const { dispatch } = useContext(UserContext);
 
   // Computed methods
-  const isFormValid = useMemo(() => password.length > 0 && username.length > 0, [
-    username,
+  const isFormValid = useMemo(() => password.length > 0 && mail.length > 0, [
+    mail,
     password
   ]);
 
@@ -24,17 +24,21 @@ export function useLogin() {
     if (password === '') setError('');
     return _setPassword(value);
   };
-  const setUsername = (value) => {
-    if (username === '') setError('');
-    return _setUsername(value);
+  const setMail = (value) => {
+    if (mail === '') setError('');
+    return _setMail(value);
   };
 
   const submitLogin = () => {
     setIsLoading(true);
-    post('/auth/login', {
-      username,
-      password
-    })
+    post(
+      '/account/login',
+      {
+        mail,
+        password
+      },
+      false
+    )
       .then((result) => {
         if (result.statusCode === HttpStatusCode.OK) {
           history.push('/home');
@@ -56,8 +60,8 @@ export function useLogin() {
     error,
     password,
     setPassword,
-    username,
-    setUsername,
+    username: mail,
+    setUsername: setMail,
     submitLogin
   };
 }

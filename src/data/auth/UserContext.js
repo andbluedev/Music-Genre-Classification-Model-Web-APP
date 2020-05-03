@@ -4,6 +4,7 @@ export const emptyUserContextState = {
   id: undefined,
   username: undefined,
   name: undefined,
+  lastName: undefined,
   role: undefined,
   token: undefined
 };
