@@ -13,11 +13,11 @@ const active = { textDecoration: 'none' };
 
 export function AppNav() {
   const { dispatch } = useContext(UserContext);
-  // const [showFormReportBreakdown, setShowFormReportBreakdown] = useState(false);
-  //
-  // const handleButtonClick = () => {
-  //   setShowFormReportBreakdown(!showFormReportBreakdown);
-  // };
+  const [showFormReportBreakdown, setShowFormReportBreakdown] = useState(false);
+
+  const handleButtonClick = () => {
+    setShowFormReportBreakdown(true);
+  };
 
   return (
     <Navbar className='nav-wrapper' expand='md'>
@@ -49,13 +49,18 @@ export function AppNav() {
             Tp React
           </NavLink>
           <Button
-              // onClick={handleButtonClick()}
-              variant='outline-primary'>
+            onClick={() => {
+              handleButtonClick();
+            }}
+            variant='outline-primary'
+          >
             Signaler une panne
           </Button>
           <FormReportBreakdown
-            //show={showFormReportBreakdown}
-            //onHide={handleButtonClick}
+            show={showFormReportBreakdown}
+            onHide={() => {
+              setShowFormReportBreakdown(false);
+            }}
           />
         </Nav>
       </Navbar.Collapse>

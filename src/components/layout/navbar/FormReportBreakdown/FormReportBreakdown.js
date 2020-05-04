@@ -3,7 +3,7 @@ import { Modal, Form } from 'react-bootstrap';
 
 export function FormReportBreakdown(props) {
   return (
-    <Modal show={true}>
+    <Modal show={props.show} onHide={props.onHide}>
       <Modal.Header closeButton>
         <Modal.Title>Déclarer une panne</Modal.Title>
       </Modal.Header>
