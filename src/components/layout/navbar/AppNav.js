@@ -1,13 +1,17 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import './AppNav.scss';
 import { NavLink } from 'react-router-dom';
 import { RoomfixLogo } from '../../common/logo/RoomfixLogo';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
+import { UserContext } from '../../../data/auth/UserContext';
+import { UserActionType } from '../../../data/auth/reducer';
 
 const active = { textDecoration: 'none' };
 
 export function AppNav() {
+  const { dispatch } = useContext(UserContext);
+
   return (
     <Navbar className='nav-wrapper' expand='md'>
       <Navbar.Brand>
@@ -17,7 +21,9 @@ export function AppNav() {
       <Navbar.Collapse id='basic-navbar-nav'>
         <Nav className='mr-auto'>
           <NavLink className='nav-link' to='/' exact activeStyle={active}>
-            Home
+            <span onClick={() => dispatch({ type: UserActionType.AUTH_FAILURE })}>
+              Logout
+            </span>
           </NavLink>
           <NavLink
             className='nav-link'

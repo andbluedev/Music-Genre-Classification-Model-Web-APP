@@ -11,12 +11,12 @@ export const AppRoutes = () => (
       <AboutPage />
     </Route>
 
-    <Route exact path='/'>
-      <HomePage />
-    </Route>
-
     <Route path='/room'>
       <RoomPage />
+    </Route>
+
+    <Route exact path='/'>
+      <HomePage />
     </Route>
 
     <Route path='/tp'>
