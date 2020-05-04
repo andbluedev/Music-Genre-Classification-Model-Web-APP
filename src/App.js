@@ -1,36 +1,45 @@
-import React from 'react';
+import React, { useReducer } from 'react';
 import './App.scss';
-import { AppRouter } from './components/routes/AppRouter';
 import { AppNav } from './components/layout/navbar/AppNav';
-import { AppRoutes } from './components/routes';
-import Fade from 'react-bootstrap/Fade';
-import UserContext, {
-  emptyUser as initialUser,
-  reducer
-} from './data/context/UserContext';
+import { AppRoutes } from './components/routes/AppRoutes';
+import { UserReducer } from './data/auth/reducer';
+import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
+import { UserContext, emptyUserContextState } from './data/auth/UserContext';
+import { Route, Router } from 'react-router-dom';
+import history from './components/routes/history';
+import { AuthRoutes } from './components/routes/AuthRoutes';
+import { AuthWrapper } from './components/layout/auth/AuthWrapper';
 
 function App() {
-  const [state, dispatch] = React.useReducer(reducer, initialUser);
+  const [state, dispatch] = useReducer(UserReducer, emptyUserContextState);
   return (
-    <AppRouter>
+    <div>
       <UserContext.Provider value={{ state, dispatch }}>
-        <AppNav />
-        <Container className='row flex-column justify-content-center ' fluid>
-          <Row>
-            <Col />
-            <Col sm={10} md={10} lg={8}>
-              <div className='app-pages_container'>
-                <AppRoutes />
-              </div>
-            </Col>
-            <Col />
-          </Row>
-        </Container>
+        <Router history={history}>
+          <AuthWrapper>
+            <Route path={['/login', '/']}>
+              <AuthRoutes />
+            </Route>
+            <Route path={['/about', '/home', '/tp']}>
+              <AppNav />
+              <Container className='row flex-column justify-content-center ' fluid>
+                <Row>
+                  <Col />
+                  <Col sm={10} md={10} lg={8}>
+                    <div className='app-pages_container'>
+                      <AppRoutes />
+                    </div>
+                  </Col>
+                  <Col />
+                </Row>
+              </Container>
+            </Route>
+          </AuthWrapper>
+        </Router>
       </UserContext.Provider>
-    </AppRouter>
+    </div>
   );
 }
 

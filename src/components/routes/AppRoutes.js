@@ -9,11 +9,9 @@ export const AppRoutes = () => (
     <Route path='/about'>
       <AboutPage />
     </Route>
-
-    <Route path='/'>
+    <Route path='/home'>
       <HomePage />
     </Route>
-
     <Route path='/tp'>
       <FilePage />
     </Route>
