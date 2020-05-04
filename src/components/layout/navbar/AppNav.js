@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import './AppNav.scss';
 import { NavLink } from 'react-router-dom';
 import { RoomfixLogo } from '../../common/logo/RoomfixLogo';
@@ -13,12 +13,11 @@ const active = { textDecoration: 'none' };
 
 export function AppNav() {
   const { dispatch } = useContext(UserContext);
-
-  let showFormReportBreakdown = false;
-
-  const handleButtonClick = () => {
-    showFormReportBreakdown = !showFormReportBreakdown;
-  };
+  // const [showFormReportBreakdown, setShowFormReportBreakdown] = useState(false);
+  //
+  // const handleButtonClick = () => {
+  //   setShowFormReportBreakdown(!showFormReportBreakdown);
+  // };
 
   return (
     <Navbar className='nav-wrapper' expand='md'>
@@ -49,10 +48,15 @@ export function AppNav() {
           >
             Tp React
           </NavLink>
-          <Button onClick={handleButtonClick()} variant='outline-primary'>
+          <Button
+              // onClick={handleButtonClick()}
+              variant='outline-primary'>
             Signaler une panne
           </Button>
-          <FormReportBreakdown show={showFormReportBreakdown} />
+          <FormReportBreakdown
+            //show={showFormReportBreakdown}
+            //onHide={handleButtonClick}
+          />
         </Nav>
       </Navbar.Collapse>
     </Navbar>
