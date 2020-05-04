@@ -1,35 +1,26 @@
-@import '../../../../style/theme';
-@import '../../../../style/mixins';
-@import '../../../../style/breakpoints';
-
+@import '../../../style/theme';
+@import '../../../style/mixins';
+@import '../../../style/breakpoints';
 $nav-height: 10vh;
-
 .navbar-brand {
-  display: flex;
-  align-items: center;
+    display: flex;
+    align-items: center;
 }
 
-.navbar-brand > img {
-  padding: 7px 14px;
-  max-width: 100px;
+.navbar-brand>img {
+    padding: 7px 14px;
+    max-width: 100px;
 }
 
 nav.nav-wrapper {
-  top: 0;
-  font-family: $font-title-regular;
-  width: 100%;
-  display: flex;
-  margin-bottom: 1rem;
-  flex-direction: row;
-  justify-content: space-between;
-  height: $nav-height;
-  background: $color-light;
-
-  @include box_shadow(1);
-
+    top: 0;
+    font-family: $font-title-regular;
+    width: 100%;
+    display: flex;
+    margin-bottom: 1rem;
+    flex-direction: row;
+    justify-content: space-between;
+    height: $nav-height;
+    background: $color-light;
+    @include box_shadow(1);
 }
-
-
-
-
-

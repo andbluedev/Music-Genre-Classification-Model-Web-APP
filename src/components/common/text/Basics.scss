@@ -1,24 +1,21 @@
-@import '../../../../style/theme';
-
+@import '../../../style/theme';
 .title-wrapper {
-  h1 {
-    font-family: $font-title-regular;
-    font-weight: bolder;
-
-  }
-
-  hr {
-    border: 0;
-    height: 1px;
-    background: linear-gradient(to right, $divider-color, rgba($primary-text, .5), rgba($primary-text, .2));
-  }
+    h1 {
+        font-family: $font-title-regular;
+        font-weight: bolder;
+    }
+    hr {
+        border: 0;
+        height: 1px;
+        background: linear-gradient(to right, $divider-color, rgba($primary-text, .5), rgba($primary-text, .2));
+    }
 }
 
 .subtitle-wrapper {
-  margin: .5rem 0;
-  h2 {
-    font-weight: lighter;
-    font-family: $font-title-regular;
-    border-bottom: #263238 2px;
-  }
+    margin: .5rem 0;
+    h2 {
+        font-weight: lighter;
+        font-family: $font-title-regular;
+        border-bottom: #263238 2px;
+    }
 }
