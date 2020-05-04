@@ -6,11 +6,19 @@ import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import { UserContext } from '../../../data/auth/UserContext';
 import { UserActionType } from '../../../data/auth/reducer';
+import { Button } from 'react-bootstrap';
+import { FormReportBreakdown } from './FormReportBreakdown/FormReportBreakdown';
 
 const active = { textDecoration: 'none' };
 
 export function AppNav() {
   const { dispatch } = useContext(UserContext);
+
+  let showFormReportBreakdown = false;
+
+  const handleButtonClick = () => {
+    showFormReportBreakdown = !showFormReportBreakdown;
+  };
 
   return (
     <Navbar className='nav-wrapper' expand='md'>
@@ -41,6 +49,10 @@ export function AppNav() {
           >
             Tp React
           </NavLink>
+          <Button onClick={handleButtonClick()} variant='outline-primary'>
+            Signaler une panne
+          </Button>
+          <FormReportBreakdown show={showFormReportBreakdown} />
         </Nav>
       </Navbar.Collapse>
     </Navbar>
