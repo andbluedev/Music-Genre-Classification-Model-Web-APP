@@ -27,6 +27,11 @@ export function HomeTechPage() {
     };
     const Breackdown = ({device}, {type}, {date}, {state}) => {
     return (
+        <p> Appareil : {device} </p>
+        <p> Type de panne : {type} </p>
+        <p> Date : {date} </p>
+        <p> Etat : {state} </p>
+
         <BdButton descr="Voir description"/>
         <BdButton descr="Résoudre"/>
             <BdButton descr="Voir Salle"/>
