@@ -1,21 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import Accordion from 'react-bootstrap/Accordion';
 import './failureDisplay.scss';
-import { get } from '../../../../data/api';
 
 export function FailureDisplay() {
-  const [failure, setFailure] = useState([]);
-  useEffect(() => {
-    get('/rooms/1').then((result) => {
-      console.log(result);
-      get(result).then((room) => {
-        console.log(room.failure);
-      });
-    });
-  }, []);
-
   return (
     <div>
       <Accordion defaultActiveKey='1'>
