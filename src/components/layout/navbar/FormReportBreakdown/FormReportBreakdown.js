@@ -100,7 +100,7 @@ export function FormReportBreakdown(props) {
         <Form>
           <Form.Group>
             <Form.Label>Titre :</Form.Label>
-            <Form.Control type={'text'} />
+            <Form.Control type={'text'} required />
           </Form.Group>
           {form}
           {formAfterBuildings}
@@ -108,9 +108,9 @@ export function FormReportBreakdown(props) {
           {formAfterDevice}
           <Form.Group>
             <Form.Label>Description :</Form.Label>
-            <Form.Control as='textarea' rows='3' />
+            <Form.Control as='textarea' rows='3' required />
           </Form.Group>
-          <Button variant={'outline-success'} block>
+          <Button variant={'outline-success'} type={'submit'} block>
             Signaler
           </Button>
         </Form>
