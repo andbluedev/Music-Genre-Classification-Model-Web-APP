@@ -7,16 +7,14 @@ import Nav from 'react-bootstrap/Nav';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import { UserContext } from '../../../data/auth/UserContext';
 import { UserActionType } from '../../../data/auth/reducer';
-import Button from 'react-bootstrap/Button';
-
 const active = { textDecoration: 'none' };
 
 export function AppNav() {
   const { dispatch } = useContext(UserContext);
 
   return (
-    <Navbar className='nav-wrapper' expand='md'>
-      <Navbar.Brand>
+    <Navbar collapseOnSelect expand='lg' variant='light' bg='light'>
+      <Navbar.Brand href='/home'>
         <RoomfixLogo className='nav-logo' />
       </Navbar.Brand>
       <Navbar.Toggle aria-controls='basic-navbar-nav' />
@@ -33,11 +31,6 @@ export function AppNav() {
             <span onClick={() => dispatch({ type: UserActionType.AUTH_FAILURE })}>
               Se déconnecter
             </span>
-          </NavLink>
-        </Nav>
-        <Nav>
-          <NavLink to='/'>
-            <Button>Déclarer une panne</Button>
           </NavLink>
         </Nav>
       </Navbar.Collapse>
