@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {Modal, Form, Button} from 'react-bootstrap';
+import { Modal, Form, Button } from 'react-bootstrap';
 import { SpinningCircle } from '../../../common/spinner/SpiningCircle';
 import { get } from '../../../../data/api';
 
