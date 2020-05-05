@@ -20,7 +20,7 @@ export function AppNav() {
       <Navbar.Toggle aria-controls='basic-navbar-nav' />
       <Navbar.Collapse id='basic-navbar-nav'>
         <Nav className='mr-auto'>
-          <NavLink className='nav-link' to='/' exact activeStyle={active}>
+          <NavLink className='nav-link' to='/home' exact activeStyle={active}>
             Accueil
           </NavLink>
           <NavDropdown title='Batiments' id='basic-nav-dropdown'>
