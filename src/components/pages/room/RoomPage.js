@@ -9,7 +9,6 @@ export function RoomPage() {
     <div>
       <Title> N° de la salle </Title>
       <SubTitle> Batiment : (Batiment) </SubTitle>
-      <p>prout</p>
       <Container className='room-wrapper'>
         <FailureDisplay />
         <br />
