@@ -98,6 +98,10 @@ export function FormReportBreakdown(props) {
       </Modal.Header>
       <Modal.Body>
         <Form>
+          <Form.Group>
+            <Form.Label>Titre :</Form.Label>
+            <Form.Control type={'text'} />
+          </Form.Group>
           {form}
           {formAfterBuildings}
           {formAfterRooms}

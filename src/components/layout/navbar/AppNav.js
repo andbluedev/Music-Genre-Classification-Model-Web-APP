@@ -48,6 +48,8 @@ export function AppNav() {
           >
             Tp React
           </NavLink>
+        </Nav>
+        <Nav>
           <Button
             onClick={() => {
               handleButtonClick();
