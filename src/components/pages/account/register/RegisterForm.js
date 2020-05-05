@@ -3,7 +3,7 @@ import Col from 'react-bootstrap/Col';
 import Alert from 'react-bootstrap/Alert';
 import { useLogin } from '../../../../data/auth/useLogin';
 
-export function LoginForm({switchForm}) {
+export function RegisterForm({ switchForm }) {
   const {
     submitLogin,
     username,
@@ -19,13 +19,16 @@ export function LoginForm({switchForm}) {
       <div className='login-form'>
         <form
           className='auth100-form'
+          autoComplete={false}
           onSubmit={(e) => {
             e.preventDefault();
             return submitLogin();
           }}
         >
+          <input type='hidden' value='something' />
           <div className='wrap-input100 '>
             <input
+              autoComplete={false}
               className='input100'
               type='email'
               placeholder='Entrez votre mail ISEP.'
@@ -40,12 +43,30 @@ export function LoginForm({switchForm}) {
 
           <div className='wrap-input100'>
             <input
+              autoComplete='new-password'
               className='input100'
               type='password'
               onChange={(e) => setPassword(e.target.value)}
               value={password}
               name='pass'
               placeholder='Password'
+            />
+            <span className='focus-input100'></span>
+            <span className='symbol-input100'>
+              <i className='fa fa-lock' aria-hidden='true'></i>
+            </span>
+          </div>
+
+          <div className='wrap-input100'>
+            <input
+              autoComplete='new-password'
+              disabled
+              className='input100'
+              type='password'
+              onChange={(e) => setPassword(e.target.value)}
+              value={password}
+              name='confirm-pass'
+              placeholder='Confirmer mot-de-passe'
             />
             <span className='focus-input100'></span>
             <span className='symbol-input100'>
@@ -70,18 +91,18 @@ export function LoginForm({switchForm}) {
           {/* Need Goto login */}
           <div className='auth-link'>
             <p onClick={() => switchForm()}>
-              <span>Besoin d'un Compte ?</span>
+              <span>J'ai déjà un compte</span>
             </p>
           </div>
 
           {/* SUBMIT BUTTON */}
-          <div className='button-container '>
+          <div className='button-container'>
             <div id='button-container' className='login-button'>
               <button className='learn-more' type='submit'>
                 <span className='circle' aria-hidden='true'>
                   <span className='icon arrow'></span>
                 </span>
-                <span className='button-text'>Se Connecter</span>
+                <span className='button-text'>Créer compte</span>
               </button>
             </div>
           </div>
