@@ -63,6 +63,9 @@ $border-rad: 25px;
   }
 }
 
+a:link {
+  text-decoration: none;
+}
 .auth-link {
   color: $secondary-text;
   &:hover, &:active {

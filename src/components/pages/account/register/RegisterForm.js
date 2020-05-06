@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Col from 'react-bootstrap/Col';
 import Alert from 'react-bootstrap/Alert';
 import { useRegister } from '../../../../data/auth/useRegister';
+import { Link } from 'react-router-dom';
 
 export function RegisterForm({ switchForm }) {
   // logic to register an account
@@ -9,18 +10,14 @@ export function RegisterForm({ switchForm }) {
     submitRegister,
     username,
     password,
-    isFormValid,
+    message,
     setUsername,
-    error,
-    setPasswordsUnMatch,
-    passwordsUnMatch,
+    isError,
     confirmPassword,
     setConfirmPassword,
-    setError,
+    setMessage,
     setPassword
   } = useRegister();
-
-  //
 
   return (
     <Col sm='12' md='6' lg='4' xl='3'>
@@ -30,16 +27,13 @@ export function RegisterForm({ switchForm }) {
           autoComplete={false}
           onSubmit={(e) => {
             e.preventDefault();
-            if (confirmPassword === password) {
-              return submitRegister();
-            }
-            return setPasswordsUnMatch();
+            return submitRegister();
           }}
         >
           <input type='hidden' value='something' />
           <div className='wrap-input100 '>
             <input
-              autoComplete={false}
+              autoComplete='new-password'
               className='input100'
               type='email'
               placeholder='Entrez votre mail ISEP.'
@@ -51,7 +45,6 @@ export function RegisterForm({ switchForm }) {
               <i className='fa fa-envelope' aria-hidden='true'></i>
             </span>
           </div>
-
           <div className='wrap-input100'>
             <input
               autoComplete='new-password'
@@ -67,65 +60,54 @@ export function RegisterForm({ switchForm }) {
               <i className='fa fa-lock' aria-hidden='true'></i>
             </span>
           </div>
-          {isFormValid && 'valid'}
-          {isFormValid && (
-            <div className='wrap-input100'>
-              <input
-                autoComplete='new-password'
-                className='input100'
-                type='password'
-                onChange={(e) => setConfirmPassword(e.target.value)}
-                value={confirmPassword}
-                name='confirm-pass'
-                placeholder='Confirmer mot-de-passe'
-              />
-              <span className='focus-input100'></span>
-              <span className='symbol-input100'>
-                <i className='fa fa-lock' aria-hidden='true'></i>
-              </span>
-            </div>
-          )}
-
-          <p>
-            {passwordsUnMatch
-              ? 'Les mots-de-passe sont identiques.'
-              : 'Les mots de passe ne sont pas identiques.'}
-          </p>
+          <div className='wrap-input100'>
+            <input
+              autoComplete='new-password'
+              className='input100'
+              type='password'
+              onChange={(e) => setConfirmPassword(e.target.value)}
+              value={confirmPassword}
+              name='confirm-pass'
+              placeholder='Confirmer mot-de-passe'
+            />
+            <span className='focus-input100'></span>
+            <span className='symbol-input100'>
+              <i className='fa fa-lock' aria-hidden='true'></i>
+            </span>
+          </div>
 
           {/* ERROR MESSAGE*/}
           <div className='auth-error_wrapper'>
-            {error && (
+            {message.length > 0 && (
               <Alert
-                variant='danger'
+                variant={isError ? 'danger' : 'success'}
                 className='login-error_alert'
                 dismissible
-                onClose={() => setError('')}
+                onClose={() => setMessage('')}
               >
-                <p>{error}</p>
+                <p>{message}</p>
               </Alert>
             )}
           </div>
-
           {/* Need Goto login */}
-          <div className='auth-link'>
-            <p onClick={() => switchForm()}>
-              <span>J'ai déjà un compte</span>
-            </p>
-          </div>
-
-          {/* SUBMIT BUTTON */}
-          {isFormValid && passwordsUnMatch && (
-            <div className='button-container'>
-              <div id='button-container' className='login-button'>
-                <button className='learn-more' type='submit'>
-                  <span className='circle' aria-hidden='true'>
-                    <span className='icon arrow'></span>
-                  </span>
-                  <span className='button-text'>Créer compte</span>
-                </button>
-              </div>
+          <Link to='/login'>
+            <div className='auth-link'>
+              <p onClick={() => switchForm()}>
+                <span>J'ai déjà un compte</span>
+              </p>
             </div>
-          )}
+          </Link>
+          {/* SUBMIT BUTTON */}
+          <div className='button-container'>
+            <div id='button-container' className='login-button'>
+              <button className='learn-more' type='submit'>
+                <span className='circle' aria-hidden='true'>
+                  <span className='icon arrow'></span>
+                </span>
+                <span className='button-text'>Créer compte</span>
+              </button>
+            </div>
+          </div>
         </form>
       </div>
     </Col>

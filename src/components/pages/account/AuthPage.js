@@ -1,15 +1,24 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import './AuthPage.scss';
 import { RoomfixLogo } from '../../common/logo/RoomfixLogo';
 import { LoginForm } from './login/LoginForm';
+import { useLocation } from 'react-router-dom';
 import { CSSTransition, SwitchTransition } from 'react-transition-group';
 import { RegisterForm } from './register/RegisterForm';
 
 export function AuthPage() {
   const [isLogin, setIsLogin] = useState(true);
+
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.pathname === '/register') {
+      setIsLogin(false);
+    }
+  },[]);
 
   return (
     <Container fluid className='justify-content-md-center'>
@@ -42,7 +51,6 @@ export function AuthPage() {
           </CSSTransition>
         </SwitchTransition>
       </Row>
-
     </Container>
   );
 }

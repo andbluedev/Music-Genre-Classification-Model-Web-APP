@@ -2,8 +2,9 @@ import React from 'react';
 import Col from 'react-bootstrap/Col';
 import Alert from 'react-bootstrap/Alert';
 import { useLogin } from '../../../../data/auth/useLogin';
+import { Link } from 'react-router-dom';
 
-export function LoginForm({switchForm}) {
+export function LoginForm({ switchForm }) {
   const {
     submitLogin,
     username,
@@ -67,12 +68,14 @@ export function LoginForm({switchForm}) {
             )}
           </div>
 
-          {/* Need Goto login */}
-          <div className='auth-link'>
-            <p onClick={() => switchForm()}>
-              <span>Besoin d'un Compte ?</span>
-            </p>
-          </div>
+          {/* Need Goto register*/}
+          <Link to='/register'>
+            <div className='auth-link'>
+              <p onClick={() => switchForm()}>
+                <span>Besoin d'un Compte ?</span>
+              </p>
+            </div>
+          </Link>
 
           {/* SUBMIT BUTTON */}
           <div className='button-container '>
