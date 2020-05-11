@@ -8,16 +8,21 @@ import { get } from '../../../data/api';
 export function RoomPage() {
   const [room, setRoom] = useState({});
   const [failure, setFailure] = useState([]);
+  const [building, setBuilding] = useState([]);
 
   useEffect(() => {
     get('/rooms/1').then((result) => {
       setRoom(result.payload);
       setFailure(result.payload.failures);
+      setBuilding(result.payload.building);
     });
   }, []);
 
   const failuredisp = [];
   for (var i = 0; i < failure.length; i++) {
+    if (i !== 0) {
+      failuredisp.push(<br />);
+    }
     failuredisp.push(
       <FailureDisplay
         type={failure[i].title}
@@ -31,7 +36,7 @@ export function RoomPage() {
   return (
     <div>
       <Title> {room.number} </Title>
-      <SubTitle> Batiment : {room.id}</SubTitle>
+      <SubTitle> Batiment : {building.name}</SubTitle>
       <Container className='room-wrapper'>
         {failuredisp}
         <br />
