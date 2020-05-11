@@ -26,6 +26,6 @@ export const AuthWrapper = (props) => {
       history.push('/login');
       dispatch({ type: UserActionType.AUTH_FAILURE });
     }
-  }, [history]);
+  }, [history, dispatch]);
   return <React.Fragment>{props.children}</React.Fragment>;
 };
