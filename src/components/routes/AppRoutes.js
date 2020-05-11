@@ -3,6 +3,7 @@ import { Switch, Route } from 'react-router-dom';
 import { HomePage } from '../pages/home/HomePage';
 import { AboutPage } from '../pages/about/AboutPage';
 import { FilePage } from '../pages/tp/TpPage';
+import { BuildingPage } from '../pages/building/BuildingPage';
 
 export const AppRoutes = () => (
   <Switch>
@@ -14,6 +15,9 @@ export const AppRoutes = () => (
     </Route>
     <Route path='/tp'>
       <FilePage />
+    </Route>
+    <Route path='/building/:id'>
+      <BuildingPage />
     </Route>
   </Switch>
 );
