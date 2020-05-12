@@ -9,39 +9,32 @@ import { get } from '../../../data/api';
 export function RoomPage() {
   let { id } = useParams();
   const [room, setRoom] = useState({});
-  const [failure, setFailure] = useState([]);
+  const [failures, setFailures] = useState([]);
   const [building, setBuilding] = useState([]);
 
   useEffect(() => {
     get('/rooms/' + id).then((result) => {
       setRoom(result.payload);
-      setFailure(result.payload.failures);
+      setFailures(result.payload.failures);
       setBuilding(result.payload.building);
     });
   }, []);
 
-  const failuredisp = [];
-  for (var i = 0; i < failure.length; i++) {
-    if (i !== 0) {
-      failuredisp.push(<br />);
-    }
-    failuredisp.push(
-      <FailureDisplay
-        type={failure[i].title}
-        device={failure[i].deviceCategory}
-        date={failure[i].createdAt}
-        description={failure[i].description}
-        state={failure[i].state}
-      />
-    );
-  }
+
   return (
     <div>
       <Title> {room.number} </Title>
       <SubTitle> Batiment : {building.name}</SubTitle>
       <Container className='room-wrapper'>
-        {failuredisp}
-        <br />
+        {failures.map((failure) => (
+          <FailureDisplay
+            type={failure.title}
+            device={failure.deviceCategory}
+            date={failure.createdAt}
+            description={failure.description}
+            state={failure.state}
+          />
+        ))}
       </Container>
     </div>
   );

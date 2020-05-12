@@ -21,6 +21,7 @@ export function FailureDisplay(props) {
           </Accordion.Collapse>
         </Card>
       </Accordion>
+      <br />
     </div>
   );
 }
