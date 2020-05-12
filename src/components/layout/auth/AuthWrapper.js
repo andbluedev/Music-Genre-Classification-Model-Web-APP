@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { useHistory } from 'react-router';
 import { get, HttpStatusCode } from '../../../data/api';
 import { getTokenValue } from '../../../data/auth/token';
@@ -10,9 +10,7 @@ export const AuthWrapper = (props) => {
   const { dispatch } = useContext(UserContext);
 
   useEffect(() => {
-    console.log('in Auth');
     if (getTokenValue()) {
-      console.log('found token');
       get('/account/me').then((result) => {
         if (result.statusCode === HttpStatusCode.OK) {
           dispatch({
