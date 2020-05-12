@@ -8,7 +8,6 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 import { UserContext } from '../../../data/auth/UserContext';
 import { UserActionType } from '../../../data/auth/reducer';
 import { get } from '../../../data/api';
-import Col from 'react-bootstrap/Col';
 const active = { textDecoration: 'none' };
 
 export function AppNav() {
@@ -22,15 +21,6 @@ export function AppNav() {
     });
   }, []);
 
-  const allBuildingsDropdowns = [];
-  buildings.forEach((building) =>
-    allBuildingsDropdowns.push(
-      <NavDropdown.Item href={'/building/' + building.id}>
-        {building.name}
-      </NavDropdown.Item>
-    )
-  );
-
   return (
     <Navbar collapseOnSelect expand='lg' variant='light' bg='light'>
       <Navbar.Brand href='/home'>
@@ -43,7 +33,12 @@ export function AppNav() {
             Accueil
           </NavLink>
           <NavDropdown title='Batiments' id='basic-nav-dropdown'>
-            {allBuildingsDropdowns}
+            {buildings.length > 0 &&
+              buildings.map((building) => (
+                <NavDropdown.Item href={'/building/' + building.id}>
+                  {building.name}
+                </NavDropdown.Item>
+              ))}
           </NavDropdown>
           <NavLink className='nav-link' to='/' exact>
             <span onClick={() => dispatch({ type: UserActionType.AUTH_FAILURE })}>

@@ -6,7 +6,6 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Card from 'react-bootstrap/Card';
 import { useParams } from 'react-router-dom';
-import Button from 'react-bootstrap/Button';
 
 export function BuildingPage() {
   let { id } = useParams();
@@ -23,16 +22,14 @@ export function BuildingPage() {
 
   const Room = ({ content }) => (
     <a href={'/room/' + content.room.id}>
-      <Card style={{ width: '11rem', margin: '1rem' }}>
+      <Card className='room-card'>
         <Card.Header
           className={content.room.failures.length !== 0 ? 'active-failure' : ''}
         >
           {content.room.failures.length} pannes en cours
         </Card.Header>
         <Card.Body>
-          <Card.Title style={{ fontSize: '2rem', textAlign: 'center' }}>
-            {content.room.number}
-          </Card.Title>
+          <Card.Title className='room-nb'>{content.room.number}</Card.Title>
         </Card.Body>
       </Card>
     </a>
