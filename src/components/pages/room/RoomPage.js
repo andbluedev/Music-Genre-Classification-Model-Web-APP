@@ -19,8 +19,6 @@ export function RoomPage() {
       setBuilding(result.payload.building);
     });
   }, []);
-
-
   return (
     <div>
       <Title> {room.number} </Title>
