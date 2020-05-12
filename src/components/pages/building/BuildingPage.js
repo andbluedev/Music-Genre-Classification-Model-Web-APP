@@ -22,21 +22,20 @@ export function BuildingPage() {
   }, [id]);
 
   const Room = ({ content }) => (
-    <Card style={{ width: '11rem', margin: '1rem' }}>
-      <Card.Header
-        className={content.room.failures.length !== 0 ? 'active-failure' : ''}
-      >
-        {content.room.failures.length} pannes en cours
-      </Card.Header>
-      <Card.Body>
-        <Card.Title style={{ fontSize: '2rem', textAlign: 'center', marginBottom: '1.5rem' }}>
-          <a href={'/room/' + content.room.id}>{content.room.number}</a>
-        </Card.Title>
-        <Button variant='outline-danger' size='sm' block>
-          Nouvelle panne
-        </Button>
-      </Card.Body>
-    </Card>
+    <a href={'/room/' + content.room.id}>
+      <Card style={{ width: '11rem', margin: '1rem' }}>
+        <Card.Header
+          className={content.room.failures.length !== 0 ? 'active-failure' : ''}
+        >
+          {content.room.failures.length} pannes en cours
+        </Card.Header>
+        <Card.Body>
+          <Card.Title style={{ fontSize: '2rem', textAlign: 'center' }}>
+            {content.room.number}
+          </Card.Title>
+        </Card.Body>
+      </Card>
+    </a>
   );
 
   const allRoom = [];

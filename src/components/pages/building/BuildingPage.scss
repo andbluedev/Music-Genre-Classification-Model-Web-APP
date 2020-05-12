@@ -1,11 +1,5 @@
 @import "../../../style/theme";
 
-.card:hover  {
-  a:hover {
-    text-decoration: none;
-  }
-}
-
 .active-failure {
   color: $danger;
 }
