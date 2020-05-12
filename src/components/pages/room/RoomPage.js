@@ -19,6 +19,7 @@ export function RoomPage() {
       setBuilding(result.payload.building);
     });
   }, []);
+
   return (
     <div>
       <Title> {room.number} </Title>
@@ -31,6 +32,7 @@ export function RoomPage() {
             date={failure.createdAt}
             description={failure.description}
             state={failure.state}
+            upvote='+ 12'
           />
         ))}
       </Container>
