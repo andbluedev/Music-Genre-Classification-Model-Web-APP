@@ -1,0 +1,15 @@
+@import "../../../style/theme";
+
+.room-card {
+  width: 11rem;
+  margin: 1rem;
+
+  .room-nb {
+    font-size: 2rem;
+    text-align: center;
+  }
+}
+
+.active-failure {
+  color: $danger;
+}
