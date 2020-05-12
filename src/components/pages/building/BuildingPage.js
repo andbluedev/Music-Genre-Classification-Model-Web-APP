@@ -16,7 +16,9 @@ export function BuildingPage() {
   useEffect(() => {
     get('/rooms/' + id + '/with-failures').then((result) => {
       setRoom(result.payload);
-      setBuilding(result.payload[0].building);
+      if (result.payload.length > 0) {
+        setBuilding(result.payload[0].building);
+      }
     });
   }, [id]);
 
@@ -35,15 +37,14 @@ export function BuildingPage() {
     </a>
   );
 
-  const allRoom = [];
-  rooms.forEach((room) => allRoom.push(<Room content={{ room }} />));
-
   return (
     <div>
       <Title>{building.name}</Title>
       <Container fluid>
         <Row className='justify-content-between' fluid>
-          {allRoom}
+          {rooms.length > 0
+            ? rooms.map((room) => <Room content={{ room }} />)
+            : 'Pas de Salles avec des erreurs'}
         </Row>
       </Container>
     </div>
