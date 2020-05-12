@@ -24,19 +24,20 @@ export function HomePage() {
     });
   }, []);
 
-  const allCampusButton = [];
-  buildings.forEach((building) =>
-    allCampusButton.push(
-      <Col sm='12' md='6'>
-        <CampusButton campusName={building.name} href={'/building/' + building.id} />
-      </Col>
-    )
-  );
-
   return (
     <div>
       <Container fluid>
-        <Row fluid>{allCampusButton}</Row>
+        <Row fluid>
+          {buildings.length > 0 &&
+            buildings.map((building) => (
+              <Col sm='12' md='6'>
+                <CampusButton
+                  campusName={building.name}
+                  href={'/building/' + building.id}
+                />
+              </Col>
+            ))}
+        </Row>
       </Container>
     </div>
   );
