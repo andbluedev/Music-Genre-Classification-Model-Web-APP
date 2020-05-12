@@ -1,12 +1,12 @@
 import React from 'react';
-import './HomeTechPage.scss';
+import './TechPage.scss';
 import { Title } from '../../common/text/Basics';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 
-export function HomeTechPage() {
+export function TechPage() {
   const DeviceType = ({ name }) => {
     return (
       <Card style={{ width: '8rem' }}>
@@ -81,6 +81,7 @@ export function HomeTechPage() {
             state='En réparation'
           />
         </Row>
+          pouet
       </Container>
     </div>
   );
