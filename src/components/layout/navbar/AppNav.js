@@ -1,45 +1,50 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import './AppNav.scss';
 import { NavLink } from 'react-router-dom';
 import { RoomfixLogo } from '../../common/logo/RoomfixLogo';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
+import NavDropdown from 'react-bootstrap/NavDropdown';
 import { UserContext } from '../../../data/auth/UserContext';
 import { UserActionType } from '../../../data/auth/reducer';
+import { get } from '../../../data/api';
 
 const active = { textDecoration: 'none' };
 
 export function AppNav() {
   const { dispatch } = useContext(UserContext);
 
+  const [buildings, setBuildings] = useState([]);
+
+  useEffect(() => {
+    get('/buildings').then((result) => {
+      setBuildings(result.payload);
+    });
+  }, []);
+
   return (
-    <Navbar className='nav-wrapper' expand='md'>
-      <Navbar.Brand>
+    <Navbar collapseOnSelect expand='lg' variant='light' bg='light'>
+      <Navbar.Brand href='/home'>
         <RoomfixLogo className='nav-logo' />
       </Navbar.Brand>
       <Navbar.Toggle aria-controls='basic-navbar-nav' />
       <Navbar.Collapse id='basic-navbar-nav'>
         <Nav className='mr-auto'>
-          <NavLink className='nav-link' to='/' exact activeStyle={active}>
+          <NavLink className='nav-link' to='/home' exact activeStyle={active}>
+            Accueil
+          </NavLink>
+          <NavDropdown title='Batiments' id='basic-nav-dropdown'>
+            {buildings.length > 0 &&
+              buildings.map((building) => (
+                <NavDropdown.Item href={'/building/' + building.id}>
+                  {building.name}
+                </NavDropdown.Item>
+              ))}
+          </NavDropdown>
+          <NavLink className='nav-link' to='/' exact>
             <span onClick={() => dispatch({ type: UserActionType.AUTH_FAILURE })}>
-              Logout
+              Se déconnecter
             </span>
-          </NavLink>
-          <NavLink
-            className='nav-link'
-            to='/about'
-            activeClassName='active'
-            activeStyle={active}
-          >
-            About
-          </NavLink>
-          <NavLink
-            className='nav-link'
-            to='/tp'
-            activeClassName='active'
-            activeStyle={active}
-          >
-            Tp React
           </NavLink>
         </Nav>
       </Navbar.Collapse>
