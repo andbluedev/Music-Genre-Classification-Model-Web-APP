@@ -24,7 +24,7 @@ export function TechPage() {
       </Button>
     );
   };
-  const Breackdown = ({ device }, { type }, { date }, { state }) => {
+  const Bkdown = ({ device }, { type }, { date }, { state }) => {
     return (
       <div>
         <p> Appareil : {device} </p>
@@ -50,31 +50,31 @@ export function TechPage() {
         </Row>
         <Row fluid>
           <Title>Liste des pannes</Title>
-          <Breackdown
+          <Bkdown
             device='Projecteur'
             type='ampoule cassée'
             date='14/04/2020'
             state='En réparation'
           />
-          <Breackdown
+          <Bkdown
             device='Projecteur'
             type='ampoule cassée'
             date='14/04/2020'
             state='En réparation'
           />
-          <Breackdown
+          <Bkdown
             device='Projecteur'
             type='ampoule cassée'
             date='14/04/2020'
             state='En réparation'
           />
-          <Breackdown
+          <Bkdown
             device='Projecteur'
             type='ampoule cassée'
             date='14/04/2020'
             state='En réparation'
           />
-          <Breackdown
+          <Bkdown
             device='Projecteur'
             type='ampoule cassée'
             date='14/04/2020'
