@@ -84,13 +84,7 @@ export function FormReportBreakdown(props) {
     post(`failures?roomId=1&deviceCategoryId=0`, {
       title: title,
       description: description
-    })
-      .then((res) => {
-        console.log('res :' + res);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    });
   }
 
   return (
