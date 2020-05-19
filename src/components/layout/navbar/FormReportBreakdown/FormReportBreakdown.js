@@ -81,16 +81,18 @@ export function FormReportBreakdown(props) {
   }
 
   function handleSubmit() {
-    post(`failures?roomId=${'1'}&deviceCategoryId=${'1'}`, {
+    console.log(Date.now());
+    post(`failures?roomId=1&deviceCategoryId=0`, {
       title: title,
       description: description,
-      createdAt: Date.now().toString()
+      createdAt: "2019-01-23T17:20:42.807Z",
+      endedAt: null
     })
-      .then(() => {
-        console.log('yo');
+      .then((res) => {
+        console.log('res :' + res);
       })
-      .catch(() => {
-        console.log('error');
+      .catch((err) => {
+        console.log('err :' + err);
       });
   }
 
@@ -134,7 +136,9 @@ export function FormReportBreakdown(props) {
           <Button
             variant={'outline-success'}
             type={'submit'}
-            onClick={handleSubmit}
+            onClick={() => {
+              handleSubmit();
+            }}
             block
           >
             Signaler
