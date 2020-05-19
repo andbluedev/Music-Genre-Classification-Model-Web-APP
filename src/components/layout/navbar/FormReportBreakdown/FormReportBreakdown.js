@@ -81,18 +81,15 @@ export function FormReportBreakdown(props) {
   }
 
   function handleSubmit() {
-    console.log(Date.now());
     post(`failures?roomId=1&deviceCategoryId=0`, {
       title: title,
-      description: description,
-      createdAt: "2019-01-23T17:20:42.807Z",
-      endedAt: null
+      description: description
     })
       .then((res) => {
         console.log('res :' + res);
       })
       .catch((err) => {
-        console.log('err :' + err);
+        console.log(err);
       });
   }
 
