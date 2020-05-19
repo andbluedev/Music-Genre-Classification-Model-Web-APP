@@ -28,7 +28,7 @@ export function RoomPage() {
       <Title> {room.number} </Title>
       <SubTitle> Batiment : {building.name}</SubTitle>
       <Container className='room-wrapper'>
-        <Row fluid>
+        <Row>
           <Col>
             {failures.map((failure) => (
               <FailureDisplay
@@ -42,7 +42,7 @@ export function RoomPage() {
           </Col>
         </Row>
       </Container>
-      <SubTitle>Types de Panne disponibles</SubTitle>
+      <SubTitle>Gestion de la salle</SubTitle>
       <Container>
         <FailureTypeManagement roomId={id} />
       </Container>
