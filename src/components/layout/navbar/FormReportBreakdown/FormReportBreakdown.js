@@ -1,19 +1,19 @@
 import React, { useState } from 'react';
 import { Modal, Form, Button } from 'react-bootstrap';
 import { SpinningCircle } from '../../../common/spinner/SpiningCircle';
-import { get } from '../../../../data/api';
+import { get, post } from '../../../../data/api';
 
 export function FormReportBreakdown(props) {
   const [buildings, setBuildings] = useState(undefined);
   const [rooms, setRooms] = useState(undefined);
   const [devices, setDevices] = useState(undefined);
-  const [failures, setFailures] = useState(undefined);
   const [selectedBuilding, setSelectedBuilding] = useState(undefined);
   const [selectedRoom, setSelectedRoom] = useState(undefined);
   const [selectedDevice, setSelectedDevice] = useState(undefined);
-  const [selectedFailure, setSelectedFailure] = useState(undefined);
+  const [title, setTitle] = useState('');
+  const [description, setDescription] = useState('');
 
-  let form, formAfterBuildings, formAfterRooms, formAfterDevice;
+  let form, formAfterBuildings, formAfterRooms;
 
   form = addFormPart({
     entity: buildings,
@@ -48,17 +48,6 @@ export function FormReportBreakdown(props) {
     formLabel: 'Appareil :'
   });
 
-  formAfterDevice = addFormPart({
-    entity: failures,
-    selectedEntity: selectedFailure,
-    setSelectedEntity: setSelectedFailure,
-    nameKey: 'title',
-    setEntity: setFailures,
-    selectedPreviousEntity: selectedDevice,
-    APIpath: '/failures',
-    formLabel: 'Type de panne :'
-  });
-
   function addFormPart(O) {
     let options = [];
     if (O.entity) {
@@ -91,6 +80,20 @@ export function FormReportBreakdown(props) {
     }
   }
 
+  function handleSubmit() {
+    post(`failures?roomId=${'1'}&deviceCategoryId=${'1'}`, {
+      title: title,
+      description: description,
+      createdAt: Date.now().toString()
+    })
+      .then(() => {
+        console.log('yo');
+      })
+      .catch(() => {
+        console.log('error');
+      });
+  }
+
   return (
     <Modal show={props.show} onHide={props.onHide}>
       <Modal.Header closeButton>
@@ -100,17 +103,40 @@ export function FormReportBreakdown(props) {
         <Form>
           <Form.Group>
             <Form.Label>Titre :</Form.Label>
-            <Form.Control type={'text'} required />
+            <Form.Control
+              type={'text'}
+              onChange={(e) => {
+                setTitle(e.target.value);
+              }}
+              required
+            />
+            <Form.Control.Feedback type='invalid'>
+              Veuillez donner un titre à cette panne.
+            </Form.Control.Feedback>
           </Form.Group>
           {form}
           {formAfterBuildings}
           {formAfterRooms}
-          {formAfterDevice}
           <Form.Group>
             <Form.Label>Description :</Form.Label>
-            <Form.Control as='textarea' rows='3' required />
+            <Form.Control
+              as='textarea'
+              rows='3'
+              onChange={(e) => {
+                setDescription(e.target.value);
+              }}
+              required
+            />
+            <Form.Control.Feedback type='invalid'>
+              Veuillez décrire la panne.
+            </Form.Control.Feedback>
           </Form.Group>
-          <Button variant={'outline-success'} type={'submit'} block>
+          <Button
+            variant={'outline-success'}
+            type={'submit'}
+            onClick={handleSubmit}
+            block
+          >
             Signaler
           </Button>
         </Form>
