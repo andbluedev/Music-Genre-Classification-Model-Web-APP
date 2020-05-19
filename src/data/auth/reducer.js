@@ -24,7 +24,7 @@ export const UserReducer = (prevState, action) => {
         username: action.payload.username,
         name: action.payload.name,
         lastName: action.payload.lastname,
-        role: action.payload.username
+        role: action.payload.role
       };
     case UserActionType.AUTH_FAILURE:
       removeToken();
