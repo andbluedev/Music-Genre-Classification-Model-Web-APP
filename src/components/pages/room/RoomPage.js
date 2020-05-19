@@ -5,6 +5,9 @@ import { SubTitle, Title } from '../../common/text/Basics';
 import { useParams } from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
 import { get } from '../../../data/api';
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
+import { FailureTypeManagement } from './failureTypeSection/FailureTypeManagement';
 
 export function RoomPage() {
   let { id } = useParams();
@@ -20,21 +23,28 @@ export function RoomPage() {
     });
   }, []);
 
-
   return (
     <div>
       <Title> {room.number} </Title>
       <SubTitle> Batiment : {building.name}</SubTitle>
       <Container className='room-wrapper'>
-        {failures.map((failure) => (
-          <FailureDisplay
-            type={failure.title}
-            device={failure.deviceCategory}
-            date={failure.createdAt}
-            description={failure.description}
-            state={failure.state}
-          />
-        ))}
+        <Row fluid>
+          <Col>
+            {failures.map((failure) => (
+              <FailureDisplay
+                type={failure.title}
+                device={failure.deviceCategory}
+                date={failure.createdAt}
+                description={failure.description}
+                state={failure.state}
+              />
+            ))}
+          </Col>
+        </Row>
+      </Container>
+      <SubTitle>Types de Panne disponibles</SubTitle>
+      <Container>
+        <FailureTypeManagement roomId={id} />
       </Container>
     </div>
   );
