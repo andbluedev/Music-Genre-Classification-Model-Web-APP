@@ -8,6 +8,7 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 import { UserContext } from '../../../data/auth/UserContext';
 import { UserActionType } from '../../../data/auth/reducer';
 import { get } from '../../../data/api';
+
 const active = { textDecoration: 'none' };
 
 export function AppNav() {

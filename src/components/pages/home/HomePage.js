@@ -42,5 +42,3 @@ export function HomePage() {
     </div>
   );
 }
-
-// center row + href
