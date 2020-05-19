@@ -41,11 +41,11 @@ export function useLogin() {
     )
       .then((result) => {
         if (result.statusCode === HttpStatusCode.OK) {
-          history.push('/home');
-          return dispatch({
+          dispatch({
             type: UserActionType.LOGIN_SUCCESS,
             payload: result.payload
           });
+          return history.push('/home');
         }
         setError('Mot-de-passe invalide ou compte non existant');
         setPassword('');
