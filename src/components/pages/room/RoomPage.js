@@ -27,12 +27,13 @@ export function RoomPage() {
       <Container className='room-wrapper'>
         {failures.map((failure) => (
           <FailureDisplay
+            id={failure.id}
             type={failure.title}
             device={failure.deviceCategory}
             date={failure.createdAt}
             description={failure.description}
             state={failure.state}
-            upvote='+ 12'
+            upvoters={failure.upvoters}
           />
         ))}
       </Container>

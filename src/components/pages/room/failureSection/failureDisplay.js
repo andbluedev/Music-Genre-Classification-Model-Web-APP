@@ -3,30 +3,42 @@ import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import Accordion from 'react-bootstrap/Accordion';
 import './failureDisplay.scss';
-import { get } from '../../../../data/api';
+import { get, put } from '../../../../data/api';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
 export function FailureDisplay(props) {
-  const [role, setRole] = useState('');
-
+  const [user, setUser] = useState('');
   useEffect(() => {
     get('/account/me').then((result) => {
-      setRole(result.payload.role);
+      setUser(result.payload);
     });
   }, []);
 
-  console.log(role);
+  function changeUpvote(e) {
+    e.preventDefault();
+
+    let hasUpvote = false;
+    props.upvoters.map((upvoter) =>
+      user.id === upvoter.id ? (hasUpvote = true) : (hasUpvote = false)
+    );
+
+    if (!hasUpvote) {
+      put('/failures/upvote?failureId=' + props.id, '');
+    } else {
+      put('/failures/upvote/remove?failureId=' + props.id, '');
+    }
+  }
 
   let LastElement = () => <p></p>;
-  if (role == 'STUDENT' || role == 'TEACHER') {
+  if (user.role === 'STUDENT' || user.role === 'TEACHER') {
     LastElement = () => (
-      <Button>
+      <Button onClick={changeUpvote}>
         <i className='fas fa-thumbs-up'></i>
       </Button>
     );
-  } else if (role == 'ADMIN') {
+  } else if (user.role === 'ADMIN') {
     LastElement = () => <Button>Résoudre</Button>;
   }
   var sta = '';
@@ -84,7 +96,7 @@ export function FailureDisplay(props) {
                   </Accordion.Toggle>
                 </Col>
                 <Col>
-                  <LastElement /> {props.upvote}
+                  <LastElement /> + {props.upvoters.length}
                 </Col>
               </Row>
             </Container>
