@@ -30,7 +30,6 @@ export async function api(path, method, body, authorize = true) {
     headers.append('Accept', 'application/json');
     headers.append('Authorization', `Bearer ${token}`);
   }
-
   const res = await fetch(process.env.REACT_APP_API_URI + path, {
     method,
     headers,
