@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { FailureDisplay } from './failureSection/failureDisplay';
+import { FailureDisplay } from './failureSection/FailureDisplay';
 import './RoomPage.scss';
 import { SubTitle, Title } from '../../common/text/Basics';
 import { useParams } from 'react-router-dom';
@@ -20,7 +20,6 @@ export function RoomPage() {
     });
   }, []);
 
-
   return (
     <div>
       <Title> {room.number} </Title>
@@ -28,11 +27,13 @@ export function RoomPage() {
       <Container className='room-wrapper'>
         {failures.map((failure) => (
           <FailureDisplay
+            id={failure.id}
             type={failure.title}
             device={failure.deviceCategory}
             date={failure.createdAt}
             description={failure.description}
             state={failure.state}
+            upvoters={failure.upvoters}
           />
         ))}
       </Container>
