@@ -8,6 +8,7 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { UserContext } from '../../../../data/auth/UserContext';
+import Dropdown from 'react-bootstrap/Dropdown';
 
 function LastElement(content) {
   function changeUpvote(e) {
@@ -22,13 +23,23 @@ function LastElement(content) {
       put('/failures/upvote/remove?failureId=' + content.failureid, '');
     }
   }
+  function changeState(e) {
+    
+  }
 
   return content.role === 'STUDENT' || content.role === 'TEACHER' ? (
     <Button onClick={changeUpvote}>
       <i className='fas fa-thumbs-up'></i>
     </Button>
   ) : (
-    <Button>Résoudre</Button>
+    <Dropdown>
+      <Dropdown.Toggle id='dropdown-basic'>Résoudre</Dropdown.Toggle>
+      <Dropdown.Menu>
+        <Dropdown.Item>Action</Dropdown.Item>
+        <Dropdown.Item>Another action</Dropdown.Item>
+        <Dropdown.Item>Something else</Dropdown.Item>
+      </Dropdown.Menu>
+    </Dropdown>
   );
 }
 
