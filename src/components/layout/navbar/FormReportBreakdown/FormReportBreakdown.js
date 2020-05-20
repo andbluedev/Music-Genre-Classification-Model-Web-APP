@@ -48,33 +48,31 @@ export function FormReportBreakdown(props) {
     formLabel: 'Appareil :'
   });
 
-  function addFormPart(O) {
+  function addFormPart(params) {
     let options = [];
-    if (O.entity) {
-      if (!O.selectedEntity) {
-        O.setSelectedEntity(O.entity[0][O.nameKey]);
+    if (params.entity) {
+      if (!params.selectedEntity) {
+        params.setSelectedEntity(params.entity[0][params.nameKey]);
       }
-      O.entity.forEach((entityEl) => {
-        options.push(<option key={entityEl.id}>{entityEl[O.nameKey]}</option>);
+      params.entity.forEach((entityEl) => {
+        options.push(<option key={entityEl.id}>{entityEl[params.nameKey]}</option>);
       });
       return (
-        <>
-          <Form.Group>
-            <Form.Label>{O.formLabel}</Form.Label>
-            <Form.Control
-              as={'select'}
-              onChange={(e) => {
-                O.setSelectedEntity(e.target.value);
-              }}
-            >
-              {options}
-            </Form.Control>
-          </Form.Group>
-        </>
+        <Form.Group>
+          <Form.Label>{params.formLabel}</Form.Label>
+          <Form.Control
+            as={'select'}
+            onChange={(e) => {
+              params.setSelectedEntity(e.target.value);
+            }}
+          >
+            {options}
+          </Form.Control>
+        </Form.Group>
       );
-    } else if (O.selectedPreviousEntity) {
-      get(O.APIpath).then((result) => {
-        O.setEntity(result.payload);
+    } else if (params.selectedPreviousEntity) {
+      get(params.APIpath).then((result) => {
+        params.setEntity(result.payload);
       });
       return <SpinningCircle />;
     }
