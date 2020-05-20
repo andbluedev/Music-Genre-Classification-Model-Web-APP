@@ -14,6 +14,7 @@ import { AuthWrapper } from './components/layout/auth/AuthWrapper';
 
 function App() {
   const [state, dispatch] = useReducer(UserReducer, emptyUserContextState);
+
   return (
     <div>
       <UserContext.Provider value={{ state, dispatch }}>
