@@ -56,7 +56,9 @@ export const AddRoomFailureTypeModal = ({
         <Container>
           <Form onSubmit={addTypeToRoom}>
             <Form.Group controlId='exampleForm.ControlTextarea1'>
-              <Form.Label><strong>Types disponibles</strong></Form.Label>
+              <Form.Label>
+                <strong>Types disponibles</strong>
+              </Form.Label>
               {!areAllAdded && availableFailureTypes.length > 0 ? (
                 <Form.Control
                   as='select'
@@ -66,9 +68,6 @@ export const AddRoomFailureTypeModal = ({
                   {availableFailureTypes.map((type) => (
                     <option value={type.id}> {type.name}</option>
                   ))}
-                  <Button variant='primary' type='submit'>
-                    Ajouter type
-                  </Button>
                 </Form.Control>
               ) : (
                 <p>Tous les types de panne ont déjà étés ajoutés.</p>
@@ -79,6 +78,9 @@ export const AddRoomFailureTypeModal = ({
                   administrateur.
                 </em>
               </p>
+              <Button variant='primary' type='submit'>
+                Ajouter type
+              </Button>
             </Form.Group>
           </Form>
         </Container>
