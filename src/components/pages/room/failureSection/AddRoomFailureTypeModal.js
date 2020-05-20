@@ -3,7 +3,6 @@ import Container from 'react-bootstrap/Container';
 import React, { useEffect, useState } from 'react';
 import { get, post } from '../../../../data/api';
 import Form from 'react-bootstrap/Form';
-import Spinner from 'react-bootstrap/Spinner';
 import Button from 'react-bootstrap/Button';
 
 export const AddRoomFailureTypeModal = ({
@@ -21,7 +20,9 @@ export const AddRoomFailureTypeModal = ({
       const availableTypes = result.payload.filter(
         (e) => !availableTypeIds.includes(e.id)
       );
-      failureTypes.length > 0 && setNewTypeId(failureTypes[0].id);
+      if (availableTypes.length > 0) {
+        setNewTypeId(availableTypes[0].id);
+      }
       setAvailableFailureTypes(availableTypes);
     }); //filters out types that are already associated with room
   }, [failureTypes]);
@@ -38,6 +39,8 @@ export const AddRoomFailureTypeModal = ({
       .finally(() => onHide(false));
   };
 
+  const areAllAdded = availableFailureTypes.length === failureTypes.length;
+
   return (
     <Modal
       show={show}
@@ -53,8 +56,8 @@ export const AddRoomFailureTypeModal = ({
         <Container>
           <Form onSubmit={addTypeToRoom}>
             <Form.Group controlId='exampleForm.ControlTextarea1'>
-              <Form.Label>Types disponibles</Form.Label>
-              {availableFailureTypes.length > 0 ? (
+              <Form.Label><strong>Types disponibles</strong></Form.Label>
+              {!areAllAdded && availableFailureTypes.length > 0 ? (
                 <Form.Control
                   as='select'
                   onChange={(e) => setNewTypeId(e.target.value)}
@@ -63,9 +66,12 @@ export const AddRoomFailureTypeModal = ({
                   {availableFailureTypes.map((type) => (
                     <option value={type.id}> {type.name}</option>
                   ))}
+                  <Button variant='primary' type='submit'>
+                    Ajouter type
+                  </Button>
                 </Form.Control>
               ) : (
-                <Spinner animation='grow' />
+                <p>Tous les types de panne ont déjà étés ajoutés.</p>
               )}
               <p>
                 <em>
@@ -73,9 +79,6 @@ export const AddRoomFailureTypeModal = ({
                   administrateur.
                 </em>
               </p>
-              <Button variant='primary' type='submit'>
-                Ajouter type
-              </Button>
             </Form.Group>
           </Form>
         </Container>
