@@ -1,9 +1,9 @@
-import React, { useEffect, useState,useContext } from 'react';
+import React, { useContext } from 'react';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import Accordion from 'react-bootstrap/Accordion';
 import './FailureDisplay.scss';
-import { get, put } from '../../../../data/api';
+import { put } from '../../../../data/api';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
