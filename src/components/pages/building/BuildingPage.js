@@ -7,6 +7,21 @@ import Row from 'react-bootstrap/Row';
 import Card from 'react-bootstrap/Card';
 import { useParams } from 'react-router-dom';
 
+const Room = ({ content }) => (
+  <a href={'/room/' + content.room.id}>
+    <Card className='room-card'>
+      <Card.Header
+        className={content.room.failures.length !== 0 ? 'active-failure' : ''}
+      >
+        {content.room.failures.length} pannes en cours
+      </Card.Header>
+      <Card.Body>
+        <Card.Title className='room-nb'>{content.room.number}</Card.Title>
+      </Card.Body>
+    </Card>
+  </a>
+);
+
 export function BuildingPage() {
   let { id } = useParams();
 
@@ -21,21 +36,6 @@ export function BuildingPage() {
       }
     });
   }, [id]);
-
-  const Room = ({ content }) => (
-    <a href={'/room/' + content.room.id}>
-      <Card className='room-card'>
-        <Card.Header
-          className={content.room.failures.length !== 0 ? 'active-failure' : ''}
-        >
-          {content.room.failures.length} pannes en cours
-        </Card.Header>
-        <Card.Body>
-          <Card.Title className='room-nb'>{content.room.number}</Card.Title>
-        </Card.Body>
-      </Card>
-    </a>
-  );
 
   return (
     <div>
