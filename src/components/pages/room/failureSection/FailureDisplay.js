@@ -1,63 +1,56 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState,useContext } from 'react';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import Accordion from 'react-bootstrap/Accordion';
-import './failureDisplay.scss';
+import './FailureDisplay.scss';
 import { get, put } from '../../../../data/api';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import { UserContext } from '../../../../data/auth/UserContext';
 
-export function FailureDisplay(props) {
-  const [user, setUser] = useState('');
-  useEffect(() => {
-    get('/account/me').then((result) => {
-      setUser(result.payload);
-    });
-  }, []);
-
+function LastElement(content) {
   function changeUpvote(e) {
     e.preventDefault();
-
     let hasUpvote = false;
-    props.upvoters.map((upvoter) =>
-      user.id === upvoter.id ? (hasUpvote = true) : (hasUpvote = false)
+    content.upvoters.map((upvoter) =>
+      content.id === upvoter.id ? (hasUpvote = true) : (hasUpvote = false)
     );
-
     if (!hasUpvote) {
-      put('/failures/upvote?failureId=' + props.id, '');
+      put('/failures/upvote?failureId=' + content.failureid, '');
     } else {
-      put('/failures/upvote/remove?failureId=' + props.id, '');
+      put('/failures/upvote/remove?failureId=' + content.failureid, '');
     }
   }
 
-  let LastElement = () => <p></p>;
-  if (user.role === 'STUDENT' || user.role === 'TEACHER') {
-    LastElement = () => (
-      <Button onClick={changeUpvote}>
-        <i className='fas fa-thumbs-up'></i>
-      </Button>
-    );
-  } else if (user.role === 'ADMIN') {
-    LastElement = () => <Button>Résoudre</Button>;
-  }
-  var sta = '';
+  return content.role === 'STUDENT' || content.role === 'TEACHER' ? (
+    <Button onClick={changeUpvote}>
+      <i className='fas fa-thumbs-up'></i>
+    </Button>
+  ) : (
+    <Button>Résoudre</Button>
+  );
+}
+
+export function FailureDisplay(props) {
+  const { state } = useContext(UserContext);
+  let failureState = '';
   switch (props.state) {
     case 'UN_RESOLVED':
-      sta = 'À traiter';
+      failureState = 'À traiter';
       break;
     case 'ONGOING':
-      sta = 'En cours';
+      failureState = 'En cours';
       break;
     case 'CLOSED':
-      sta = 'Réparé';
+      failureState = 'Réparé';
       break;
     case 'USELESS':
-      sta = 'Inadéquat';
+      failureState = 'Inadéquat';
       break;
   }
 
-  var currentTime = new Date(props.date);
+  let currentTime = new Date(props.date);
   return (
     <div>
       <Accordion defaultActiveKey='1'>
@@ -79,7 +72,7 @@ export function FailureDisplay(props) {
                 </Col>
                 <Col>
                   <Row>
-                    <strong>Date :</strong>{' '}
+                    <strong>Date :</strong>
                   </Row>
                   <Row>{currentTime.toLocaleDateString()} </Row>
                 </Col>
@@ -87,16 +80,21 @@ export function FailureDisplay(props) {
                   <Row>
                     <strong>Etat : </strong>
                   </Row>
-                  <Row>{sta}</Row>
+                  <Row>{failureState}</Row>
                 </Col>
                 <Col>
                   <Accordion.Toggle as={Button} variant='link' eventKey='0'>
-                    {' '}
-                    Description{' '}
+                    Description
                   </Accordion.Toggle>
                 </Col>
                 <Col>
-                  <LastElement /> + {props.upvoters.length}
+                  <LastElement
+                    role={state.role}
+                    id={state.id}
+                    failureid={props.id}
+                    upvoters={props.upvoters}
+                  />
+                  + {props.upvoters.length}
                 </Col>
               </Row>
             </Container>
