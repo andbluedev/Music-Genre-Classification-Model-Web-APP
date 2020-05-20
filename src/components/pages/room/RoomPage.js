@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { FailureDisplay } from './failureSection/failureDisplay';
+import { FailureDisplay } from './failureSection/FailureDisplay';
 import './RoomPage.scss';
 import { SubTitle, Title } from '../../common/text/Basics';
 import { useParams } from 'react-router-dom';
