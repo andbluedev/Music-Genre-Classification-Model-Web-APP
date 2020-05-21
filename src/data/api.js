@@ -18,6 +18,12 @@ export const HttpStatusCode = {
   SERVICE_DOWN: 503
 };
 
+export const failureState = {
+  UN_RESOLVED: 'À traiter',
+  ONGOING: 'En cours',
+  CLOSED: 'Réparé',
+  USELESS: 'Inadéquat'
+};
 export async function api(path, method, body, authorize = true) {
   const headers = new Headers();
 

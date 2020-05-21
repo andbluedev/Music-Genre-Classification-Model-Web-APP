@@ -3,7 +3,7 @@ import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import Accordion from 'react-bootstrap/Accordion';
 import './FailureDisplay.scss';
-import { put } from '../../../../data/api';
+import { put, failureState } from '../../../../data/api';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -45,19 +45,19 @@ function LastElement(content) {
 
 export function FailureDisplay(props) {
   const { state } = useContext(UserContext);
-  let failureState = '';
+  let failureStateDisplay = '';
   switch (props.state) {
     case 'UN_RESOLVED':
-      failureState = 'À traiter';
+      failureStateDisplay = failureState.UN_RESOLVED;
       break;
     case 'ONGOING':
-      failureState = 'En cours';
+      failureStateDisplay = failureState.ONGOING;
       break;
     case 'CLOSED':
-      failureState = 'Réparé';
+      failureStateDisplay = failureState.CLOSED;
       break;
     case 'USELESS':
-      failureState = 'Inadéquat';
+      failureStateDisplay = failureState.USELESS;
       break;
   }
 
@@ -91,7 +91,7 @@ export function FailureDisplay(props) {
                   <Row>
                     <strong>Etat : </strong>
                   </Row>
-                  <Row>{failureState}</Row>
+                  <Row>{failureStateDisplay}</Row>
                 </Col>
                 <Col>
                   <Accordion.Toggle as={Button} variant='link' eventKey='0'>
