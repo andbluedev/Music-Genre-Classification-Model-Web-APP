@@ -105,7 +105,7 @@ export function FailureDisplay(props) {
                     failureid={props.id}
                     upvoters={props.upvoters}
                   />
-                  + {props.upvoters.length}
+                  + {props.upvoters && props.upvoters.length}
                 </Col>
               </Row>
             </Container>
