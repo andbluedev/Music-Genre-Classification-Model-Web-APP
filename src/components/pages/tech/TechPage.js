@@ -1,88 +1,45 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { FailureDisplay } from './failureSection/FailureDisplay';
 import './TechPage.scss';
-import { Title } from '../../common/text/Basics';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Card from 'react-bootstrap/Card';
-import Button from 'react-bootstrap/Button';
+import { SubTitle, Title } from '../../common/text/Basics';
+import { useParams } from 'react-router-dom';
+import { get } from '../../../data/api';
 
 export function TechPage() {
-  const DeviceType = ({ name }) => {
-    return (
-      <Card style={{ width: '8rem' }}>
-        <Card.Body>
-          <Card.Title> X </Card.Title>
-          <Card.Text> {name} </Card.Text>
-        </Card.Body>
-      </Card>
-    );
-  };
-  const BdButton = ({ descr }) => {
-    return (
-      <Button className='button'>
-        <p className='descrButton'> {descr} </p>
-      </Button>
-    );
-  };
-  const Bkdown = ({ device }, { type }, { date }, { state }) => {
-    return (
-      <div>
-        <p> Appareil : {device} </p>
-        <p> Type de panne : {type} </p>
-        <p> Date : {date} </p>
-        <p> Etat : {state} </p>
-        <BdButton descr='Voir description' />
-        <BdButton descr='Résoudre' />
-        <BdButton descr='Voir Salle' />
-      </div>
-    );
-  };
+  let { id } = useParams();
+  const [room, setRoom] = useState({});
+  const [failures, setFailures] = useState([]);
+  const [building, setBuilding] = useState([]);
+
+  useEffect(() => {
+    get('/rooms/' + id).then((result) => {
+      setRoom(result.payload);
+      setFailures(result.payload.failures);
+      setBuilding(result.payload.building);
+    });
+  }, []);
+
   return (
-    <div>
-      <Container fluid>
-        <Row fluid>
-          <Title>Liste des types d'appareil</Title>
-          <DeviceType name='Ampoule cassée' />
-          <DeviceType name='Ampoule cassée' />
-          <DeviceType name='Ampoule cassée' />
-          <DeviceType name='Ampoule cassée' />
-          <DeviceType name='Ampoule cassée' />
-        </Row>
-        <Row fluid>
-          <Title>Liste des pannes</Title>
-          <Bkdown
-            device='Projecteur'
-            type='ampoule cassée'
-            date='14/04/2020'
-            state='En réparation'
-          />
-          <Bkdown
-            device='Projecteur'
-            type='ampoule cassée'
-            date='14/04/2020'
-            state='En réparation'
-          />
-          <Bkdown
-            device='Projecteur'
-            type='ampoule cassée'
-            date='14/04/2020'
-            state='En réparation'
-          />
-          <Bkdown
-            device='Projecteur'
-            type='ampoule cassée'
-            date='14/04/2020'
-            state='En réparation'
-          />
-          <Bkdown
-            device='Projecteur'
-            type='ampoule cassée'
-            date='14/04/2020'
-            state='En réparation'
-          />
-        </Row>
-          pouet
-      </Container>
-    </div>
+      <div>
+        <Title> {room.number} </Title>
+        <Container className='room-wrapper'>
+          {failures.map((failure) => (
+              <FailureDisplay
+                  id={failure.id}
+                  type={failure.title}
+                  device={failure.deviceCategory}
+                  date={failure.createdAt}
+                  description={failure.description}
+                  state={failure.state}
+                  upvoters={failure.upvoters}
+              />
+          ))}
+        </Container>
+      </div>
   );
+
 }
+
