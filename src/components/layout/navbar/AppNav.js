@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useReducer, useState } from 'react';
 import './AppNav.scss';
 import { NavLink } from 'react-router-dom';
 import { RoomfixLogo } from '../../common/logo/RoomfixLogo';
@@ -10,11 +10,14 @@ import { UserActionType } from '../../../data/auth/reducer';
 import { get } from '../../../data/api';
 import { Button } from 'react-bootstrap';
 import { FormReportBreakdown } from './FormReportBreakdown/FormReportBreakdown';
+import { FormReducer } from './formContext/FormReducer';
+import { emptyFormContext, FormContext } from './formContext/FormContext';
 
 const active = { textDecoration: 'none' };
 
 export function AppNav() {
   const { dispatch } = useContext(UserContext);
+  const [formState, formDispatch] = useReducer(FormReducer, emptyFormContext);
   const [showFormReportBreakdown, setShowFormReportBreakdown] = useState(false);
 
   const [buildings, setBuildings] = useState([]);
@@ -63,12 +66,14 @@ export function AppNav() {
           >
             Signaler une panne
           </Button>
-          <FormReportBreakdown
-            show={showFormReportBreakdown}
-            onHide={() => {
-              setShowFormReportBreakdown(false);
-            }}
-          />
+          <FormContext.Provider value={{ formState, formDispatch }}>
+            <FormReportBreakdown
+              show={showFormReportBreakdown}
+              onHide={() => {
+                setShowFormReportBreakdown(false);
+              }}
+            />
+          </FormContext.Provider>
         </Nav>
       </Navbar.Collapse>
     </Navbar>
