@@ -25,7 +25,7 @@ function LastElement(content) {
 
   return content.role === 'STUDENT' || content.role === 'TEACHER' ? (
     <Button onClick={changeUpvote}>
-      <i className='fas fa-thumbs-up'></i>
+      <i className='fas fa-thumbs-up'/>
     </Button>
   ) : (
     <Button>Résoudre</Button>
@@ -97,7 +97,7 @@ export function FailureDisplay(props) {
                   + {props.upvoters.length}
                 </Col>
                 <Col>
-                  <Row><a href="./room/1"> Voir la salle </a></Row>
+                  <Row><a href={"./room/"}> Voir la salle </a></Row>
                 </Col>
               </Row>
             </Container>

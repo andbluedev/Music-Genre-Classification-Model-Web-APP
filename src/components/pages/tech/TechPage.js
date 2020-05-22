@@ -2,31 +2,42 @@ import React, { useEffect, useState } from 'react';
 import { FailureDisplay } from './failureSection/FailureDisplay';
 import './TechPage.scss';
 import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Card from 'react-bootstrap/Card';
-import { SubTitle, Title } from '../../common/text/Basics';
-import { useParams } from 'react-router-dom';
+import { Title } from '../../common/text/Basics';
 import { get } from '../../../data/api';
+import {DeviceDisplay} from "./deviceSection/DeviceDisplay";
 
 export function TechPage() {
-  let { id } = useParams();
-  const [room, setRoom] = useState({});
   const [failures, setFailures] = useState([]);
-  const [building, setBuilding] = useState([]);
+  const [categories, setCategories] = useState([]);
+
 
   useEffect(() => {
-    get('/rooms/' + id).then((result) => {
-      setRoom(result.payload);
-      setFailures(result.payload.failures);
-      setBuilding(result.payload.building);
+    get('/failures').then((result) => {
+      setFailures(result.payload);
     });
+  get('/devices/categories').then((result) => {
+      setCategories(result.payload);
+  });
   }, []);
+
+  console.log(failures);
 
   return (
       <div>
-        <Title> {room.number} </Title>
+      <Title> Liste des types d'appareil </Title>
+          <Container className='device'>
+              {categories &&
+                  categories.map((category)=> (
+                  <DeviceDisplay
+                      name={category.name}
+                  />
+                  ))}
+          </Container>
+
+      <Title> Liste des pannes </Title>
         <Container className='room-wrapper'>
-          {failures.map((failure) => (
+         {failures &&
+             failures.map((failure) => (
               <FailureDisplay
                   id={failure.id}
                   type={failure.title}
@@ -37,7 +48,7 @@ export function TechPage() {
                   upvoters={failure.upvoters}
               />
           ))}
-        </Container>
+      </Container>
       </div>
   );
 
