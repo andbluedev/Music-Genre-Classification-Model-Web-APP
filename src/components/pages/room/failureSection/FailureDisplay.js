@@ -24,7 +24,7 @@ function LastElement(content) {
     }
   }
   function changeState(e) {
-    
+    put('/failures/state?failureId=' + content.failureid + '&newState=' + e, '');
   }
 
   return content.role === 'STUDENT' || content.role === 'TEACHER' ? (
@@ -32,12 +32,14 @@ function LastElement(content) {
       <i className='fas fa-thumbs-up'></i>
     </Button>
   ) : (
-    <Dropdown>
+    <Dropdown onSelect={changeState}>
       <Dropdown.Toggle id='dropdown-basic'>Résoudre</Dropdown.Toggle>
       <Dropdown.Menu>
-        <Dropdown.Item>Action</Dropdown.Item>
-        <Dropdown.Item>Another action</Dropdown.Item>
-        <Dropdown.Item>Something else</Dropdown.Item>
+        <Dropdown.Item eventKey='ONGOING'>{failureState.ONGOING}</Dropdown.Item>
+        <Dropdown.Item eventKey='CLOSED'>{failureState.CLOSED}</Dropdown.Item>
+        <Dropdown.Item eventKey='UN_RESOLVED'>{failureState.UN_RESOLVED}
+        </Dropdown.Item>
+        <Dropdown.Item eventKey='USELESS'>{failureState.USELESS}</Dropdown.Item>
       </Dropdown.Menu>
     </Dropdown>
   );
@@ -87,7 +89,7 @@ export function FailureDisplay(props) {
                   </Row>
                   <Row>{currentTime.toLocaleDateString()} </Row>
                 </Col>
-                <Col>
+                <Col md='auto'>
                   <Row>
                     <strong>Etat : </strong>
                   </Row>
