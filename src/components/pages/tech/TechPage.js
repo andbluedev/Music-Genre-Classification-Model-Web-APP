@@ -5,6 +5,7 @@ import Container from 'react-bootstrap/Container';
 import { Title } from '../../common/text/Basics';
 import { get } from '../../../data/api';
 import {DeviceDisplay} from "./deviceSection/DeviceDisplay";
+import Row from 'react-bootstrap/Row';
 
 export function TechPage() {
   const [failures, setFailures] = useState([]);
@@ -26,12 +27,14 @@ export function TechPage() {
       <div>
       <Title> Liste des types d'appareil </Title>
           <Container className='device'>
+              <Row>
               {categories &&
                   categories.map((category)=> (
                   <DeviceDisplay
                       name={category.name}
                   />
                   ))}
+              </Row>
           </Container>
 
       <Title> Liste des pannes </Title>

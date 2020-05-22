@@ -1,2 +1,14 @@
 @import 'src/style/theme';
 @import 'src/style/mixins';
+
+.title {
+  color: #91262D;
+  text-align: right;
+  font-weight: bold;
+  font-size: 10px;
+}
+.device-card {
+  height: 8rem;
+  margin: 10px;
+
+}
