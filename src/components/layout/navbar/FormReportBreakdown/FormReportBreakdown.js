@@ -1,11 +1,13 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useReducer, useState } from 'react';
 import { Modal, Form, Button } from 'react-bootstrap';
 import { SpinningCircle } from '../../../common/spinner/SpiningCircle';
 import { get, post } from '../../../../data/api';
-import { FormContext } from '../formContext/FormContext';
+import { emptyFormContext, FormContext } from '../formContext/FormContext';
+import { FormActionType, FormReducer } from '../formContext/FormReducer';
+import { FormInput } from './FormInput/FormInput';
 
 export function FormReportBreakdown(props) {
-  const { state } = useContext(FormContext);
+  const [formState, formDispatch] = useReducer(FormReducer, emptyFormContext);
 
   // const [buildings, setBuildings] = useState(undefined);
   // const [rooms, setRooms] = useState(undefined);
@@ -79,6 +81,13 @@ export function FormReportBreakdown(props) {
   //   }
   // }
 
+  function renderSelections() {
+    let selectFormPart = (
+      <FormInput type={FormActionType.CHOOSE_BUILDING} fetchURL={'buildings'} label={'Bâtiment'} apiKey={'name'}/>
+    );
+    return selectFormPart;
+  }
+
   function handleSubmit() {
     post(`failures?roomId=1&deviceCategoryId=0`, {
       title: title,
@@ -108,9 +117,7 @@ export function FormReportBreakdown(props) {
               Veuillez donner un titre à cette panne.
             </Form.Control.Feedback>
           </Form.Group>
-          {/*{form}*/}
-          {/*{formAfterBuildings}*/}
-          {/*{formAfterRooms}*/}
+          {renderSelections()}
           <Form.Group>
             <Form.Label>Description :</Form.Label>
             <Form.Control
