@@ -1,100 +1,57 @@
-import React, { useContext, useReducer, useState } from 'react';
+import React, { useState } from 'react';
 import { Modal, Form, Button } from 'react-bootstrap';
-import { SpinningCircle } from '../../../common/spinner/SpiningCircle';
-import { get, post } from '../../../../data/api';
-import { emptyFormContext, FormContext } from '../formContext/FormContext';
-import { FormActionType, FormReducer } from '../formContext/FormReducer';
+import { post } from '../../../../data/api';
+import { useFormState } from '../formContext/FormContext';
+import { FormActionType } from '../formContext/FormReducer';
 import { FormInput } from './FormInput/FormInput';
 
 export function FormReportBreakdown(props) {
-  const [formState, formDispatch] = useReducer(FormReducer, emptyFormContext);
-
-  // const [buildings, setBuildings] = useState(undefined);
-  // const [rooms, setRooms] = useState(undefined);
-  // const [devices, setDevices] = useState(undefined);
-  // const [selectedBuilding, setSelectedBuilding] = useState(undefined);
-  // const [selectedRoom, setSelectedRoom] = useState(undefined);
-  // const [selectedDevice, setSelectedDevice] = useState(undefined);
+  const formState = useFormState();
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
 
-  // form = addFormPart({
-  //   entity: buildings,
-  //   selectedEntity: selectedBuilding,
-  //   setSelectedEntity: setSelectedBuilding,
-  //   nameKey: 'name',
-  //   setEntity: setBuildings,
-  //   selectedPreviousEntity: true,
-  //   APIpath: '/buildings',
-  //   formLabel: 'Bâtiment :'
-  // });
-  //
-  // formAfterBuildings = addFormPart({
-  //   entity: rooms,
-  //   selectedEntity: selectedRoom,
-  //   setSelectedEntity: setSelectedRoom,
-  //   nameKey: 'number',
-  //   setEntity: setRooms,
-  //   selectedPreviousEntity: selectedBuilding,
-  //   APIpath: '/rooms',
-  //   formLabel: 'Salle :'
-  // });
-  //
-  // formAfterRooms = addFormPart({
-  //   entity: devices,
-  //   selectedEntity: selectedDevice,
-  //   setSelectedEntity: setSelectedDevice,
-  //   nameKey: 'name',
-  //   setEntity: setDevices,
-  //   selectedPreviousEntity: selectedRoom,
-  //   APIpath: '/devices/categories',
-  //   formLabel: 'Appareil :'
-  // });
-
-  // function addFormPart(params) {
-  //   let options = [];
-  //   if (params.entity) {
-  //     if (!params.selectedEntity) {
-  //       params.setSelectedEntity(params.entity[0][params.nameKey]);
-  //     }
-  //     params.entity.forEach((entityEl) => {
-  //       options.push(<option key={entityEl.id}>{entityEl[params.nameKey]}</option>);
-  //     });
-  //     return (
-  //       <Form.Group>
-  //         <Form.Label>{params.formLabel}</Form.Label>
-  //         <Form.Control
-  //           as={'select'}
-  //           onChange={(e) => {
-  //             params.setSelectedEntity(e.target.value);
-  //           }}
-  //         >
-  //           {options}
-  //         </Form.Control>
-  //       </Form.Group>
-  //     );
-  //   } else if (params.selectedPreviousEntity) {
-  //     get(params.APIpath).then((result) => {
-  //       params.setEntity(result.payload);
-  //     });
-  //     return <SpinningCircle />;
-  //   }
-  // }
-
   function renderSelections() {
-    let selectFormPart = (
-      <FormInput type={FormActionType.CHOOSE_BUILDING} fetchURL={'buildings'} label={'Bâtiment'} apiKey={'name'}/>
-    );
+    let selectFormPart = [
+      <FormInput
+        type={FormActionType.CHOOSE_BUILDING}
+        fetchURL={'buildings'}
+        label={'Bâtiment'}
+        apiKey={'name'}
+      />
+    ];
+    if (formState.selectedBuildingId) {
+      selectFormPart.push(
+        <FormInput
+          type={FormActionType.CHOOSE_ROOM}
+          fetchURL={`buildings/${formState.selectedBuildingId}/rooms`}
+          label={'Salle'}
+          apiKey={'number'}
+        />
+      );
+    }
+    if (formState.selectedRoomId) {
+      selectFormPart.push(
+        <FormInput
+          type={FormActionType.CHOOSE_DEVICE}
+          fetchURL={`rooms/${formState.selectedRoomId}/device/categories`}
+          label={'Appareil'}
+          apiKey={'name'}
+        />
+      );
+    }
     return selectFormPart;
   }
 
   function handleSubmit() {
-    post(`failures?roomId=1&deviceCategoryId=0`, {
-      title: title,
-      description: description
-    })
+    post(
+      `failures?roomId=${formState.selectedRoomId}&deviceCategoryId=${formState.selectedDeviceId}`,
+      {
+        title: title,
+        description: description
+      }
+    )
       .then()
-      .catch();
+      .catch((err) => console.log(err));
   }
 
   return (

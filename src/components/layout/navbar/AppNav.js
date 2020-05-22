@@ -10,6 +10,7 @@ import { UserActionType } from '../../../data/auth/reducer';
 import { get } from '../../../data/api';
 import { Button } from 'react-bootstrap';
 import { FormReportBreakdown } from './FormReportBreakdown/FormReportBreakdown';
+import { FormContextProvider } from './formContext/FormContext';
 
 const active = { textDecoration: 'none' };
 
@@ -63,12 +64,14 @@ export function AppNav() {
           >
             Signaler une panne
           </Button>
+          <FormContextProvider>
             <FormReportBreakdown
               show={showFormReportBreakdown}
               onHide={() => {
                 setShowFormReportBreakdown(false);
               }}
             />
+          </FormContextProvider>
         </Nav>
       </Navbar.Collapse>
     </Navbar>
