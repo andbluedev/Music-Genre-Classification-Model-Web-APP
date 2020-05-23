@@ -37,7 +37,8 @@ function LastElement(content) {
       <Dropdown.Menu>
         <Dropdown.Item eventKey='ONGOING'>{failureState.ONGOING}</Dropdown.Item>
         <Dropdown.Item eventKey='CLOSED'>{failureState.CLOSED}</Dropdown.Item>
-        <Dropdown.Item eventKey='UN_RESOLVED'>{failureState.UN_RESOLVED}
+        <Dropdown.Item eventKey='UN_RESOLVED'>
+          {failureState.UN_RESOLVED}
         </Dropdown.Item>
         <Dropdown.Item eventKey='USELESS'>{failureState.USELESS}</Dropdown.Item>
       </Dropdown.Menu>
@@ -45,24 +46,37 @@ function LastElement(content) {
   );
 }
 
+function FailureStateDisplay(content) {
+  switch (content.state) {
+    case 'UN_RESOLVED':
+      return (
+        <div className='unresolved'>
+          <i className='fas fa-exclamation-triangle'></i> {failureState.UN_RESOLVED}
+        </div>
+      );
+    case 'ONGOING':
+      return (
+        <div className='ongoing'>
+          <i className='fas fa-tools'></i> {failureState.ONGOING}
+        </div>
+      );
+    case 'CLOSED':
+      return (
+        <div className='closed'>
+          <i className='fas fa-hard-hat'></i> {failureState.CLOSED}
+        </div>
+      );
+    case 'USELESS':
+      return (
+        <div className='useless'>
+          <i className='fas fa-frown-open'></i> {failureState.USELESS}
+        </div>
+      );
+  }
+}
+
 export function FailureDisplay(props) {
   const { state } = useContext(UserContext);
-  let failureStateDisplay = '';
-  switch (props.state) {
-    case 'UN_RESOLVED':
-      failureStateDisplay = failureState.UN_RESOLVED;
-      break;
-    case 'ONGOING':
-      failureStateDisplay = failureState.ONGOING;
-      break;
-    case 'CLOSED':
-      failureStateDisplay = failureState.CLOSED;
-      break;
-    case 'USELESS':
-      failureStateDisplay = failureState.USELESS;
-      break;
-  }
-
   let currentTime = new Date(props.date);
   return (
     <div>
@@ -93,7 +107,9 @@ export function FailureDisplay(props) {
                   <Row>
                     <strong>Etat : </strong>
                   </Row>
-                  <Row>{failureStateDisplay}</Row>
+                  <Row>
+                    <FailureStateDisplay state={props.state} />
+                  </Row>
                 </Col>
                 <Col>
                   <Accordion.Toggle as={Button} variant='link' eventKey='0'>

@@ -32,6 +32,7 @@ export function RoomPage() {
           <Col>
             {failures.map((failure) => (
               <FailureDisplay
+                id={failure.id}
                 type={failure.title}
                 device={failure.deviceCategory}
                 date={failure.createdAt}
