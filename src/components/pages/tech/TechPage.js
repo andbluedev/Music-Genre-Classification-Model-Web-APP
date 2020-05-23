@@ -13,15 +13,13 @@ export function TechPage() {
 
 
   useEffect(() => {
-    get('/failures').then((result) => {
+      get('/failures').then((result) => {
       setFailures(result.payload);
     });
   get('/devices/categories').then((result) => {
       setCategories(result.payload);
   });
   }, []);
-
-  console.log(failures);
 
   return (
       <div>
@@ -32,6 +30,7 @@ export function TechPage() {
                   categories.map((category)=> (
                   <DeviceDisplay
                       name={category.name}
+                      id={category.id}
                   />
                   ))}
               </Row>
