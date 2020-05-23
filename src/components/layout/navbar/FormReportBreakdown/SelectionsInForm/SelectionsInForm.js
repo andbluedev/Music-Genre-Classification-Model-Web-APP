@@ -9,7 +9,7 @@ export function SelectionsInForm() {
   let toReturn = [
     <FormInput
       type={FormActionType.CHOOSE_BUILDING}
-      fetchURL={'buildings'}
+      fetchURL={'/buildings'}
       label={'Bâtiment'}
       apiKey={'name'}
     />
@@ -18,7 +18,7 @@ export function SelectionsInForm() {
     toReturn.push(
       <FormInput
         type={FormActionType.CHOOSE_ROOM}
-        fetchURL={`buildings/${formState.selectedBuildingId}/rooms`}
+        fetchURL={`/buildings/${formState.selectedBuildingId}/rooms`}
         label={'Salle'}
         apiKey={'number'}
       />
@@ -28,7 +28,7 @@ export function SelectionsInForm() {
     toReturn.push(
       <FormInput
         type={FormActionType.CHOOSE_DEVICE}
-        fetchURL={`rooms/${formState.selectedRoomId}/device/categories`}
+        fetchURL={`/rooms/${formState.selectedRoomId}/device/categories`}
         label={'Appareil'}
         apiKey={'name'}
       />
