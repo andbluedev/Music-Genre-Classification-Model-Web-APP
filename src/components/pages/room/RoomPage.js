@@ -20,6 +20,7 @@ export function RoomPage() {
       setRoom(result.payload);
       setFailures(result.payload.failures);
       setBuilding(result.payload.building);
+      console.log(failures);
     });
   }, []);
 
@@ -39,6 +40,9 @@ export function RoomPage() {
                 description={failure.description}
                 state={failure.state}
                 upvoters={failure.upvoters}
+                setFailure={setFailures}
+                failure={failure}
+                failures={failures}
               />
             ))}
           </Col>
