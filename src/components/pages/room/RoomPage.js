@@ -33,12 +33,14 @@ export function RoomPage() {
             {failures.map((failure) => (
               <FailureDisplay
                 id={failure.id}
+                key={failure.id}
                 type={failure.title}
                 device={failure.deviceCategory}
                 date={failure.createdAt}
                 description={failure.description}
                 state={failure.state}
                 setFailures={setFailures}
+                failures={failures}
                 upvoters={failure.upvoters}
               />
             ))}
@@ -47,7 +49,7 @@ export function RoomPage() {
       </Container>
       <SubTitle>Gestion de la salle</SubTitle>
       <Container>
-        <FailureTypeManagement roomId={id} />
+        <FailureTypeManagement roomId={id}/>
       </Container>
     </div>
   );

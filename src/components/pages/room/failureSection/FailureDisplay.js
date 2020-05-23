@@ -24,12 +24,18 @@ function RoomActionButton(props) {
     }
   }
 
-  function changeState(e) {
-    put('/failures/state?failureId=' + props.failureid + '&newState=' + e).then(
-      (result) => {
-        console.log(result);
-      }
-    );
+  function changeFailureState(newState) {
+    put(
+      '/failures/state?failureId=' + props.failureid + '&newState=' + newState
+    ).then(() => {
+      let updatedFailures = props.failures;
+      updatedFailures.map((failure) => {
+        if (failure.id === props.failureid) {
+          failure.state = newState;
+        }
+      });
+      return props.setFailures([...updatedFailures]);
+    });
   }
 
   return props.role === 'STUDENT' || props.role === 'TEACHER' ? (
@@ -37,7 +43,7 @@ function RoomActionButton(props) {
       <i className='fas fa-thumbs-up'></i>
     </Button>
   ) : (
-    <Dropdown onSelect={changeState}>
+    <Dropdown onSelect={changeFailureState}>
       <Dropdown.Toggle id='dropdown-basic'>Résoudre</Dropdown.Toggle>
       <Dropdown.Menu>
         <Dropdown.Item eventKey='ONGOING'>{failureState.ONGOING}</Dropdown.Item>
@@ -83,6 +89,8 @@ function FailureStateDisplay(props) {
 export function FailureDisplay(props) {
   const { state } = useContext(UserContext);
   let currentTime = new Date(props.date);
+
+
   return (
     <div>
       <Accordion defaultActiveKey='1'>
@@ -113,7 +121,7 @@ export function FailureDisplay(props) {
                     <strong>Etat : </strong>
                   </Row>
                   <Row>
-                    <FailureStateDisplay state={props.state} />
+                    <FailureStateDisplay state={props.state}/>
                   </Row>
                 </Col>
                 <Col>
@@ -128,6 +136,7 @@ export function FailureDisplay(props) {
                     failureid={props.id}
                     upvoters={props.upvoters}
                     setFailures={props.setFailures}
+                    failures={props.failures}
                   />
                   + {props.upvoters && props.upvoters.length}
                 </Col>
@@ -139,7 +148,7 @@ export function FailureDisplay(props) {
           </Accordion.Collapse>
         </Card>
       </Accordion>
-      <br />
+      <br/>
     </div>
   );
 }
