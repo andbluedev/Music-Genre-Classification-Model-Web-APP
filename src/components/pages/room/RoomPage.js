@@ -38,6 +38,7 @@ export function RoomPage() {
                 date={failure.createdAt}
                 description={failure.description}
                 state={failure.state}
+                setFailures={setFailures}
                 upvoters={failure.upvoters}
               />
             ))}

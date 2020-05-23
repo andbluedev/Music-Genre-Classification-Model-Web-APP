@@ -10,24 +10,29 @@ import Col from 'react-bootstrap/Col';
 import { UserContext } from '../../../../data/auth/UserContext';
 import Dropdown from 'react-bootstrap/Dropdown';
 
-function LastElement(content) {
+function RoomActionButton(props) {
   function changeUpvote(e) {
     e.preventDefault();
     let hasUpvote = false;
-    content.upvoters.map((upvoter) =>
-      content.id === upvoter.id ? (hasUpvote = true) : (hasUpvote = false)
+    props.upvoters.map((upvoter) =>
+      props.id === upvoter.id ? (hasUpvote = true) : (hasUpvote = false)
     );
     if (!hasUpvote) {
-      put('/failures/upvote?failureId=' + content.failureid, '');
+      put('/failures/upvote?failureId=' + props.failureid, '');
     } else {
-      put('/failures/upvote/remove?failureId=' + content.failureid, '');
+      put('/failures/upvote/remove?failureId=' + props.failureid, '');
     }
   }
+
   function changeState(e) {
-    put('/failures/state?failureId=' + content.failureid + '&newState=' + e, '');
+    put('/failures/state?failureId=' + props.failureid + '&newState=' + e).then(
+      (result) => {
+        console.log(result);
+      }
+    );
   }
 
-  return content.role === 'STUDENT' || content.role === 'TEACHER' ? (
+  return props.role === 'STUDENT' || props.role === 'TEACHER' ? (
     <Button onClick={changeUpvote}>
       <i className='fas fa-thumbs-up'></i>
     </Button>
@@ -46,8 +51,8 @@ function LastElement(content) {
   );
 }
 
-function FailureStateDisplay(content) {
-  switch (content.state) {
+function FailureStateDisplay(props) {
+  switch (props.state) {
     case 'UN_RESOLVED':
       return (
         <div className='unresolved'>
@@ -117,11 +122,12 @@ export function FailureDisplay(props) {
                   </Accordion.Toggle>
                 </Col>
                 <Col>
-                  <LastElement
+                  <RoomActionButton
                     role={state.role}
                     id={state.id}
                     failureid={props.id}
                     upvoters={props.upvoters}
+                    setFailures={props.setFailures}
                   />
                   + {props.upvoters && props.upvoters.length}
                 </Col>
