@@ -11,6 +11,7 @@ import { UserContext } from '../../../../data/auth/UserContext';
 import Dropdown from 'react-bootstrap/Dropdown';
 
 function RoomActionButton(props) {
+
   function changeUpvote(e) {
     e.preventDefault();
     let hasUpvote = false;
@@ -23,7 +24,6 @@ function RoomActionButton(props) {
       put('/failures/upvote/remove?failureId=' + props.failureid, '');
     }
   }
-
   function changeFailureState(newState) {
     put(
       '/failures/state?failureId=' + props.failureid + '&newState=' + newState
@@ -136,6 +136,7 @@ export function FailureDisplay(props) {
                     failureid={props.id}
                     upvoters={props.upvoters}
                     setFailures={props.setFailures}
+                    currentFailure={props.currentFailure}
                     failures={props.failures}
                   />
                   + {props.upvoters && props.upvoters.length}
