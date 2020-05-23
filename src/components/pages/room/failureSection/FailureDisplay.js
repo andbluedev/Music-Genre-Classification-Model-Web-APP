@@ -26,14 +26,14 @@ function LastElement(props) {
   function changeState(e) {
     put('/failures/state?failureId=' + props.failureid + '&newState=' + e, '').then(
       (result) => {
-        console.log(result.payload);
+        //console.log(result.payload);
         let newFailure = props.failures;
-        console.log(newFailure);
+        //console.log(newFailure);
         newFailure[props.failureid - 1] = result.payload;
-        console.log(newFailure);
-        props.setFailure(newFailure);
-        console.log(props.failure);
-        console.log(props.failures);
+        //console.log(newFailure);
+        props.setFailures(newFailure);
+        //console.log(props.currentFailure);
+        //console.log(props.failures);
       }
     );
   }
@@ -133,8 +133,8 @@ export function FailureDisplay(props) {
                     id={state.id}
                     failureid={props.id}
                     upvoters={props.upvoters}
-                    setFailure={props.setFailure}
-                    failure={props.failure}
+                    setFailures={props.setFailures}
+                    currentFailure={props.currentFailure}
                     failures={props.failures}
                   />
                   + {props.upvoters && props.upvoters.length}
