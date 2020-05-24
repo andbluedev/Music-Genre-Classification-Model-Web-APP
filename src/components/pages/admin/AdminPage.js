@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from 'react';
 import {FailureDisplay} from './failureSection/FailureDisplay';
-import './deviceSection/TechPage.scss';
 import Container from 'react-bootstrap/Container';
 import {Title} from '../../common/text/Basics';
 import {get} from '../../../data/api';

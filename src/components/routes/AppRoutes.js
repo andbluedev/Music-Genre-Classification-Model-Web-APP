@@ -3,10 +3,7 @@ import { Switch, Route } from 'react-router-dom';
 import { HomePage } from '../pages/home/HomePage';
 import { AboutPage } from '../pages/about/AboutPage';
 import { FilePage } from '../pages/tp/TpPage';
-
-import { AdminPage } from "../pages/tech/AdminPage";
-
-
+import { AdminPage} from "../pages/admin/AdminPage";
 import { BuildingPage } from '../pages/building/BuildingPage';
 import { RoomPage } from '../pages/room/RoomPage';
 
