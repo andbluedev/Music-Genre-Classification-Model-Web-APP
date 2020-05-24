@@ -42,23 +42,23 @@ export function FailureTypeManagement({ roomId }) {
       <Col sm='12' md='12' fluid>
         <table className='table'>
           <tbody>
-          {failureTypes.length > 0 ? (
-            failureTypes.map((failureType) => (
-              <tr>
-                <td>{failureType.name}</td>
-                <td>
-                  <Button
-                    variant='danger'
-                    onClick={() => deleteRoomFailureType(failureType)}
-                  >
-                    x
-                  </Button>
-                </td>
-              </tr>
-            ))
-          ) : (
-            <tr>Aucun type de panne associé à cette salle</tr>
-          )}
+            {failureTypes.length > 0 ? (
+              failureTypes.map((failureType) => (
+                <tr>
+                  <td>{failureType.name}</td>
+                  <td>
+                    <Button
+                      variant='danger'
+                      onClick={() => deleteRoomFailureType(failureType)}
+                    >
+                      x
+                    </Button>
+                  </td>
+                </tr>
+              ))
+            ) : (
+              <tr>Aucun type de panne associé à cette salle</tr>
+            )}
           </tbody>
         </table>
       </Col>
