@@ -5,8 +5,6 @@ import { SubTitle, Title } from '../../common/text/Basics';
 import { useParams } from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
 import { get } from '../../../data/api';
-import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';
 import { FailureTypeManagement } from './failureTypeSection/FailureTypeManagement';
 
 export function RoomPage() {

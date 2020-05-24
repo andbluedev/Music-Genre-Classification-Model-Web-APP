@@ -14,7 +14,6 @@ import { RoomActionButton } from './RoomActionButton';
 export function FailureDisplay(props) {
   const { state } = useContext(UserContext);
   let currentTime = new Date(props.date);
-  console.log(props);
   return (
     <div>
       <Accordion defaultActiveKey='1'>
