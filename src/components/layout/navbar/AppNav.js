@@ -16,8 +16,8 @@ const active = { textDecoration: 'none' };
 
 export function AppNav() {
   const { dispatch } = useContext(UserContext);
+  const { state } = useContext(UserContext);
   const [showFormReportBreakdown, setShowFormReportBreakdown] = useState(false);
-
   const [buildings, setBuildings] = useState([]);
 
   useEffect(() => {
@@ -49,6 +49,9 @@ export function AppNav() {
                 </NavDropdown.Item>
               ))}
           </NavDropdown>
+          <NavLink className='nav-link' to='/user' exact>
+            <i className='fas fa-user'></i> {state.username}
+          </NavLink>
           <NavLink className='nav-link' to='/' exact>
             <span onClick={() => dispatch({ type: UserActionType.AUTH_FAILURE })}>
               Se déconnecter
