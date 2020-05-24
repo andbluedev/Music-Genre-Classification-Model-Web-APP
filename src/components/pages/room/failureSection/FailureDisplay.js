@@ -11,17 +11,38 @@ import { UserContext } from '../../../../data/auth/UserContext';
 import Dropdown from 'react-bootstrap/Dropdown';
 
 function RoomActionButton(props) {
-
   function changeUpvote(e) {
     e.preventDefault();
+    console.log(props.upvoters,'1');
     let hasUpvote = false;
     props.upvoters.map((upvoter) =>
-      props.id === upvoter.id ? (hasUpvote = true) : (hasUpvote = false)
+      props.userId === upvoter.id ? (hasUpvote = true) : (hasUpvote = false)
     );
     if (!hasUpvote) {
-      put('/failures/upvote?failureId=' + props.failureid, '');
+      put('/failures/upvote?failureId=' + props.failureid, '').then((result) => {
+        let updatedFailures = props.failures;
+        updatedFailures.map((failure) => {
+          if (failure.id === props.failureid) {
+            result.payload.upvoters.map((upvoter) => {
+              if (props.userId === upvoter.id) {
+                failure.upvoters.push(upvoter);
+              }
+            });
+          }
+        });
+        return props.setFailures([...updatedFailures]);
+      });
     } else {
-      put('/failures/upvote/remove?failureId=' + props.failureid, '');
+      put('/failures/upvote/remove?failureId=' + props.failureid, '').then(() => {
+        let updatedFailures = props.failures;
+        updatedFailures.map((failure) => {
+          if (failure.id === props.failureid) {
+            const index = failure.upvoters.indexOf(props.upvoters);
+            failure.upvoters.splice(index, 1);
+          }
+        });
+        return props.setFailures([...updatedFailures]);
+      });
     }
   }
   function changeFailureState(newState) {
@@ -87,9 +108,9 @@ function FailureStateDisplay(props) {
 }
 
 export function FailureDisplay(props) {
+  console.log(props.upvoters,'0');
   const { state } = useContext(UserContext);
   let currentTime = new Date(props.date);
-
 
   return (
     <div>
@@ -121,7 +142,7 @@ export function FailureDisplay(props) {
                     <strong>Etat : </strong>
                   </Row>
                   <Row>
-                    <FailureStateDisplay state={props.state}/>
+                    <FailureStateDisplay state={props.state} />
                   </Row>
                 </Col>
                 <Col>
@@ -132,7 +153,7 @@ export function FailureDisplay(props) {
                 <Col>
                   <RoomActionButton
                     role={state.role}
-                    id={state.id}
+                    userId={state.id}
                     failureid={props.id}
                     upvoters={props.upvoters}
                     setFailures={props.setFailures}
@@ -149,7 +170,7 @@ export function FailureDisplay(props) {
           </Accordion.Collapse>
         </Card>
       </Accordion>
-      <br/>
+      <br />
     </div>
   );
 }

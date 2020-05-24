@@ -14,7 +14,6 @@ export function RoomPage() {
   const [room, setRoom] = useState({});
   const [failures, setFailures_] = useState([]);
   const setFailures = (failures) => {
-    console.log(failures, 'in setFailures');
     return setFailures_(failures);
   };
   const [building, setBuilding] = useState([]);
@@ -26,8 +25,6 @@ export function RoomPage() {
       setBuilding(result.payload.building);
     });
   }, []);
-
-  console.log(failures, 'failures');
   return (
     <div>
       <Title> {room.number} </Title>
@@ -57,7 +54,7 @@ export function RoomPage() {
       </Container>
       <SubTitle>Gestion de la salle</SubTitle>
       <Container>
-        <FailureTypeManagement roomId={id}/>
+        <FailureTypeManagement roomId={id} />
       </Container>
     </div>
   );
