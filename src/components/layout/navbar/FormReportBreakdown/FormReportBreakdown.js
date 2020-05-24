@@ -9,16 +9,20 @@ export function FormReportBreakdown(props) {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
 
-  function handleSubmit() {
+  function handleSubmit(e) {
+    e.preventDefault();
     post(
-      `failures?roomId=${formState.selectedRoomId}&deviceCategoryId=${formState.selectedDeviceId}`,
+      `/failures?roomId=${formState.selectedRoomId}&deviceCategoryId=${formState.selectedDeviceId}`,
       {
-        title: title,
-        description: description
+        title,
+        description
       }
     )
       .then()
-      .catch((err) => console.log(err));
+      .catch((err) => alert(err))
+      .finally(() => {
+        window.location.reload(); // TODO : change this logic and use React Context (forces the browser page reloading which isn't great because it remounts every component of the page meaning lots of ressources spent for nothing.l)
+      });
   }
 
   return (
@@ -27,7 +31,7 @@ export function FormReportBreakdown(props) {
         <Modal.Title>Signaler une panne</Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <Form>
+        <Form onSubmit={handleSubmit}>
           <Form.Group>
             <Form.Label>Titre :</Form.Label>
             <Form.Control
@@ -56,14 +60,7 @@ export function FormReportBreakdown(props) {
               Veuillez décrire la panne.
             </Form.Control.Feedback>
           </Form.Group>
-          <Button
-            variant={'outline-success'}
-            type={'submit'}
-            onClick={() => {
-              handleSubmit();
-            }}
-            block
-          >
+          <Button variant={'outline-success'} type='submit' block>
             Signaler
           </Button>
         </Form>

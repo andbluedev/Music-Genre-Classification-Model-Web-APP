@@ -110,7 +110,6 @@ function FailureStateDisplay(props) {
 export function FailureDisplay(props) {
   const { state } = useContext(UserContext);
   let currentTime = new Date(props.date);
-
   return (
     <div>
       <Accordion defaultActiveKey='1'>
@@ -122,13 +121,13 @@ export function FailureDisplay(props) {
                   <Row>
                     <strong>Appareil :</strong>
                   </Row>
-                  <Row>{props.device}</Row>
+                  <Row>{props.device.name}</Row>
                 </Col>
                 <Col>
                   <Row>
                     <strong>Type de panne :</strong>
                   </Row>
-                  <Row>{props.type}</Row>
+                  <Row>{props.failureTitle}</Row>
                 </Col>
                 <Col>
                   <Row>
@@ -141,7 +140,7 @@ export function FailureDisplay(props) {
                     <strong>Etat : </strong>
                   </Row>
                   <Row>
-                    <FailureStateDisplay state={props.state} />
+                    <FailureStateDisplay state={props.failureState} />
                   </Row>
                 </Col>
                 <Col>

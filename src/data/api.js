@@ -24,6 +24,7 @@ export const failureState = {
   CLOSED: 'Réparé',
   USELESS: 'Inadéquat'
 };
+
 export async function api(path, method, body, authorize = true) {
   const headers = new Headers();
 
@@ -32,8 +33,6 @@ export async function api(path, method, body, authorize = true) {
 
   if (authorize) {
     let token = getTokenValue();
-    headers.append('Content-Type', 'application/json');
-    headers.append('Accept', 'application/json');
     headers.append('Authorization', `Bearer ${token}`);
   }
   const res = await fetch(process.env.REACT_APP_API_URI + path, {
