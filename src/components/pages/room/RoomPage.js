@@ -26,7 +26,7 @@ export function RoomPage() {
   return (
     <div>
       <Title> {room.number} </Title>
-      <SubTitle> Batiment : {building.name}</SubTitle>
+        <SubTitle> Batiment : {building.name}</SubTitle>
       <Container className='room-wrapper'>
         <Row>
           <Col>

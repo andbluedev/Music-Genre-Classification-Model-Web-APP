@@ -6,6 +6,7 @@ import { Title } from '../../common/text/Basics';
 import { get } from '../../../data/api';
 import {DeviceDisplay} from "./deviceSection/DeviceDisplay";
 import Row from 'react-bootstrap/Row';
+import {AddDevice} from "./deviceSection/AddDevice";
 
 export function TechPage() {
   const [failures, setFailures] = useState([]);
@@ -35,7 +36,9 @@ export function TechPage() {
                   ))}
               </Row>
           </Container>
-
+          <Container>
+              <AddDevice/>
+          </Container>
       <Title> Liste des pannes </Title>
         <Container className='room-wrapper'>
          {failures &&
