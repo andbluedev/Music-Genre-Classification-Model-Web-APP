@@ -4,7 +4,7 @@ import { HomePage } from '../pages/home/HomePage';
 import { AboutPage } from '../pages/about/AboutPage';
 import { FilePage } from '../pages/tp/TpPage';
 
-import { TechPage } from "../pages/tech/TechPage";
+import { AdminPage } from "../pages/tech/AdminPage";
 
 
 import { BuildingPage } from '../pages/building/BuildingPage';
@@ -28,8 +28,8 @@ export const AppRoutes = () => (
       <FilePage />
     </Route>
 
-  <Route path='/tech'>
-      <TechPage />
+  <Route path='/admin'>
+      <AdminPage />
   </Route>
 
     <Route path='/building/:id'>
