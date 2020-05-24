@@ -27,27 +27,23 @@ export function RoomPage() {
       <Title>{roomName}</Title>
       <SubTitle> Batiment : {building && building.name}</SubTitle>
       <Container className='room-wrapper'>
-        <Row>
-          <Col>
-            {failures.length > 0 &&
-              failures.map((failure) => {
-                return (
-                  <FailureDisplay
-                    id={failure.id}
-                    key={failure.id}
-                    failureTitle={failure.title}
-                    device={failure.deviceCategory}
-                    date={failure.createdAt}
-                    description={failure.description}
-                    failureState={failure.state}
-                    failures={failures}
-                    upvoters={failure.upvoters}
-                    setFailures={setFailures}
-                  />
-                );
-              })}
-          </Col>
-        </Row>
+        {failures.length > 0 &&
+          failures.map((failure) => {
+            return (
+              <FailureDisplay
+                id={failure.id}
+                key={failure.id}
+                failureTitle={failure.title}
+                device={failure.deviceCategory}
+                date={failure.createdAt}
+                description={failure.description}
+                failureState={failure.state}
+                failures={failures}
+                upvoters={failure.upvoters}
+                setFailures={setFailures}
+              />
+            );
+          })}
       </Container>
       <SubTitle>Gestion de la salle</SubTitle>
       <Container>
