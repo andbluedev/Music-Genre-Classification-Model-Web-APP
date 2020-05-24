@@ -12,7 +12,10 @@ import { FailureTypeManagement } from './failureTypeSection/FailureTypeManagemen
 export function RoomPage() {
   let { id } = useParams();
   const [room, setRoom] = useState({});
-  const [failures, setFailures] = useState([]);
+  const [failures, setFailures_] = useState([]);
+  const setFailures = (failures) => {
+    return setFailures_(failures);
+  };
   const [building, setBuilding] = useState([]);
 
   useEffect(() => {
@@ -22,7 +25,6 @@ export function RoomPage() {
       setBuilding(result.payload.building);
     });
   }, []);
-
   return (
     <div>
       <Title> {room.number} </Title>
@@ -32,11 +34,18 @@ export function RoomPage() {
           <Col>
             {failures.map((failure) => (
               <FailureDisplay
+                id={failure.id}
+                key={failure.id}
                 type={failure.title}
                 device={failure.deviceCategory}
                 date={failure.createdAt}
                 description={failure.description}
                 state={failure.state}
+                setFailures={setFailures}
+                failures={failures}
+                upvoters={failure.upvoters}
+                setFailures={setFailures}
+                failures={failures}
               />
             ))}
           </Col>
