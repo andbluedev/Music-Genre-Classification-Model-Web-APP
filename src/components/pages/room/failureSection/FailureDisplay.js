@@ -62,7 +62,7 @@ export function FailureDisplay(props) {
                   <Row>
                     <strong>Appareil :</strong>
                   </Row>
-                  <Row>{props.device.name}</Row>
+                  <Row>{props.device}</Row>
                 </Col>
                 <Col>
                   <Row>
