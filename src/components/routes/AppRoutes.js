@@ -6,11 +6,15 @@ import { FilePage } from '../pages/tp/TpPage';
 import { AdminPage} from "../pages/admin/AdminPage";
 import { BuildingPage } from '../pages/building/BuildingPage';
 import { RoomPage } from '../pages/room/RoomPage';
-
+import { UserPage } from '../pages/account/user/UserPage';
 export const AppRoutes = () => (
   <Switch>
     <Route path='/about'>
       <AboutPage />
+    </Route>
+
+    <Route path='/user'>
+      <UserPage />
     </Route>
 
     <Route exact path='/home'>
