@@ -1,7 +1,6 @@
 @import '../../../../style/theme';
 @import '../../../../style/mixins';
 
-
 .fai-wrapper {
   padding: 1rem;
   background-color: whitesmoke;
@@ -26,4 +25,14 @@
 
 .useless{
   color: #573b06;
+}
+
+.centered-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.upvote-nb-badge {
+  margin-left: 0.5em;
 }

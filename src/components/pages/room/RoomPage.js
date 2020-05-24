@@ -11,45 +11,39 @@ import { FailureTypeManagement } from './failureTypeSection/FailureTypeManagemen
 
 export function RoomPage() {
   let { id } = useParams();
-  const [room, setRoom] = useState({});
-  const [failures, setFailures_] = useState([]);
-  const setFailures = (failures) => {
-    return setFailures_(failures);
-  };
-  const [building, setBuilding] = useState([]);
-
+  const [failures, setFailures] = useState([]);
+  const [building, setBuilding] = useState();
+  const [roomName, setRoomName] = useState('');
   useEffect(() => {
     get('/rooms/' + id).then((result) => {
-      setRoom(result.payload);
-      setFailures(result.payload.failures);
+      setRoomName(result.payload.number);
       setBuilding(result.payload.building);
+      setFailures(result.payload.failures);
     });
-  }, []);
+  }, [id]);
+
   return (
     <div>
-      <Title> {room.number} </Title>
-        <SubTitle> Batiment : {building.name}</SubTitle>
+      <Title>{roomName}</Title>
+      <SubTitle> Batiment : {building && building.name}</SubTitle>
       <Container className='room-wrapper'>
-        <Row>
-          <Col>
-            {failures.map((failure) => (
+        {failures.length > 0 &&
+          failures.map((failure) => {
+            return (
               <FailureDisplay
                 id={failure.id}
                 key={failure.id}
-                type={failure.title}
+                failureTitle={failure.title}
                 device={failure.deviceCategory}
                 date={failure.createdAt}
                 description={failure.description}
-                state={failure.state}
-                setFailures={setFailures}
+                failureState={failure.state}
                 failures={failures}
                 upvoters={failure.upvoters}
                 setFailures={setFailures}
-                failures={failures}
               />
-            ))}
-          </Col>
-        </Row>
+            );
+          })}
       </Container>
       <SubTitle>Gestion de la salle</SubTitle>
       <Container>

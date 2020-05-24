@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
+import Badge from 'react-bootstrap/Badge';
 import Accordion from 'react-bootstrap/Accordion';
 import './FailureDisplay.scss';
 import { put, failureState } from '../../../../data/api';
@@ -110,7 +111,6 @@ function FailureStateDisplay(props) {
 export function FailureDisplay(props) {
   const { state } = useContext(UserContext);
   let currentTime = new Date(props.date);
-
   return (
     <div>
       <Accordion defaultActiveKey='1'>
@@ -118,38 +118,38 @@ export function FailureDisplay(props) {
           <Card.Header>
             <Container>
               <Row>
-                <Col>
+                <Col xs={12} md={2}>
                   <Row>
                     <strong>Appareil :</strong>
                   </Row>
-                  <Row>{props.device}</Row>
+                  <Row>{props.device.name}</Row>
                 </Col>
-                <Col>
+                <Col xs={12} md={2}>
                   <Row>
-                    <strong>Type de panne :</strong>
+                    <strong>Titre :</strong>
                   </Row>
-                  <Row>{props.type}</Row>
+                  <Row>{props.failureTitle}</Row>
                 </Col>
-                <Col>
+                <Col xs={6} md={2}>
                   <Row>
                     <strong>Date :</strong>
                   </Row>
                   <Row>{currentTime.toLocaleDateString()} </Row>
                 </Col>
-                <Col md='auto'>
+                <Col xs={6} md={2}>
                   <Row>
                     <strong>Etat : </strong>
                   </Row>
                   <Row>
-                    <FailureStateDisplay state={props.state} />
+                    <FailureStateDisplay state={props.failureState} />
                   </Row>
                 </Col>
-                <Col>
+                <Col xs={6} md={2} className='centered-btn'>
                   <Accordion.Toggle as={Button} variant='link' eventKey='0'>
                     Description
                   </Accordion.Toggle>
                 </Col>
-                <Col>
+                <Col xs={6} md={2} className='centered-btn'>
                   <RoomActionButton
                     role={state.role}
                     userId={state.id}
@@ -158,11 +158,14 @@ export function FailureDisplay(props) {
                     setFailures={props.setFailures}
                     failures={props.failures}
                   />
-                  + {props.upvoters && props.upvoters.length}
+                  <Badge pill variant='secondary' className='upvote-nb-badge'>
+                    +{props.upvoters && props.upvoters.length}
+                  </Badge>
                 </Col>
               </Row>
             </Container>
           </Card.Header>
+
           <Accordion.Collapse eventKey='0'>
             <Card.Body>{props.description}</Card.Body>
           </Accordion.Collapse>

@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useReducer, useState } from 'react';
 import './AppNav.scss';
 import { NavLink } from 'react-router-dom';
 import { RoomfixLogo } from '../../common/logo/RoomfixLogo';
@@ -8,11 +8,15 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 import { UserContext } from '../../../data/auth/UserContext';
 import { UserActionType } from '../../../data/auth/reducer';
 import { get } from '../../../data/api';
+import { Button } from 'react-bootstrap';
+import { FormReportBreakdown } from './FormReportBreakdown/FormReportBreakdown';
+import { FormContextProvider } from './formContext/FormContext';
 
 const active = { textDecoration: 'none' };
 
 export function AppNav() {
   const { dispatch } = useContext(UserContext);
+  const [showFormReportBreakdown, setShowFormReportBreakdown] = useState(false);
 
   const [buildings, setBuildings] = useState([]);
 
@@ -21,6 +25,10 @@ export function AppNav() {
       setBuildings(result.payload);
     });
   }, []);
+
+  const handleButtonClick = () => {
+    setShowFormReportBreakdown(true);
+  };
 
   return (
     <Navbar collapseOnSelect expand='lg' variant='light' bg='light'>
@@ -46,6 +54,24 @@ export function AppNav() {
               Se déconnecter
             </span>
           </NavLink>
+        </Nav>
+        <Nav>
+          <Button
+            onClick={() => {
+              handleButtonClick();
+            }}
+            variant='outline-primary'
+          >
+            Signaler une panne
+          </Button>
+          <FormContextProvider>
+            <FormReportBreakdown
+              show={showFormReportBreakdown}
+              onHide={() => {
+                setShowFormReportBreakdown(false);
+              }}
+            />
+          </FormContextProvider>
         </Nav>
       </Navbar.Collapse>
     </Navbar>
