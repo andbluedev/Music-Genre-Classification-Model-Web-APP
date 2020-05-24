@@ -32,6 +32,8 @@ export function AdminPage() {
                         <DeviceDisplay
                             name={category.name}
                             id={category.id}
+                            categories={categories}
+                            setCategories={setCategories}
                         />
                     ))}
                 </Row>
