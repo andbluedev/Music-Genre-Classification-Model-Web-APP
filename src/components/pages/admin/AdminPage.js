@@ -41,7 +41,10 @@ export function AdminPage() {
             </Row>
             <Row>
             <Container>
-                <AddDevice/>
+                <AddDevice
+                    categories={categories}
+                    setCategories={setCategories}
+                />
             </Container>
             </Row>
             <Row>

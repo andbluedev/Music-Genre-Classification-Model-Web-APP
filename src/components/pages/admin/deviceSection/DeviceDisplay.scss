@@ -1,14 +1,14 @@
 @import 'src/style/theme';
 @import 'src/style/mixins';
 
-.delete-button {
-  background-color: #91262D;
-  font-weight: bold;
-  font-size: 10px;
-  margin-bottom: 10px;
+.delete-button{
+  float: right;
 }
 .device-card {
   height: 8rem;
   margin: 10px;
+}
 
+.content {
+  margin-top: 35px;
 }

@@ -1,26 +1,22 @@
-import React, {useEffect, useState} from 'react';
-import {get, post} from "../../../../data/api";
+import React, {useState} from 'react';
+import { post} from "../../../../data/api";
 import Form from 'react-bootstrap/Form';
+import Button from "react-bootstrap/Button";
+import './AddDevice.scss';
 
-
-export function AddDevice ({
-
-    setCategory
-                           }) {
+export function AddDevice (props) {
 
     const [value, setValue] = useState("");
-    const [onHide, setOnHide] = useState("");
 
     const addDevice = (e) => {
         e.preventDefault();
-        post(`/devices/categories`, {name:"value"})
+        console.log(props.categories);
+        post(`/devices/categories`, {name:value})
         .then((result) => {
-                // does this to refresh parentComponent with the updated Failure list.
-                if (result.payload.devicesCategories) {
-                    setCategory(result.payload.devicesCategories);
-                }
+                    let updatedCategories = props.categories;
+                    updatedCategories.push(result.payload);
+                    return props.setCategories([...updatedCategories]);
             })
-                .finally(() => setOnHide(false));
     };
 
     return(
@@ -29,15 +25,15 @@ export function AddDevice ({
         onSubmit={addDevice}>
         <input
             autoComplete={false}
-            className='inputDevice'
+            className='input-device'
             type='text'
             placeholder='Ajouter un nouvel appareil'
             value={value}
             onChange={(e) => setValue(e.target.value)}
         />
-        <button className='add' type='submit'>
-            <span className='button-text'>Ajouter</span>
-        </button>
+        <Button className='add' type='submit' variant="outline-info">
+            Ajouter
+        </Button>
 
     </Form>
 </div>
