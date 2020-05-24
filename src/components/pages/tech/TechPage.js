@@ -13,9 +13,9 @@ export function TechPage() {
 
 
   useEffect(() => {
-      get('/failures').then((result) => {
+      /*get('/failures').then((result) => {
       setFailures(result.payload);
-    });
+    });*/
   get('/devices/categories').then((result) => {
       setCategories(result.payload);
   });

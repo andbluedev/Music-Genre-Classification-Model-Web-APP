@@ -1,11 +1,12 @@
 @import 'src/style/theme';
 @import 'src/style/mixins';
 
-.title {
-  color: #91262D;
-  text-align: right;
+.delete-button {
+  background-color: #91262D;
   font-weight: bold;
   font-size: 10px;
+  float: right;
+  margin-bottom: 10px;
 }
 .device-card {
   height: 8rem;

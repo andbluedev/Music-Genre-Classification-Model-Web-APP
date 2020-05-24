@@ -97,7 +97,7 @@ export function FailureDisplay(props) {
                   + {props.upvoters.length}
                 </Col>
                 <Col>
-                  <Row><a href={"./room/"}> Voir la salle </a></Row>
+                  <Row><a href={""}> Voir la salle </a></Row>
                 </Col>
               </Row>
             </Container>
