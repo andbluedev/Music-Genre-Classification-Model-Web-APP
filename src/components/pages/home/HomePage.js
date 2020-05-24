@@ -3,14 +3,33 @@ import './HomePage.scss';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import Card from 'react-bootstrap/Card';
 import { get } from '../../../data/api';
+import NDCjpg from '../../../img/NDC.jpg';
+import NDLjpg from '../../../img/NDL.jpg';
+import roomfixLogo from '../../../img/roomfix_light_325x325.png';
 
 function CampusButton({ campusName, href }) {
+  let img;
+  switch (campusName) {
+    case 'NDC':
+      img = NDCjpg;
+      break;
+    case 'NDL':
+      img = NDLjpg;
+      break;
+    default:
+      img = roomfixLogo;
+  }
+
   return (
     <a href={href}>
-      <button className='campus'>
-        <p className='name'> {campusName}</p>
-      </button>
+      <Card className='bg-secondary text-white campus'>
+        <Card.Img src={img} alt='Card image' />
+        <Card.ImgOverlay>
+          <Card.Title className='campus-title'>{campusName}</Card.Title>
+        </Card.ImgOverlay>
+      </Card>
     </a>
   );
 }
