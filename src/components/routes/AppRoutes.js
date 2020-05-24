@@ -3,6 +3,7 @@ import { Switch, Route } from 'react-router-dom';
 import { HomePage } from '../pages/home/HomePage';
 import { AboutPage } from '../pages/about/AboutPage';
 import { FilePage } from '../pages/tp/TpPage';
+import { AdminPage } from '../pages/admin/AdminPage';
 import { BuildingPage } from '../pages/building/BuildingPage';
 import { RoomPage } from '../pages/room/RoomPage';
 import { UserPage } from '../pages/account/user/UserPage';
@@ -16,6 +17,10 @@ export const AppRoutes = () => (
       <UserPage />
     </Route>
 
+    <Route path='/admin'>
+      <AdminPage />
+    </Route>
+
     <Route exact path='/home'>
       <HomePage />
     </Route>
@@ -27,6 +32,7 @@ export const AppRoutes = () => (
     <Route path='/tp'>
       <FilePage />
     </Route>
+
     <Route path='/building/:id'>
       <BuildingPage />
     </Route>

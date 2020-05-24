@@ -49,14 +49,26 @@ export function AppNav() {
                 </NavDropdown.Item>
               ))}
           </NavDropdown>
-          <NavLink className='nav-link' to='/user' exact>
-            <i className='fas fa-user'></i> {state.username}
-          </NavLink>
-          <NavLink className='nav-link' to='/' exact>
-            <span onClick={() => dispatch({ type: UserActionType.AUTH_FAILURE })}>
-              Se déconnecter
-            </span>
-          </NavLink>
+          {state.role === 'ADMIN' && (
+            <NavLink className='nav-link' to='/admin' exact activeStyle={active}>
+              Administration
+            </NavLink>
+          )}
+          <NavDropdown
+            title={
+              <span>
+                <i className='fas fa-user'></i> {state.username}
+              </span>
+            }
+            id='basic-nav-dropdown'
+          >
+            <NavDropdown.Item href='/'>
+              <span onClick={() => dispatch({ type: UserActionType.AUTH_FAILURE })}>
+                Se déconnecter
+              </span>
+            </NavDropdown.Item>
+            <NavDropdown.Item href='/user'>Mon Profil</NavDropdown.Item>
+          </NavDropdown>
         </Nav>
         <Nav>
           <Button

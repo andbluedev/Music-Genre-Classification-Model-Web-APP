@@ -18,7 +18,7 @@ export function AuthPage() {
     if (location.pathname === '/register') {
       setIsLogin(false);
     }
-  },[]);
+  }, []);
 
   return (
     <Container fluid className='justify-content-md-center'>

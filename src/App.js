@@ -23,7 +23,17 @@ function App() {
             <Route path={['/login', '/']}>
               <AuthRoutes />
             </Route>
-            <Route path={['/about', '/home', '/tp', '/building/:id', '/room/:id', '/user']}>
+            <Route
+              path={[
+                '/about',
+                '/home',
+                '/tp',
+                '/building/:id',
+                '/room/:id',
+                '/user',
+                '/admin'
+              ]}
+            >
               <AppNav />
               <Container className='row flex-column justify-content-center ' fluid>
                 <Row>

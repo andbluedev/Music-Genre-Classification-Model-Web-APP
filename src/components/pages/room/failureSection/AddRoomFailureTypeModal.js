@@ -14,6 +14,7 @@ export const AddRoomFailureTypeModal = ({
 }) => {
   const [availableFailureTypes, setAvailableFailureTypes] = useState([]);
   const [newTypeId, setNewTypeId] = useState();
+
   useEffect(() => {
     get(`/devices/categories`).then((result) => {
       const availableTypeIds = failureTypes.map((t) => t.id);
