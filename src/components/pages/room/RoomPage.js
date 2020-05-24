@@ -29,7 +29,7 @@ export function RoomPage() {
       <Container className='room-wrapper'>
         <Row>
           <Col>
-            {failures.length > 0 &&
+            {failures.length > 0 ? (
               failures.map((failure) => {
                 return (
                   <FailureDisplay
@@ -45,7 +45,10 @@ export function RoomPage() {
                     setFailures={setFailures}
                   />
                 );
-              })}
+              })
+            ) : (
+              <p className='text-center mt-2'>Aucune panne</p>
+            )}
           </Col>
         </Row>
       </Container>

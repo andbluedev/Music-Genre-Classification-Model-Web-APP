@@ -78,7 +78,7 @@ export const AddRoomFailureTypeModal = ({
                   administrateur.
                 </em>
               </p>
-              <Button variant='primary' type='submit'>
+              <Button variant='primary' block type='submit'>
                 Ajouter type
               </Button>
             </Form.Group>
