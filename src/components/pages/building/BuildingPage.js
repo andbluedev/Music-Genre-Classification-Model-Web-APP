@@ -44,7 +44,7 @@ export function BuildingPage() {
         <Row className='justify-content-between' fluid>
           {rooms.length > 0
             ? rooms.map((room) => <Room content={{ room }} />)
-            : 'Pas de Salles avec des erreurs'}
+            : "Aucune salle n'est associée à ce bâtiment"}
         </Row>
       </Container>
     </div>
