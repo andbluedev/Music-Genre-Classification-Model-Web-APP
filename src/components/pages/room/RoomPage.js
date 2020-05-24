@@ -45,7 +45,6 @@ export function RoomPage() {
                 failures={failures}
                 upvoters={failure.upvoters}
                 setFailures={setFailures}
-                currentFailure={failure}
                 failures={failures}
               />
             ))}

@@ -13,7 +13,6 @@ import Dropdown from 'react-bootstrap/Dropdown';
 function RoomActionButton(props) {
   function changeUpvote(e) {
     e.preventDefault();
-    console.log(props.upvoters,'1');
     let hasUpvote = false;
     props.upvoters.map((upvoter) =>
       props.userId === upvoter.id ? (hasUpvote = true) : (hasUpvote = false)
@@ -45,6 +44,7 @@ function RoomActionButton(props) {
       });
     }
   }
+
   function changeFailureState(newState) {
     put(
       '/failures/state?failureId=' + props.failureid + '&newState=' + newState
@@ -108,7 +108,6 @@ function FailureStateDisplay(props) {
 }
 
 export function FailureDisplay(props) {
-  console.log(props.upvoters,'0');
   const { state } = useContext(UserContext);
   let currentTime = new Date(props.date);
 
@@ -157,7 +156,6 @@ export function FailureDisplay(props) {
                     failureid={props.id}
                     upvoters={props.upvoters}
                     setFailures={props.setFailures}
-                    currentFailure={props.currentFailure}
                     failures={props.failures}
                   />
                   + {props.upvoters && props.upvoters.length}
