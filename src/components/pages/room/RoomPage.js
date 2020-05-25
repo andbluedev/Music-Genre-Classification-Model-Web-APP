@@ -19,7 +19,6 @@ export function RoomPage() {
   const [building, setBuilding] = useState();
   const [roomName, setRoomName] = useState('');
   const [filteredFailures, setFilteredFailures] = useState([]);
-  const [filterState, setFilterState] = useState('');
 
   useEffect(() => {
     get('/rooms/' + id).then((result) => {
@@ -43,18 +42,19 @@ export function RoomPage() {
     <div>
       <Title>{roomName}</Title>
       <SubTitle> Batiment : {building && building.name}</SubTitle>
-      <Dropdown onSelect={filterRoomFailure}>
-        <Dropdown.Toggle id='dropdown-basic'>Filtrer</Dropdown.Toggle>
-        <Dropdown.Menu>
-          <Dropdown.Item eventKey='ONGOING'>{failureState.ONGOING}</Dropdown.Item>
-          <Dropdown.Item eventKey='CLOSED'>{failureState.CLOSED}</Dropdown.Item>
-          <Dropdown.Item eventKey='UN_RESOLVED'>
-            {failureState.UN_RESOLVED}
-          </Dropdown.Item>
-          <Dropdown.Item eventKey='USELESS'>{failureState.USELESS}</Dropdown.Item>
-        </Dropdown.Menu>
-      </Dropdown>
       <Container className='room-wrapper'>
+        <Dropdown onSelect={filterRoomFailure}>
+          <Dropdown.Toggle id='dropdown-basic'>Filtrer</Dropdown.Toggle>
+          <Dropdown.Menu>
+            <Dropdown.Item eventKey='ONGOING'>{failureState.ONGOING}</Dropdown.Item>
+            <Dropdown.Item eventKey='CLOSED'>{failureState.CLOSED}</Dropdown.Item>
+            <Dropdown.Item eventKey='UN_RESOLVED'>
+              {failureState.UN_RESOLVED}
+            </Dropdown.Item>
+            <Dropdown.Item eventKey='USELESS'>{failureState.USELESS}</Dropdown.Item>
+          </Dropdown.Menu>
+        </Dropdown>
+        <br/>
         <Row>
           <Col>
             {filteredFailures.length > 0 ? (
