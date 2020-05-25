@@ -33,4 +33,8 @@ $nav-height: 10vh;
     height: $nav-height;
     background: $color-light;
     @include box_shadow(1);
-  }
+}
+
+.role{
+    color: orange;
+}
