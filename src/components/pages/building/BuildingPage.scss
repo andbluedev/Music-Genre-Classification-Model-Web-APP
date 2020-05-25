@@ -1,5 +1,9 @@
 @import "../../../style/theme";
 
+a:hover {
+  text-decoration: none !important;
+}
+
 .room-card {
   width: 11rem;
   margin: 1rem;

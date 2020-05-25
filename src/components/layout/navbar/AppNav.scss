@@ -22,19 +22,23 @@ $nav-height: 10vh;
     }
 }
 
-  nav.nav-wrapper {
-    top: 0;
-    font-family: $font-title-regular;
-    width: 100%;
-    display: flex;
-    margin-bottom: 1rem;
-    flex-direction: row;
-    justify-content: space-between;
-    height: $nav-height;
-    background: $color-light;
-    @include box_shadow(1);
+nav.nav-wrapper {
+  top: 0;
+  font-family: $font-title-regular;
+  width: 100%;
+  display: flex;
+  margin-bottom: 1rem;
+  flex-direction: row;
+  justify-content: space-between;
+  height: $nav-height;
+  background: $color-light;
+  @include box_shadow(1);
 }
 
 .role{
     color: orange;
+}
+
+.new-failure-btn {
+  margin: 10px 0;
 }
