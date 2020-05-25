@@ -52,7 +52,7 @@ export function AdminPage() {
             failures.map((failure) => (
               <FailureDisplay
                 id={failure.id}
-                type={failure.title}
+                failureTitle={failure.title}
                 device={failure.deviceCategory}
                 date={failure.createdAt}
                 description={failure.description}
