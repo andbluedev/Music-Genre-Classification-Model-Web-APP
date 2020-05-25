@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from 'react';
+import './FailureTypeManagement.scss';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
+import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import { get, HttpStatusCode, put } from '../../../../data/api';
 import { AddRoomFailureTypeModal } from '../failureSection/AddRoomFailureTypeModal';
+import ListGroup from 'react-bootstrap/ListGroup';
 
 export function FailureTypeManagement({ roomId }) {
   const [failureTypes, setFailureTypes] = useState([]);
@@ -13,7 +16,7 @@ export function FailureTypeManagement({ roomId }) {
     get(`/rooms/${roomId}/device/categories`).then((result) => {
       setFailureTypes(result.payload);
     });
-  }, []);
+  }, [roomId]);
 
   const deleteRoomFailureType = (failure) => {
     put(`/rooms/${roomId}/removedevice?deviceCategoryId=${failure.id}`).then(
@@ -29,6 +32,40 @@ export function FailureTypeManagement({ roomId }) {
 
   return (
     <Row>
+      <AddRoomFailureTypeModal
+        show={modalOpen}
+        onHide={setModalOpen}
+        roomId={roomId}
+        failureTypes={failureTypes}
+        setRoomFailureTypes={setFailureTypes}
+      />
+      <Card className='failures-list-card'>
+        <Card.Header>Types de pannes disponibles :</Card.Header>
+        <ListGroup variant='flush'>
+          {failureTypes.length > 0 ? (
+            failureTypes.map((failureType) => (
+              <ListGroup.Item className='device-list-item'>
+                <span>{failureType.name}</span>
+                <Button
+                  variant='danger'
+                  onClick={() => deleteRoomFailureType(failureType)}
+                >
+                  <i className='fas fa-trash-alt' />
+                </Button>
+              </ListGroup.Item>
+            ))
+          ) : (
+            <ListGroup.Item>
+              Aucun type de panne associé à cette salle
+            </ListGroup.Item>
+          )}
+        </ListGroup>
+      </Card>
+      <Button variant='secondary' onClick={() => setModalOpen(true)}>
+        Ajouter
+      </Button>
+    </Row>
+    /*<Row>
       <AddRoomFailureTypeModal
         show={modalOpen}
         onHide={setModalOpen}
@@ -67,6 +104,6 @@ export function FailureTypeManagement({ roomId }) {
           Ajouter
         </Button>
       </Col>
-    </Row>
+    </Row>*/
   );
 }

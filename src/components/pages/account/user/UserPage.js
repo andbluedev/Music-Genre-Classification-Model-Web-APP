@@ -13,10 +13,14 @@ export function UserPage() {
     if (firstAndLastname.includes('.')) {
       firstAndLastname = firstAndLastname.split('.');
       firstname = firstAndLastname[0];
+      firstname = firstname.charAt(0).toUpperCase() + firstname.slice(1);
       lastname = firstAndLastname[1];
+      lastname = lastname.charAt(0).toUpperCase() + lastname.slice(1);
     } else {
       firstname = firstAndLastname;
+      firstname = firstname.charAt(0).toUpperCase() + firstname.slice(1);
       lastname = firstAndLastname;
+      lastname = lastname.charAt(0).toUpperCase() + lastname.slice(1);
     }
   }
   return (

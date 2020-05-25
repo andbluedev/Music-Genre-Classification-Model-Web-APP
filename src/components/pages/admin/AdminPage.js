@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import Container from 'react-bootstrap/Container';
 import { Title } from '../../common/text/Basics';
 import { get, put } from '../../../data/api';
@@ -7,8 +7,10 @@ import Row from 'react-bootstrap/Row';
 import { AddDevice } from './deviceSection/AddDevice';
 import { FailureDisplay } from '../room/failureSection/FailureDisplay';
 import { EditDeviceModal } from './deviceSection/EditDeviceModal';
+import { UserContext } from '../../../data/auth/UserContext';
 
 export function AdminPage() {
+  const { state } = useContext(UserContext);
   const [failures, setFailures] = useState([]);
   const [categories, setCategories] = useState([]);
   const [open, setOpen] = useState(false);
@@ -54,7 +56,7 @@ export function AdminPage() {
     return setOpen(false);
   };
 
-  return (
+  return state.role === 'ADMIN' ? (
     <div>
       <EditDeviceModal
         show={open}
@@ -74,7 +76,7 @@ export function AdminPage() {
                   openEditModal={openEditModal}
                   categories={categories}
                 />
-              ))}
+              ))}gst
           </Row>
         </Container>
       </Row>
@@ -106,5 +108,7 @@ export function AdminPage() {
         </Container>
       </Row>
     </div>
+  ) : (
+    <div> Vous n'avez pas le statut pour accéder à cette page </div>
   );
 }

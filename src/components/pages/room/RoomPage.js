@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { FailureDisplay } from './failureSection/FailureDisplay';
 import './RoomPage.scss';
 import { SubTitle, Title } from '../../common/text/Basics';
@@ -6,9 +6,13 @@ import { useParams } from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
 import { get } from '../../../data/api';
 import { FailureTypeManagement } from './failureTypeSection/FailureTypeManagement';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import { UserContext } from '../../../data/auth/UserContext';
 
 export function RoomPage() {
   let { id } = useParams();
+  const { state } = useContext(UserContext);
   const [failures, setFailures] = useState([]);
   const [building, setBuilding] = useState();
   const [roomName, setRoomName] = useState('');
@@ -25,28 +29,39 @@ export function RoomPage() {
       <Title>{roomName}</Title>
       <SubTitle> Batiment : {building && building.name}</SubTitle>
       <Container className='room-wrapper'>
-        {failures.length > 0 &&
-          failures.map((failure) => {
-            return (
-              <FailureDisplay
-                id={failure.id}
-                key={failure.id}
-                failureTitle={failure.title}
-                device={failure.deviceCategory}
-                date={failure.createdAt}
-                description={failure.description}
-                failureState={failure.state}
-                failures={failures}
-                upvoters={failure.upvoters}
-                setFailures={setFailures}
-              />
-            );
-          })}
+        <Row>
+          <Col>
+            {failures.length > 0 ? (
+              failures.map((failure) => {
+                return (
+                  <FailureDisplay
+                    id={failure.id}
+                    key={failure.id}
+                    failureTitle={failure.title}
+                    device={failure.deviceCategory}
+                    date={failure.createdAt}
+                    description={failure.description}
+                    failureState={failure.state}
+                    failures={failures}
+                    upvoters={failure.upvoters}
+                    setFailures={setFailures}
+                  />
+                );
+              })
+            ) : (
+              <p className='text-center mt-2'>Aucune panne</p>
+            )}
+          </Col>
+        </Row>
       </Container>
-      <SubTitle>Gestion de la salle</SubTitle>
-      <Container>
-        <FailureTypeManagement roomId={id} />
-      </Container>
+      {(state.role === 'ADMIN' || state.role === 'TEACHER') && (
+        <div>
+          <SubTitle>Gestion de la salle</SubTitle>
+          <Container>
+            <FailureTypeManagement roomId={id} />
+          </Container>
+        </div>
+      )}
     </div>
   );
 }
