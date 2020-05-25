@@ -80,6 +80,7 @@ export function AppNav() {
               handleButtonClick();
             }}
             variant='outline-primary'
+            className='new-failure-btn'
           >
             Signaler une panne
           </Button>
