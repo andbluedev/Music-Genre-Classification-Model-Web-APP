@@ -6,6 +6,8 @@ import { useParams } from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
 import { get } from '../../../data/api';
 import { FailureTypeManagement } from './failureTypeSection/FailureTypeManagement';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
 export function RoomPage() {
   let { id } = useParams();
