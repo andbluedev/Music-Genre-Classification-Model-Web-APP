@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useReducer, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import './AppNav.scss';
 import { NavLink } from 'react-router-dom';
 import { RoomfixLogo } from '../../common/logo/RoomfixLogo';
@@ -11,6 +11,7 @@ import { get } from '../../../data/api';
 import { Button } from 'react-bootstrap';
 import { FormReportBreakdown } from './FormReportBreakdown/FormReportBreakdown';
 import { FormContextProvider } from './formContext/FormContext';
+import { RoleDisplay } from './RoleDisplay';
 
 const active = { textDecoration: 'none' };
 
@@ -62,12 +63,15 @@ export function AppNav() {
             }
             id='basic-nav-dropdown'
           >
+            <NavDropdown.Item>
+              <RoleDisplay role={state.role} />
+            </NavDropdown.Item>
+            <NavDropdown.Item href='/user'>Mon Profil</NavDropdown.Item>
             <NavDropdown.Item href='/'>
               <span onClick={() => dispatch({ type: UserActionType.AUTH_FAILURE })}>
                 Se déconnecter
               </span>
             </NavDropdown.Item>
-            <NavDropdown.Item href='/user'>Mon Profil</NavDropdown.Item>
           </NavDropdown>
         </Nav>
         <Nav>

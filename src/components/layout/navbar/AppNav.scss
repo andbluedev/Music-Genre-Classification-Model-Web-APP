@@ -1,18 +1,28 @@
 @import '../../../style/theme';
 @import '../../../style/mixins';
 @import '../../../style/breakpoints';
+
 $nav-height: 10vh;
 .navbar-brand {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
-.navbar-brand>img {
-    padding: 7px 14px;
+.navbar-brand > img {
+  padding: 7px 14px;
+  max-width: 100px;
+}
+
+.nav-logo {
+    max-height: 100px;
     max-width: 100px;
+    img {
+        padding: 7px 14px;
+        max-width: 100px;
+    }
 }
 
-nav.nav-wrapper {
+  nav.nav-wrapper {
     top: 0;
     font-family: $font-title-regular;
     width: 100%;
@@ -23,4 +33,8 @@ nav.nav-wrapper {
     height: $nav-height;
     background: $color-light;
     @include box_shadow(1);
+}
+
+.role{
+    color: orange;
 }
