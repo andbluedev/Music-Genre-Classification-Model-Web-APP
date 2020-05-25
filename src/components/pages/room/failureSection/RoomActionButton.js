@@ -53,7 +53,7 @@ export function RoomActionButton(props) {
   }
 
   return props.role === 'STUDENT' || props.role === 'TEACHER' ? (
-    <Button onClick={changeUpvote}>
+    <Button variant="outline-primary" onClick={changeUpvote}>
       <i className='fas fa-thumbs-up'></i>
     </Button>
   ) : (

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { FailureDisplay } from './failureSection/FailureDisplay';
 import './RoomPage.scss';
 import { SubTitle, Title } from '../../common/text/Basics';
@@ -6,9 +6,11 @@ import { useParams } from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
 import { get } from '../../../data/api';
 import { FailureTypeManagement } from './failureTypeSection/FailureTypeManagement';
+import { UserContext } from '../../../data/auth/UserContext';
 
 export function RoomPage() {
   let { id } = useParams();
+  const { state } = useContext(UserContext);
   const [failures, setFailures] = useState([]);
   const [building, setBuilding] = useState();
   const [roomName, setRoomName] = useState('');
@@ -43,10 +45,14 @@ export function RoomPage() {
             );
           })}
       </Container>
-      <SubTitle>Gestion de la salle</SubTitle>
-      <Container>
-        <FailureTypeManagement roomId={id} />
-      </Container>
+      {(state.role === 'ADMIN' || state.role === 'TEACHER') && (
+        <div>
+          <SubTitle>Gestion de la salle</SubTitle>
+          <Container>
+            <FailureTypeManagement roomId={id} />
+          </Container>
+        </div>
+      )}
     </div>
   );
 }
