@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { FailureDisplay } from './failureSection/FailureDisplay';
 import './RoomPage.scss';
 import { SubTitle, Title } from '../../common/text/Basics';
@@ -8,9 +8,11 @@ import { get } from '../../../data/api';
 import { FailureTypeManagement } from './failureTypeSection/FailureTypeManagement';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import { UserContext } from '../../../data/auth/UserContext';
 
 export function RoomPage() {
   let { id } = useParams();
+  const { state } = useContext(UserContext);
   const [failures, setFailures] = useState([]);
   const [building, setBuilding] = useState();
   const [roomName, setRoomName] = useState('');
@@ -52,10 +54,14 @@ export function RoomPage() {
           </Col>
         </Row>
       </Container>
-      <SubTitle>Gestion de la salle</SubTitle>
-      <Container>
-        <FailureTypeManagement roomId={id} />
-      </Container>
+      {(state.role === 'ADMIN' || state.role === 'TEACHER') && (
+        <div>
+          <SubTitle>Gestion de la salle</SubTitle>
+          <Container>
+            <FailureTypeManagement roomId={id} />
+          </Container>
+        </div>
+      )}
     </div>
   );
 }
