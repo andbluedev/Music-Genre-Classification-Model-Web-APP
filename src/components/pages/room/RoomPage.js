@@ -14,33 +14,31 @@ import Dropdown from 'react-bootstrap/Dropdown';
 export function RoomPage() {
   let { id } = useParams();
   const { state } = useContext(UserContext);
-  const [failures, setFailures] = useState([]);
+
+  const [initialFailures, setInitialFailures] = useState([]);
   const [building, setBuilding] = useState();
   const [roomName, setRoomName] = useState('');
-  const [filterFailures, setFilterFailures] = useState([]);
+  const [filteredFailures, setFilteredFailures] = useState([]);
   const [filterState, setFilterState] = useState('');
+
   useEffect(() => {
     get('/rooms/' + id).then((result) => {
       setRoomName(result.payload.number);
       setBuilding(result.payload.building);
-      setFailures(result.payload.failures);
-      setFilterFailures(result.payload.failures);
+      setInitialFailures(result.payload.failures);
+      setFilteredFailures(result.payload.failures);
     });
   }, [id]);
-  
-  console.log(failures, 'failures');
-  function filterRoomFailure(filterState) {
-    setFilterState(filterState);
-  }
 
-  useEffect(() => {
+  function filterRoomFailure(filterState) {
     if (filterState.length > 0) {
-      let filteredFailures = filterFailures.filter(
+      const newFilteredFailures = initialFailures.filter(
         (failure) => failure.state === filterState
       );
-      setFilterFailures(filteredFailures);
+      setFilteredFailures(newFilteredFailures);
     }
-  }, [filterState]);
+  }
+
   return (
     <div>
       <Title>{roomName}</Title>
@@ -59,8 +57,8 @@ export function RoomPage() {
       <Container className='room-wrapper'>
         <Row>
           <Col>
-            {failures.length > 0 ? (
-              filterFailures.map((failure) => {
+            {filteredFailures.length > 0 ? (
+              filteredFailures.map((failure) => {
                 return (
                   <FailureDisplay
                     id={failure.id}
@@ -70,9 +68,9 @@ export function RoomPage() {
                     date={failure.createdAt}
                     description={failure.description}
                     failureState={failure.state}
-                    failures={failures}
+                    failures={initialFailures}
                     upvoters={failure.upvoters}
-                    setFailures={setFailures}
+                    setFailures={setInitialFailures}
                   />
                 );
               })
