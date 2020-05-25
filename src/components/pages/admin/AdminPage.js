@@ -1,11 +1,12 @@
 import React, { useContext, useEffect, useState } from 'react';
 import Container from 'react-bootstrap/Container';
 import { Title } from '../../common/text/Basics';
-import { failureState, get } from '../../../data/api';
+import { get, put, failureState } from '../../../data/api';
 import { DeviceDisplay } from './deviceSection/DeviceDisplay';
 import Row from 'react-bootstrap/Row';
 import { AddDevice } from './deviceSection/AddDevice';
 import { FailureDisplay } from '../room/failureSection/FailureDisplay';
+import { EditDeviceModal } from './deviceSection/EditDeviceModal';
 import { UserContext } from '../../../data/auth/UserContext';
 import Dropdown from 'react-bootstrap/Dropdown';
 
@@ -14,6 +15,9 @@ export function AdminPage() {
   const [initialFailures, setInitialFailures] = useState([]);
   const [filteredFailures, setFilteredFailures] = useState([]);
   const [categories, setCategories] = useState([]);
+  const [open, setOpen] = useState(false);
+  const [selectedDeviceId, setSelectedDeviceId] = useState(undefined);
+  const [selectedDeviceName, setSelectedDeviceName] = useState(undefined);
 
   useEffect(() => {
     get('/failures').then((result) => {
@@ -24,6 +28,36 @@ export function AdminPage() {
       setCategories(result.payload);
     });
   }, []);
+
+  const openEditModal = (category) => {
+    setOpen(true);
+    setSelectedDeviceName(category.name);
+    setSelectedDeviceId(category.id);
+  };
+
+  const updateDeviceName = (e) => {
+    e.preventDefault();
+    put(
+      `/devices/categories/${selectedDeviceId}/update?newName=${selectedDeviceName}`
+    )
+      .then((result) => {
+        const updatedDevices = categories.map((category) => {
+          if (category.id === result.payload.id) {
+            category.name = result.payload.name;
+          }
+          return category;
+        });
+        setCategories(updatedDevices);
+      })
+      .catch(() => alert('Erreur lors de la mise à jour du nom du device.'))
+      .finally(() => initModal());
+  };
+
+  const initModal = () => {
+    setSelectedDeviceId(undefined);
+    setSelectedDeviceName(undefined);
+    return setOpen(false);
+  };
 
   function filterRoomFailure(filterState) {
     if (filterState.length > 0) {
@@ -36,6 +70,13 @@ export function AdminPage() {
 
   return state.role === 'ADMIN' ? (
     <div>
+      <EditDeviceModal
+        show={open}
+        deviceName={selectedDeviceName}
+        setDeviceName={(e) => setSelectedDeviceName(e.target.value)}
+        submitDeviceName={updateDeviceName}
+        onHide={() => initModal()}
+      />
       <Row>
         <Title> Liste des types d'appareil </Title>
         <Container className='device'>
@@ -43,10 +84,9 @@ export function AdminPage() {
             {categories.length > 0 &&
               categories.map((category) => (
                 <DeviceDisplay
-                  name={category.name}
-                  id={category.id}
+                  category={category}
+                  openEditModal={openEditModal}
                   categories={categories}
-                  setCategories={setCategories}
                 />
               ))}
           </Row>
