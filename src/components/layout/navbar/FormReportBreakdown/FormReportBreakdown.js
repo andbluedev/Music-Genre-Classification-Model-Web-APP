@@ -3,6 +3,7 @@ import { Modal, Form, Button } from 'react-bootstrap';
 import { post } from '../../../../data/api';
 import { useFormState } from '../formContext/FormContext';
 import { SelectionsInForm } from './SelectionsInForm/SelectionsInForm';
+import Container from 'react-bootstrap/Container';
 
 export function FormReportBreakdown(props) {
   const formState = useFormState();
@@ -31,39 +32,41 @@ export function FormReportBreakdown(props) {
         <Modal.Title>Signaler une panne</Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <Form onSubmit={handleSubmit}>
-          <Form.Group>
-            <Form.Label>Titre :</Form.Label>
-            <Form.Control
-              type={'text'}
-              onChange={(e) => {
-                setTitle(e.target.value);
-              }}
-              required
-            />
-            <Form.Control.Feedback type='invalid'>
-              Veuillez donner un titre à cette panne.
-            </Form.Control.Feedback>
-          </Form.Group>
-          <SelectionsInForm />
-          <Form.Group>
-            <Form.Label>Description :</Form.Label>
-            <Form.Control
-              as='textarea'
-              rows='3'
-              onChange={(e) => {
-                setDescription(e.target.value);
-              }}
-              required
-            />
-            <Form.Control.Feedback type='invalid'>
-              Veuillez décrire la panne.
-            </Form.Control.Feedback>
-          </Form.Group>
-          <Button variant={'outline-success'} type='submit' block>
-            Signaler
-          </Button>
-        </Form>
+        <Container>
+          <Form onSubmit={handleSubmit} style={{ paddingBottom: 15 + 'px' }}>
+            <Form.Group>
+              <Form.Label>Titre :</Form.Label>
+              <Form.Control
+                type={'text'}
+                onChange={(e) => {
+                  setTitle(e.target.value);
+                }}
+                required
+              />
+              <Form.Control.Feedback type='invalid'>
+                Veuillez donner un titre à cette panne.
+              </Form.Control.Feedback>
+            </Form.Group>
+            <SelectionsInForm />
+            <Form.Group>
+              <Form.Label>Description :</Form.Label>
+              <Form.Control
+                as='textarea'
+                rows='3'
+                onChange={(e) => {
+                  setDescription(e.target.value);
+                }}
+                required
+              />
+              <Form.Control.Feedback type='invalid'>
+                Veuillez décrire la panne.
+              </Form.Control.Feedback>
+            </Form.Group>
+            <Button variant={'outline-success'} type='submit' block>
+              Signaler
+            </Button>
+          </Form>
+        </Container>
       </Modal.Body>
     </Modal>
   );

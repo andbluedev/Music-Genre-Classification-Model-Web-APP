@@ -6,6 +6,8 @@ import { useParams } from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
 import { get } from '../../../data/api';
 import { FailureTypeManagement } from './failureTypeSection/FailureTypeManagement';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 import { UserContext } from '../../../data/auth/UserContext';
 
 export function RoomPage() {
@@ -27,23 +29,30 @@ export function RoomPage() {
       <Title>{roomName}</Title>
       <SubTitle> Batiment : {building && building.name}</SubTitle>
       <Container className='room-wrapper'>
-        {failures.length > 0 &&
-          failures.map((failure) => {
-            return (
-              <FailureDisplay
-                id={failure.id}
-                key={failure.id}
-                failureTitle={failure.title}
-                device={failure.deviceCategory}
-                date={failure.createdAt}
-                description={failure.description}
-                failureState={failure.state}
-                failures={failures}
-                upvoters={failure.upvoters}
-                setFailures={setFailures}
-              />
-            );
-          })}
+        <Row>
+          <Col>
+            {failures.length > 0 ? (
+              failures.map((failure) => {
+                return (
+                  <FailureDisplay
+                    id={failure.id}
+                    key={failure.id}
+                    failureTitle={failure.title}
+                    device={failure.deviceCategory}
+                    date={failure.createdAt}
+                    description={failure.description}
+                    failureState={failure.state}
+                    failures={failures}
+                    upvoters={failure.upvoters}
+                    setFailures={setFailures}
+                  />
+                );
+              })
+            ) : (
+              <p className='text-center mt-2'>Aucune panne</p>
+            )}
+          </Col>
+        </Row>
       </Container>
       {(state.role === 'ADMIN' || state.role === 'TEACHER') && (
         <div>
