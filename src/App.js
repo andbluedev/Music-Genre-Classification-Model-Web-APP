@@ -1,5 +1,4 @@
 import React, { useReducer } from 'react';
-import './App.scss';
 import { AppNav } from './components/layout/navbar/AppNav';
 import { AppRoutes } from './components/routes/AppRoutes';
 import { UserReducer } from './data/auth/reducer';
@@ -11,6 +10,7 @@ import { Route, Router } from 'react-router-dom';
 import history from './components/routes/history';
 import { AuthRoutes } from './components/routes/AuthRoutes';
 import { AuthWrapper } from './components/layout/auth/AuthWrapper';
+import './App.scss';
 
 function App() {
   const [state, dispatch] = useReducer(UserReducer, emptyUserContextState);
