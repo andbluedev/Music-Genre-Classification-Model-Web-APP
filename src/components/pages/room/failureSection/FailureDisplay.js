@@ -47,12 +47,12 @@ export function FailureDisplay(props) {
                     <FailureStateDisplay state={props.failureState} />
                   </Row>
                 </Col>
-                <Col xs={6} md={2} className='centered-btn'>
+                <Col xs={5} md={1} className='centered-btn pt-3 pb-2'>
                   <Accordion.Toggle as={Button} variant='link' eventKey='0'>
                     Description
                   </Accordion.Toggle>
                 </Col>
-                <Col xs={6} md={2} className='centered-btn'>
+                <Col xs={7} md={3} className='centered-btn pt-3 pb-2 pr-0'>
                   <RoomActionButton
                     role={state.role}
                     userId={state.id}

@@ -54,12 +54,17 @@ export function RoomActionButton(props) {
   }
 
   return props.role === 'STUDENT' || props.role === 'TEACHER' ? (
-    <Button variant={!hasUpvote ? 'outline-primary' : 'primary'} onClick={changeUpvote}>
+    <Button
+      variant={!hasUpvote ? 'outline-primary' : 'primary'}
+      onClick={changeUpvote}
+    >
       <i className='fas fa-thumbs-up'></i>
     </Button>
   ) : (
     <Dropdown onSelect={changeFailureState}>
-      <Dropdown.Toggle id='dropdown-basic'>Résoudre</Dropdown.Toggle>
+      <Dropdown.Toggle id='dropdown-basic' size='sm'>
+        Résoudre
+      </Dropdown.Toggle>
       <Dropdown.Menu>
         <Dropdown.Item eventKey='ONGOING'>{failureState.ONGOING}</Dropdown.Item>
         <Dropdown.Item eventKey='CLOSED'>{failureState.CLOSED}</Dropdown.Item>
