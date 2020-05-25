@@ -4,12 +4,13 @@ import Button from 'react-bootstrap/Button';
 import Dropdown from 'react-bootstrap/Dropdown';
 
 export function RoomActionButton(props) {
+  let hasUpvote = false;
+  props.upvoters.map((upvoter) =>
+    props.userId === upvoter.id ? (hasUpvote = true) : (hasUpvote = false)
+  );
+
   function changeUpvote(e) {
     e.preventDefault();
-    let hasUpvote = false;
-    props.upvoters.map((upvoter) =>
-      props.userId === upvoter.id ? (hasUpvote = true) : (hasUpvote = false)
-    );
     if (!hasUpvote) {
       put('/failures/upvote?failureId=' + props.failureid, '').then((result) => {
         let updatedFailures = props.failures;
@@ -53,7 +54,7 @@ export function RoomActionButton(props) {
   }
 
   return props.role === 'STUDENT' || props.role === 'TEACHER' ? (
-    <Button variant="outline-primary" onClick={changeUpvote}>
+    <Button variant={!hasUpvote ? 'outline-primary' : 'primary'} onClick={changeUpvote}>
       <i className='fas fa-thumbs-up'></i>
     </Button>
   ) : (
