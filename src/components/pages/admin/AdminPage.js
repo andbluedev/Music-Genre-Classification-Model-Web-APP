@@ -82,20 +82,20 @@ export function AdminPage() {
         <Container className='device'>
           <Row>
             {categories.length > 0 &&
-            categories.map((category) => (
-              <DeviceDisplay
-                category={category}
-                openEditModal={openEditModal}
-                categories={categories}
-              />
-            ))}gst
+              categories.map((category) => (
+                <DeviceDisplay
+                  category={category}
+                  openEditModal={openEditModal}
+                  categories={categories}
+                />
+              ))}
           </Row>
         </Container>
       </Row>
       <Row>
         <Container>
           {categories.length > 0 && (
-            <AddDevice categories={categories} setCategories={setCategories}/>
+            <AddDevice categories={categories} setCategories={setCategories} />
           )}
         </Container>
       </Row>
@@ -118,22 +118,22 @@ export function AdminPage() {
               </Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>
-          <br/>
+          <br />
           {filteredFailures.length > 0 &&
-          filteredFailures.map((failure) => (
-            <FailureDisplay
-              id={failure.id}
-              failureTitle={failure.title}
-              device={failure.deviceCategory}
-              date={failure.createdAt}
-              description={failure.description}
-              state={failure.state}
-              failureState={failure.state}
-              failures={initialFailures}
-              upvoters={failure.upvoters}
-              setFailures={setInitialFailures}
-            />
-          ))}
+            filteredFailures.map((failure) => (
+              <FailureDisplay
+                id={failure.id}
+                failureTitle={failure.title}
+                device={failure.deviceCategory}
+                date={failure.createdAt}
+                description={failure.description}
+                state={failure.state}
+                failureState={failure.state}
+                failures={initialFailures}
+                upvoters={failure.upvoters}
+                setFailures={setInitialFailures}
+              />
+            ))}
         </Container>
       </Row>
     </div>
