@@ -35,7 +35,7 @@ function App() {
               ]}
             >
               <AppNav />
-              <Container className='row flex-column justify-content-center ' fluid>
+              <Container className='flex-column justify-content-center' fluid>
                 <Row>
                   <Col />
                   <Col sm={10} md={10} lg={8}>
