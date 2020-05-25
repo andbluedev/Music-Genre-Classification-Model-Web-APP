@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import Container from 'react-bootstrap/Container';
 import { Title } from '../../common/text/Basics';
 import { get } from '../../../data/api';
@@ -6,8 +6,10 @@ import { DeviceDisplay } from './deviceSection/DeviceDisplay';
 import Row from 'react-bootstrap/Row';
 import { AddDevice } from './deviceSection/AddDevice';
 import { FailureDisplay } from '../room/failureSection/FailureDisplay';
+import { UserContext } from '../../../data/auth/UserContext';
 
 export function AdminPage() {
+  const { state } = useContext(UserContext);
   const [failures, setFailures] = useState([]);
   const [categories, setCategories] = useState([]);
 
@@ -20,7 +22,7 @@ export function AdminPage() {
     });
   }, []);
 
-  return (
+  return state.role === 'ADMIN' ? (
     <div>
       <Row>
         <Title> Liste des types d'appareil </Title>
@@ -66,5 +68,7 @@ export function AdminPage() {
         </Container>
       </Row>
     </div>
+  ) : (
+    <div> Vous n'avez pas le statut pour accéder à cette page </div>
   );
 }
