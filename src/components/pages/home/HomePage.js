@@ -24,7 +24,7 @@ function CampusButton({ campusName, href }) {
 
   return (
     <a href={href}>
-      <Card className='bg-secondary text-white campus'>
+      <Card className='text-white campus'>
         <Card.Img src={img} alt='Card image' />
         <Card.ImgOverlay>
           <Card.Title className='campus-title'>{campusName}</Card.Title>

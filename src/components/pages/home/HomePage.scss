@@ -4,10 +4,9 @@
   img {
     flex:7;
     width: 100%;
-    -webkit-filter: blur(1px) opacity(0.6);
-    filter: blur(1px) opacity(0.6);
+    -webkit-filter: opacity(0.4);
+    filter: opacity(0.4);
   }
-
 
   .campus-title {
     color: white;
@@ -16,6 +15,7 @@
     text-align: left;
   }
 
+  background: linear-gradient(250deg, $color-accent 0%, $color-accent-dark 100%);
   overflow: hidden;
   border-radius: 30px;
   margin: 20px;
