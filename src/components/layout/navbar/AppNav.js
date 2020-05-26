@@ -60,9 +60,28 @@ export function AppNav() {
               ))}
           </NavDropdown>
           {state.role === 'ADMIN' && (
-            <NavLink className='nav-link' to='/admin' exact activeStyle={active}>
-              Administration
-            </NavLink>
+            <NavDropdown title='Administration' id='basic-nav-dropdown'>
+              <NavDropdown.Item>
+                <NavLink
+                  className='nav-link'
+                  to='/admin/home'
+                  exact
+                  activeStyle={active}
+                >
+                  Général
+                </NavLink>
+              </NavDropdown.Item>
+              <NavDropdown.Item>
+                <NavLink
+                  className='nav-link'
+                  to='/admin/statistics'
+                  exact
+                  activeStyle={active}
+                >
+                  Statistiques
+                </NavLink>
+              </NavDropdown.Item>
+            </NavDropdown>
           )}
           <NavDropdown
             title={

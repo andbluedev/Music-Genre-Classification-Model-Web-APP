@@ -32,7 +32,8 @@ function App() {
                 '/building/:id',
                 '/room/:id',
                 '/user',
-                '/admin'
+                '/admin/home',
+                '/admin/statistics'
               ]}
             >
               <AppNav />
@@ -42,7 +43,7 @@ function App() {
                     {({ match }) => (
                       <CSSTransition
                         in={match != null}
-                        timeout={300}
+                        timeout={350}
                         classNames='fade'
                         unmountOnExit
                       >

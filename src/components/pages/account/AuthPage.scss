@@ -8,11 +8,6 @@ $border-rad: 25px;
   margin-top: 2rem;
   width: 50%;
 
-  section {
-
-    background-color: #ff1d00;
-  }
-
   @include sm {
     width: 50%;
   }

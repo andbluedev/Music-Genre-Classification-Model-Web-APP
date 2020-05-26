@@ -44,7 +44,7 @@ export function FailureDisplay(props) {
                     <strong>Etat : </strong>
                   </Row>
                   <Row>
-                    <FailureStateDisplay state={props.failureState} />
+                    <FailureStateDisplay state={props.failureState}/>
                   </Row>
                 </Col>
                 <Col xs={5} md={1} className='centered-btn pt-3 pb-2'>
@@ -74,7 +74,7 @@ export function FailureDisplay(props) {
           </Accordion.Collapse>
         </Card>
       </Accordion>
-      <br />
+      <br/>
     </div>
   );
 }

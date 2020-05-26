@@ -1,23 +1,21 @@
 @import './style/mixins';
 @import './style/breakpoints';
 @import './components/layout/navbar/AppNav';
+
 div.app-wrapper {
-    height: 100 - $nav-height;
-    background-color: $background-color-light;
-    border-radius: 5px;
+  height: 100 - $nav-height;
+  background-color: $background-color-light;
+  border-radius: 5px;
+  margin: 0 10vw;
+  @include box_shadow(2);
+  @include sm {
+    padding: 0 20px;
+    margin: 0 3vw;
+  }
+  // Window width >= 992px
+  @include lg {
     margin: 0 10vw;
-    @include box_shadow(2);
-    @include sm {
-        padding: 0 20px;
-        margin: 0 3vw;
-    }
-    // Window width >= 992px
-    @include lg {
-        margin: 0 10vw;
-        padding: 2rem 4rem;
-    }
+    padding: 2rem 4rem;
+  }
 }
 
-.app-pages_container {
-    padding: 1rem;
-}
