@@ -33,8 +33,10 @@ export function AppNav() {
 
   return (
     <Navbar collapseOnSelect expand='lg' variant='light' bg='light'>
-      <Navbar.Brand href='/home'>
-        <RoomfixLogo className='nav-logo' />
+      <Navbar.Brand>
+        <NavLink to='/home'>
+          <RoomfixLogo className='nav-logo' />
+        </NavLink>
       </Navbar.Brand>
       <Navbar.Toggle aria-controls='basic-navbar-nav' />
       <Navbar.Collapse id='basic-navbar-nav'>
@@ -45,8 +47,15 @@ export function AppNav() {
           <NavDropdown title='Batiments' id='basic-nav-dropdown'>
             {buildings.length > 0 &&
               buildings.map((building) => (
-                <NavDropdown.Item href={'/building/' + building.id}>
-                  {building.name}
+                <NavDropdown.Item>
+                  <NavLink
+                    className='nav-link'
+                    to={'/building/' + building.id}
+                    exact
+                    activeStyle={active}
+                  >
+                    {building.name}
+                  </NavLink>
                 </NavDropdown.Item>
               ))}
           </NavDropdown>
@@ -66,11 +75,19 @@ export function AppNav() {
             <NavDropdown.Item>
               <RoleDisplay role={state.role} />
             </NavDropdown.Item>
-            <NavDropdown.Item href='/user'>Mon Profil</NavDropdown.Item>
-            <NavDropdown.Item href='/'>
-              <span onClick={() => dispatch({ type: UserActionType.AUTH_FAILURE })}>
-                Se déconnecter
-              </span>
+            <NavDropdown.Item>
+              <NavLink className='nav-link' to='/user' exact activeStyle={active}>
+                Mon Profil
+              </NavLink>
+            </NavDropdown.Item>
+            <NavDropdown.Item>
+              <NavLink className='nav-link' to='/' exact activeStyle={active}>
+                <span
+                  onClick={() => dispatch({ type: UserActionType.AUTH_FAILURE })}
+                >
+                  Se déconnecter
+                </span>
+              </NavLink>
             </NavDropdown.Item>
           </NavDropdown>
         </Nav>

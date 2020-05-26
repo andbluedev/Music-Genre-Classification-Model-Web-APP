@@ -31,7 +31,7 @@ export function RoomPage() {
       <Container className='room-wrapper'>
         <Row>
           <Col>
-            {failures.length > 0 ? (
+            {failures && failures.length > 0 ? (
               failures.map((failure) => {
                 return (
                   <FailureDisplay

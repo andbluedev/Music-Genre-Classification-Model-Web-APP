@@ -1,15 +1,15 @@
-import React from 'react';
-import { Switch, Route } from 'react-router-dom';
-import { AppPage } from '../pages/AppPage';
+import { AboutPage } from '../pages/about/AboutPage';
+import { UserPage } from '../pages/account/user/UserPage';
+import { AdminPage } from '../pages/admin/AdminPage';
+import { HomePage } from '../pages/home/HomePage';
+import { RoomPage } from '../pages/room/RoomPage';
+import { BuildingPage } from '../pages/building/BuildingPage';
 
-export const AppRoutes = () => (
-  <Switch>
-    <Route path='/about' component={AppPage} />
-    <Route path='/user' component={AppPage} />
-    <Route path='/admin' component={AppPage} />
-    <Route exact path='/home' component={AppPage} />
-    <Route path='/room/:id' component={AppPage} />
-    <Route path='/tp' component={AppPage} />
-    <Route path='/building/:id' component={AppPage} />
-  </Switch>
-);
+export const appRoutes = [
+  { path: '/about', name: 'AboutPage', Component: AboutPage },
+  { path: '/user', name: 'UserPage', Component: UserPage },
+  { path: '/admin', name: 'AdminPage', Component: AdminPage },
+  { path: '/home', name: 'HomePage', Component: HomePage },
+  { path: '/room/:id', name: 'RoomPage', Component: RoomPage },
+  { path: '/building/:id', name: 'FilePage', Component: BuildingPage }
+];
