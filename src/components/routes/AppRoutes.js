@@ -7,6 +7,7 @@ import { AdminPage } from '../pages/admin/AdminPage';
 import { BuildingPage } from '../pages/building/BuildingPage';
 import { RoomPage } from '../pages/room/RoomPage';
 import { UserPage } from '../pages/account/user/UserPage';
+import { StatisticsPage } from '../pages/admin/StatisticsPage';
 export const AppRoutes = () => (
   <Switch>
     <Route path='/about'>
@@ -17,8 +18,12 @@ export const AppRoutes = () => (
       <UserPage />
     </Route>
 
-    <Route path='/admin'>
+    <Route exact path='/admin/home'>
       <AdminPage />
+    </Route>
+
+    <Route exact path='/admin/statistics'>
+      <StatisticsPage />
     </Route>
 
     <Route exact path='/home'>

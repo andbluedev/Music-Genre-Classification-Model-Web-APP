@@ -31,7 +31,8 @@ function App() {
                 '/building/:id',
                 '/room/:id',
                 '/user',
-                '/admin'
+                '/admin/home',
+                '/admin/statistics'
               ]}
             >
               <AppNav />
