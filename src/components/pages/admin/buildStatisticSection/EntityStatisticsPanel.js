@@ -7,7 +7,7 @@ import { StatisticHistogram } from './StatisticHistogram';
 import { get } from '../../../../data/api';
 import Spinner from 'react-bootstrap/Spinner';
 
-export const BuildingSection = ({ entityEndpointName }) => {
+export const EntityStatisticsPanel = ({ entityEndpointName }) => {
   const [loading, setLoading] = useState(false);
   const [entityStatistics, setEntityStatistics] = useState([]);
   useEffect(() => {

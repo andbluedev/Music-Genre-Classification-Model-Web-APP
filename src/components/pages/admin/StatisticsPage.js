@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { Title } from '../../common/text/Basics';
-import { BuildingSection } from './buildStatisticSection/BuildingSection';
+import { EntityStatisticsPanel } from './buildStatisticSection/EntityStatisticsPanel';
 import { UserContext } from '../../../data/auth/UserContext';
 
 export function StatisticsPage() {
@@ -8,9 +8,9 @@ export function StatisticsPage() {
   return state.role === 'ADMIN' ? (
     <div>
       <Title>Statistiques par Batiment</Title>
-      <BuildingSection entityEndpointName='building' />
+      <EntityStatisticsPanel entityEndpointName='building' />
       <Title>Statistiques par Salles</Title>
-      <BuildingSection entityEndpointName='room' />
+      <EntityStatisticsPanel entityEndpointName='room' />
     </div>
   ) : (
     <div> Vous n'avez pas le statut pour accéder à cette page </div>
