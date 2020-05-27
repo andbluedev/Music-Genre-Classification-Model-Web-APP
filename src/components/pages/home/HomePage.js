@@ -8,8 +8,9 @@ import { get } from '../../../data/api';
 import NDCjpg from '../../../img/NDC.jpg';
 import NDLjpg from '../../../img/NDL.jpg';
 import roomfixLogo from '../../../img/roomfix_light_325x325.png';
+import { NavLink } from 'react-router-dom';
 
-function CampusButton({ campusName, href }) {
+function CampusButton({ campusName, link }) {
   let img;
   switch (campusName) {
     case 'NDC':
@@ -23,14 +24,14 @@ function CampusButton({ campusName, href }) {
   }
 
   return (
-    <a href={href}>
+    <NavLink exact to={link}>
       <Card className='text-white campus'>
         <Card.Img src={img} alt='Card image' />
         <Card.ImgOverlay>
           <Card.Title className='campus-title'>{campusName}</Card.Title>
         </Card.ImgOverlay>
       </Card>
-    </a>
+    </NavLink>
   );
 }
 
@@ -51,8 +52,8 @@ export function HomePage() {
             buildings.map((building) => (
               <Col sm='12' md='6'>
                 <CampusButton
+                  link={'/building/' + building.id}
                   campusName={building.name}
-                  href={'/building/' + building.id}
                 />
               </Col>
             ))}

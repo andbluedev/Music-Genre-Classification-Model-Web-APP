@@ -54,10 +54,10 @@ export function RoomPage() {
             <Dropdown.Item eventKey='USELESS'>{failureState.USELESS}</Dropdown.Item>
           </Dropdown.Menu>
         </Dropdown>
-        <br/>
+        <br />
         <Row>
           <Col>
-            {filteredFailures.length > 0 ? (
+            {filteredFailures && filteredFailures.length > 0 ? (
               filteredFailures.map((failure) => {
                 return (
                   <FailureDisplay
