@@ -5,10 +5,10 @@ import { Title } from '../../common/text/Basics';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Card from 'react-bootstrap/Card';
-import { useParams } from 'react-router-dom';
+import { NavLink, useParams } from 'react-router-dom';
 
 const Room = ({ content }) => (
-  <a href={'/room/' + content.room.id}>
+  <NavLink exact to={'/room/' + content.room.id}>
     <Card className='room-card'>
       <Card.Header
         className={content.room.failures.length !== 0 ? 'active-failure' : ''}
@@ -19,7 +19,7 @@ const Room = ({ content }) => (
         <Card.Title className='room-nb'>{content.room.number}</Card.Title>
       </Card.Body>
     </Card>
-  </a>
+  </NavLink>
 );
 
 export function BuildingPage() {

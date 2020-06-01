@@ -1,12 +1,13 @@
 @import "../../../style/theme";
 
-a:hover {
-  text-decoration: none !important;
-}
 
 .room-card {
   width: 11rem;
   margin: 1rem;
+
+  &:hover {
+    text-decoration: none !important;
+  }
 
   .room-nb {
     font-size: 2rem;
