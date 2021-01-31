@@ -1,59 +1,68 @@
-# RoomFix Frontend
+# RoomFix - React WebApp
 
-Ce projet est une webapp react qui repose sur une API Spring Boot Boot.
-Le projet utilise également des fichier sass (`.scss`) à la place des `.css`. Globalement ça marhe pareil, tout css classique fonctionnera convenablement mais il est possible d'utiliser des fonction et des variables pour le css (très utile).
+<p align="center">
+<img width="300" height="300" src="https://i.ibb.co/tKtb8mv/roomfix8-logo-light.png" alt="roomfix8-logo-light">
+</p>
 
-## Version en ligne 
+## Context
 
-L'addresse de la plateforme  se trouve à l'addresse : http://roomfix.k8s.pouretadev.com/
+Roomfix is a 4th Year Software Engineering school Web Technologies Project. The goal was to make a platform to report broken devices in a set of buildings to facilitate and optimize the maintenance.
 
-Utilisateur administrateur 
+This project is a React.js webapp based on a Spring Boot Boot API ([link](https://github.com/andbluedev/Arizona-Roomfix-Backend/)).
+
+This repository contains the React.js webapp.
+
+The project also uses sass (`.scss`) files instead of` .css`. Overall it works the same, any classic css will work fine but it is possible to use functions and variables for the css (very useful).
+
+
+## Online Version 
+
+Demo version of the application: http://roomfix.k8s.pouretadev.com/
+
+Admin user
 ```
 username:  admin@isep.fr
 password: test
 ```
 
-Utilisateur classique ("Etudiant") 
+Regular classique ("Student") 
 ```
 username:  bob@isep.fr
 password: test
 ```
 
-## Installation du projet
+## Project setup
 
-Il est recommandé d'utiliser yarn comme gestionnaire de paquet npm.
+It is recommended to use [yarn](https://classic.yarnpkg.com/en/docs/install) to manage npm packages.
 
-Installation des paquets npm
+Installing dependencies
 ```
 yarn install
 ```
 
-runner en local
+Run locally for development
 
 ```
 yarn start
 ```
 
+If necessary, you may need to change the backend url in the `.env` file, the name of the variable is:` REACT_APP_API_URI`.
 
-Si besoin il faut changer l'url du backend dans le fichier `.env`, la nom de la variable est : `REACT_APP_API_URI`.
-
-
-
-Il faut également configurer votre IDE pour eslinctrc afin que tout le monde puisse respecter les mêmes conventions de dev.
+You also need to configure your IDE for eslinctrc so that everyone can follow the same coding format and conventions.
 
 ## Docker
 
-Compilation des fichiers statiques dans le dossier /build (fichiers dev "React" vers  des fichiers "html/css/js" compréhensibles par le navigateur)":
+Compiling static files in the / build folder (dev "React" files to "html / css / js" browser-friendly files for the web)":
 ```
 yarn install
 yarn build
 ``` 
-Builder l'image Docker: 
+Build the Docker image : 
 ```
 docker build -t roomfix-front:v1 .
 ```  
 
-Runner le container sur le port 3000 de la machine.  
+Run the container on port 3000 :  
 ```
 docker run -d -p 3000:80 roomfix-front:v1 
 ```
