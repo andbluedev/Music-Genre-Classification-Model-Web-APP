@@ -9,7 +9,7 @@ This repository contains the React.js webapp.
 The project also uses sass (`.scss`) files instead of` .css`. Overall it works the same, any classic css will work fine but it is possible to use functions and variables for the css (very useful).
 
 
-## Online Version 
+## Online Version
 
 Demo version of the application: https://classify.k8s.pouretadev.com
 
@@ -45,10 +45,10 @@ yarn build
 ``` 
 Build the Docker image : 
 ```
-docker build -t roomfix-front:v1 .
+docker build -t classify-front:v1 .
 ```  
 
 Run the container on port 3000 :  
 ```
-docker run -d -p 3000:80 roomfix-front:v1 
+docker run -d -p 3000:80 classify-front:v1
 ```

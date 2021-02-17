@@ -12,7 +12,7 @@ stages:
 variables:
   CONTAINER_IMAGE_MAIN: $DOCKER_REGISTRY_URI/classify-front:${CI_COMMIT_SHORT_SHA}
 
-build-master:
+build-main:
   stage: build
   image: node
   script:
@@ -24,26 +24,26 @@ build-master:
   only:
     - main
 
-build-push-image-master:
+build-push-image-main:
   services:
     - docker:19.03.0-dind
   stage: push-built-image
   script:
     - docker login -u $DOCKER_REGISTRY_USER -p $DOCKER_REGISTRY_PASSWORD $DOCKER_REGISTRY_URI
-    - docker build -t $CONTAINER_IMAGE_MASTER .
-    - docker push $CONTAINER_IMAGE_MASTER
+    - docker build -t $CONTAINER_IMAGE_MAIN .
+    - docker push $CONTAINER_IMAGE_MAIN
   only:
     - main
   cache: {}
 
-deploy-image-master:
+deploy-image-main:
   stage: deploy-image
   image:
     name: bitnami/kubectl:1.14
     entrypoint: [""]
   script:
     - cat $KUBERNETES_CONFIG | base64 -d > ./kubeconfig
-    - kubectl set image deployment classify-front-master classify-front-master=$CONTAINER_IMAGE_MASTER --kubeconfig ./kubeconfig --namespace default
+    - kubectl set image deployment classify-front-master classify-front-master=$CONTAINER_IMAGE_MAIN --kubeconfig ./kubeconfig --namespace default
   only:
     - main
   cache: {}
