@@ -1,22 +1,5 @@
-@import '../../../style/theme';
-
-.campus {
-  img {
-    flex:7;
-    width: 100%;
-    -webkit-filter: opacity(0.4);
-    filter: opacity(0.4);
-  }
-
-  .campus-title {
-    color: white;
-    font-weight: bolder;
-    font-size: 3rem;
-    text-align: left;
-  }
-
-  background: linear-gradient(250deg, $color-accent 100%, $color-accent-dark 90%);
-  overflow: hidden;
-  border-radius: 30px;
-  margin: 20px;
+.home-logo {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
 }

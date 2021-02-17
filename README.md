@@ -1,14 +1,8 @@
-# RoomFix - React WebApp
-
-<p align="center">
-<img width="300" height="300" src="https://i.ibb.co/tKtb8mv/roomfix8-logo-light.png" alt="roomfix8-logo-light">
-</p>
+# Music-Genre-Classification-Model-Web-APP
 
 ## Context
 
-Roomfix is a 4th Year Software Engineering school Web Technologies Project. The goal was to make a platform to report broken devices in a set of buildings to facilitate and optimize the maintenance.
-
-This project is a React.js webapp based on a Spring Boot Boot API ([link](https://github.com/andbluedev/Arizona-Roomfix-Backend/)).
+This project is a React.js webapp based on a Python Fast API seving a Tensorflow Neural Network ([link](https://github.com/andbluedevMusic-Genre-Classification-Model-REST-API)).
 
 This repository contains the React.js webapp.
 
@@ -17,30 +11,20 @@ The project also uses sass (`.scss`) files instead of` .css`. Overall it works t
 
 ## Online Version 
 
-Demo version of the application: http://roomfix.k8s.pouretadev.com/
+Demo version of the application: https://classify.k8s.pouretadev.com
 
-Admin user
-```
-username:  admin@isep.fr
-password: test
-```
 
-Regular classique ("Student") 
-```
-username:  bob@isep.fr
-password: test
-```
+## Development
 
-## Project setup
-
-It is recommended to use [yarn](https://classic.yarnpkg.com/en/docs/install) to manage npm packages.
+For this project, it is recommended to use [yarn](https://classic.yarnpkg.com/en/docs/install) to manage npm packages.
 
 Installing dependencies
+
 ```
 yarn install
 ```
 
-Run locally for development
+### Run the APP
 
 ```
 yarn start
@@ -50,7 +34,9 @@ If necessary, you may need to change the backend url in the `.env` file, the nam
 
 You also need to configure your IDE for eslinctrc so that everyone can follow the same coding format and conventions.
 
-## Docker
+## Production
+
+The Fast API for production uses Docker, python and uvicorn and is deployed on a kubernetes cluster.
 
 Compiling static files in the / build folder (dev "React" files to "html / css / js" browser-friendly files for the web)":
 ```

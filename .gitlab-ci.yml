@@ -10,8 +10,7 @@ stages:
   - deploy-image
   
 variables:
-  CONTAINER_IMAGE_MASTER: $DOCKER_REGISTRY_URI/roomfix-front:${CI_COMMIT_SHORT_SHA}
-  
+  CONTAINER_IMAGE_MAIN: $DOCKER_REGISTRY_URI/classify-front:${CI_COMMIT_SHORT_SHA}
 
 build-master:
   stage: build
@@ -23,7 +22,7 @@ build-master:
     paths:
       - build
   only:
-    - master
+    - main
 
 build-push-image-master:
   services:
@@ -34,7 +33,7 @@ build-push-image-master:
     - docker build -t $CONTAINER_IMAGE_MASTER .
     - docker push $CONTAINER_IMAGE_MASTER
   only:
-    - master
+    - main
   cache: {}
 
 deploy-image-master:
@@ -44,7 +43,7 @@ deploy-image-master:
     entrypoint: [""]
   script:
     - cat $KUBERNETES_CONFIG | base64 -d > ./kubeconfig
-    - kubectl set image deployment roomfix-front-master roomfix-front-master=$CONTAINER_IMAGE_MASTER --kubeconfig ./kubeconfig --namespace default
+    - kubectl set image deployment classify-front-master classify-front-master=$CONTAINER_IMAGE_MASTER --kubeconfig ./kubeconfig --namespace default
   only:
-    - master
+    - main
   cache: {}

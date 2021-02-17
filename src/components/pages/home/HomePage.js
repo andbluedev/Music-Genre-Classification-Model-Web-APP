@@ -1,64 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
+import logo from '../../../img/ClassifyLogo.png';
 import './HomePage.scss';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import Card from 'react-bootstrap/Card';
-import { get } from '../../../data/api';
-import NDCjpg from '../../../img/NDC.jpg';
-import NDLjpg from '../../../img/NDL.jpg';
-import roomfixLogo from '../../../img/roomfix_light_325x325.png';
-import { NavLink } from 'react-router-dom';
-
-function CampusButton({ campusName, link }) {
-  let img;
-  switch (campusName) {
-    case 'NDC':
-      img = NDCjpg;
-      break;
-    case 'NDL':
-      img = NDLjpg;
-      break;
-    default:
-      img = roomfixLogo;
-  }
-
-  return (
-    <NavLink exact to={link}>
-      <Card className='text-white campus'>
-        <Card.Img src={img} alt='Card image' />
-        <Card.ImgOverlay>
-          <Card.Title className='campus-title'>{campusName}</Card.Title>
-        </Card.ImgOverlay>
-      </Card>
-    </NavLink>
-  );
-}
 
 export function HomePage() {
-  const [buildings, setBuildings] = useState([]);
-
-  useEffect(() => {
-    get('/buildings').then((result) => {
-      setBuildings(result.payload);
-    });
-  }, []);
-
-  return (
-    <div>
-      <Container fluid>
-        <Row fluid>
-          {buildings.length > 0 &&
-            buildings.map((building) => (
-              <Col sm='12' md='6'>
-                <CampusButton
-                  link={'/building/' + building.id}
-                  campusName={building.name}
-                />
-              </Col>
-            ))}
-        </Row>
-      </Container>
+  return (<div>
+    <h1>Classify</h1>
+    <div className='home-logo'>
+      <img src={logo} alt='classify-simple-logo' />
+      <h2>Find which genre your track belongs to by clicking on the CD</h2>
     </div>
-  );
+  </div>);
 }
