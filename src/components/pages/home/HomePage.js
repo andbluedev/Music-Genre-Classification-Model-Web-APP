@@ -16,16 +16,15 @@ export function HomePage() {
   const [predictedGenre, setPredictedGenre] = useState('');
 
   const submit = () => {
-    console.log('submitting');
     const data = new FormData();
-    data.append('file', selectedFile);
+    data.append('audio_file', selectedFile);
     let url = process.env.REACT_APP_API_URI + '/predict';
     setLoading(true);
     post(url, data, {})
       .then((res) => {
-        console.log(res);
-        // then print response status
+        setPredictedGenre(res.data.predicted);
       })
+      .catch((err) => console.warn(err))
       .finally(() => setLoading(false));
   };
 
@@ -39,7 +38,7 @@ export function HomePage() {
     <div className='container'>
       <Title>Classify</Title>
       <div className='disk-area-wrapper row justify-content-start'>
-        <div className='col-md-6 col-sm-12 classify-simple-logo'>
+        <div className='classify-simple-logo col-sm-12 col-md-6'>
           <img
             src={logo}
             alt='classify-simple-logo'
@@ -57,7 +56,7 @@ export function HomePage() {
                   <input
                     type='file'
                     className='form-control'
-                    name='upload-file'
+                    name='audio_file'
                     onChange={handleInputChange}
                   />
                 </div>
@@ -79,6 +78,7 @@ export function HomePage() {
                       'Predict Genre'
                     )}
                 </button>
+                {predictedGenre && <h2 style={{ color: 'red' }}>Predicted Genre: {predictedGenre}!</h2>}
               </div>
             </div>
           </CSSTransition>
