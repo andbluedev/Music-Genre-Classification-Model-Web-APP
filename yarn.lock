@@ -1022,6 +1022,13 @@
   dependencies:
     regenerator-runtime "^0.13.4"
 
+"@babel/runtime@^7.10.2":
+  version "7.12.13"
+  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.12.13.tgz#0a21452352b02542db0ffb928ac2d3ca7cb6d66d"
+  integrity sha512-8+3UMPBrjFa/6TtKi/7sehPKqfAm4g6K+YQjyyFOLUTxzOngcRZTlAVY8sc2CORJYqdHQY8gRPHmn+qo15rCBw==
+  dependencies:
+    regenerator-runtime "^0.13.4"
+
 "@babel/template@^7.4.0", "@babel/template@^7.6.0", "@babel/template@^7.8.3", "@babel/template@^7.8.6":
   version "7.8.6"
   resolved "https://registry.yarnpkg.com/@babel/template/-/template-7.8.6.tgz#86b22af15f828dfb086474f964dcc3e39c43ce2b"
@@ -1104,6 +1111,16 @@
   integrity sha512-tAag0jEcjwH+P2quUfipd7liWCNX2F8NvYjQp2wtInsZxnMlypdw0FtAOLxtvvkO+GSRRbmNi8m/5y42PQJYCQ==
   dependencies:
     "@hapi/hoek" "^8.3.0"
+
+"@iconify/icons-mdi@^1.0.46":
+  version "1.1.11"
+  resolved "https://registry.yarnpkg.com/@iconify/icons-mdi/-/icons-mdi-1.1.11.tgz#c4d8a542465667990f339234c76fed95e8030751"
+  integrity sha512-8K9Dwcxozg4LE0QTxhXllg1Zs1zlwB69yVxc/k+wU2x6beuuPUvF6xl8y5RVIIdt0VzgiSMJ+4xNtd0DQbpYrg==
+
+"@iconify/react@^1.1.3":
+  version "1.1.4"
+  resolved "https://registry.yarnpkg.com/@iconify/react/-/react-1.1.4.tgz#c778eddbaf196e55705d0bedff00d039dc1de8d3"
+  integrity sha512-oxq8IMOq8q3nKGiDHbQPC8FcFuBsKve68JWBo140d5LRnj0bv5TB/FE/y01ZSvEZ7PlI2HIrnb2qivPN8kTDgw==
 
 "@jest/console@^24.7.1", "@jest/console@^24.9.0":
   version "24.9.0"
@@ -8776,6 +8793,15 @@ react-error-overlay@^6.0.3:
   version "6.0.7"
   resolved "https://registry.yarnpkg.com/react-error-overlay/-/react-error-overlay-6.0.7.tgz#1dcfb459ab671d53f660a991513cb2f0a0553108"
   integrity sha512-TAv1KJFh3RhqxNvhzxj6LeT5NWklP6rDr2a0jaTfsZ5wSZWHOGeqQyejUp3xxLfPt2UpyJEcVQB/zyPcmonNFA==
+
+react-h5-audio-player@^3.6.1:
+  version "3.6.1"
+  resolved "https://registry.yarnpkg.com/react-h5-audio-player/-/react-h5-audio-player-3.6.1.tgz#6cacf52570bb282b62a785e372b4b972db9fdbeb"
+  integrity sha512-/ottyYG3VdYSFYkHuxsmBRnKRZriNKpDbhd3hHMnaWDTaJEWAhdEQNcEX7eeYtqhSgaz5MRqnNBGpU3xkw/V1g==
+  dependencies:
+    "@babel/runtime" "^7.10.2"
+    "@iconify/icons-mdi" "^1.0.46"
+    "@iconify/react" "^1.1.3"
 
 react-is@^16.3.2, react-is@^16.6.0, react-is@^16.7.0, react-is@^16.8.1, react-is@^16.8.4:
   version "16.13.1"
