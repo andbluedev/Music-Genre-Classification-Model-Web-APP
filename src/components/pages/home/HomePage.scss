@@ -1,5 +1,13 @@
-.home-logo {
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
+.disk-area-wrapper {
+    .classify-simple-logo {
+        width: 100%;
+        max-width: 468px;
+    }
+    .file-selection-wrapper {}
+    // align-items: flex-start;
+}
+
+.footer {
+    bottom: 0%;
+    position: fixed;
 }

@@ -4,7 +4,7 @@
   App Theme used throughout the App.
  */
 
-$background-color: rgba(38, 50, 56, 0.07);
+$background-color: #26323812;
 $background-color-light: rgba(115, 158, 165, 0.07);
 $background-color-dark: rgba(52, 68, 75, 0.07);
 $primary-text: #212121;
@@ -15,9 +15,9 @@ $text-icons: #212121;
 $color-accent: #57A0D3;
 $color-accent-light: rgba(3, 169, 244, 0.29);
 $color-accent-dark: #022a3b;
-$color-primary: #FDA50F;
-$color-primary-light: rgba(253, 165, 15, 0.45);
-$color-primary-dark: #573b06;
+$color-primary: #70AD47;
+$color-primary-light: #9df3c4;
+$color-primary-dark: #1fab89;
 $color-warning: #91262D;
 $color-warning-light: #ff1d00;
 $color-warning-dark: #4b0b00;
@@ -27,7 +27,7 @@ $color-success-dark: #005005;
 $color-light: #F9F9F9;
 $color-dark: #323232;
 $theme-colors: ( "primary": $color-primary, "secondary": $color-accent, "danger": $color-warning, "success": $color-success, "info": $info, "warning": $color-warning-light, "light": $color-accent-dark, "dark": $color-accent-dark);
-$font-title-regular: 'Montserrat',
+$font-title-regular: 'Source Sans Pro',
 sans-serif;
-$font-body: 'Roboto',
+$font-body: 'Source Sans Pro',
 sans-serif;

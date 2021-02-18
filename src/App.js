@@ -6,8 +6,8 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import { Route, Router, Redirect } from 'react-router-dom';
 import history from './components/routes/history';
+import { Footer } from './components/layout/footer/Footer';
 import './App.scss';
-import { CSSTransition } from 'react-transition-group';
 
 function App() {
   return (
@@ -19,27 +19,19 @@ function App() {
           <Container className='flex-column justify-content-center' fluid>
             {appRoutes.map(({ path, Component }) => (
               <Route key={path} exact path={path}>
-                {({ match }) => (
-                  <CSSTransition
-                    in={match != null}
-                    timeout={350}
-                    classNames='fade'
-                    unmountOnExit
-                  >
-                    <Row>
-                      <Col />
-                      <Col sm={10} md={10} lg={8}>
-                        <div className='app-pages_container'>
-                          <Component />
-                        </div>
-                      </Col>
-                      <Col />
-                    </Row>
-                  </CSSTransition>
-                )}
+                <Row>
+                  <Col />
+                  <Col sm={10} md={10} lg={8}>
+                    <div className='app-pages_container'>
+                      <Component />
+                    </div>
+                  </Col>
+                  <Col />
+                </Row>
               </Route>
             ))}
           </Container>
+          <Footer/>
         </Route>
       </Router>
     </div>

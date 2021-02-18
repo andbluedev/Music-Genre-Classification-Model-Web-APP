@@ -1,57 +1,58 @@
 {
-  "name": "react-demos",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "bootstrap": "^4.4.1",
-    "chart.js": "^2.9.3",
-    "node-sass": "^4.13.0",
-    "react": "^16.11.0",
-    "react-bootstrap": "^1.0.0",
-    "react-chartjs-2": "^2.9.0",
-    "react-dom": "^16.11.0",
-    "react-router-dom": "^5.1.2",
-    "react-scripts": "3.2.0",
-    "react-transition-group": "^4.3.0"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "build:prod": "CI=false GENERATE_SOURCEMAP=false react-scripts build",
-    "lint": "eslint .",
-    "format": "prettier --write \"**/*.+(js|jsx|json|css|md)\""
-  },
-  "eslintConfig": {
-    "extends": "react-app"
-  },
-  "prettier": {
-    "printWidth": 85,
-    "arrowParens": "always",
-    "semi": true,
-    "singleQuote": true,
-    "jsxSingleQuote": true,
-    "tabWidth": 2
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  },
-  "devDependencies": {
-    "eslint": "^6.6.0",
-    "eslint-config-prettier": "^6.5.0",
-    "eslint-plugin-prettier": "^3.1.1",
-    "eslint-plugin-react": "^7.16.0",
-    "eslint-plugin-react-hooks": "^2.2.0",
-    "prettier": "^1.19.1"
-  }
+    "name": "react-demos",
+    "version": "0.1.0",
+    "private": true,
+    "dependencies": {
+        "axios": "^0.21.1",
+        "bootstrap": "^4.4.1",
+        "chart.js": "^2.9.3",
+        "node-sass": "^4.13.0",
+        "react": "^16.11.0",
+        "react-bootstrap": "^1.0.0",
+        "react-chartjs-2": "^2.9.0",
+        "react-dom": "^16.11.0",
+        "react-router-dom": "^5.1.2",
+        "react-scripts": "3.2.0",
+        "react-transition-group": "^4.3.0"
+    },
+    "scripts": {
+        "start": "react-scripts start",
+        "build": "react-scripts build",
+        "test": "react-scripts test",
+        "eject": "react-scripts eject",
+        "build:prod": "CI=false GENERATE_SOURCEMAP=false react-scripts build",
+        "lint": "eslint .",
+        "format": "prettier --write \"**/*.+(js|jsx|json|css|md)\""
+    },
+    "eslintConfig": {
+        "extends": "react-app"
+    },
+    "prettier": {
+        "printWidth": 85,
+        "arrowParens": "always",
+        "semi": true,
+        "singleQuote": true,
+        "jsxSingleQuote": true,
+        "tabWidth": 2
+    },
+    "browserslist": {
+        "production": [
+            ">0.2%",
+            "not dead",
+            "not op_mini all"
+        ],
+        "development": [
+            "last 1 chrome version",
+            "last 1 firefox version",
+            "last 1 safari version"
+        ]
+    },
+    "devDependencies": {
+        "eslint": "^6.6.0",
+        "eslint-config-prettier": "^6.5.0",
+        "eslint-plugin-prettier": "^3.1.1",
+        "eslint-plugin-react": "^7.16.0",
+        "eslint-plugin-react-hooks": "^2.2.0",
+        "prettier": "^1.19.1"
+    }
 }
