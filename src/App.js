@@ -6,7 +6,6 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import { Route, Router, Redirect } from 'react-router-dom';
 import history from './components/routes/history';
-import { Footer } from './components/layout/footer/Footer';
 import './App.scss';
 
 function App() {
@@ -31,7 +30,6 @@ function App() {
               </Route>
             ))}
           </Container>
-          <Footer/>
         </Route>
       </Router>
     </div>

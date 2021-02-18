@@ -12,9 +12,3 @@ export const SubTitle = (props) => (
     <h2>{props.children}</h2>
   </div>
 );
-
-export const FooterText = (props) => (
-  <div className='footer-wrapper'>
-    <p>{props.children}</p>
-  </div>
-);
