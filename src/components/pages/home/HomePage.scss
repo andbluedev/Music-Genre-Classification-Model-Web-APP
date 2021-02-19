@@ -1,6 +1,118 @@
+@import '../../../style/theme.scss';
+$scaleDeltaSmall: .05;
+// Transitions
+@keyframes scaleInSmall {
+    0% {
+        -webkit-transform: scale(1, 1);
+        transform: scale(1, 1);
+    }
+    70% {
+        -webkit-transform: scale(1 + $scaleDeltaSmall, 1 + $scaleDeltaSmall);
+        transform: scale(1 + $scaleDeltaSmall, 1 + $scaleDeltaSmall);
+    }
+    100% {
+        -webkit-transform: scale(1, 1);
+        transform: scale(1, 1);
+    }
+}
+
+$scaleDeltaLarge: .3;
+@keyframes scaleInLarge {
+    0% {
+        -webkit-transform: scale(1, 1);
+        transform: scale(1, 1);
+    }
+    50% {
+        -webkit-transform: scale(1 + $scaleDeltaLarge, 1 + $scaleDeltaLarge);
+        transform: scale(1 + $scaleDeltaLarge, 1 + $scaleDeltaLarge);
+    }
+    100% {
+        -webkit-transform: scale(1, 1);
+        transform: scale(1, 1);
+    }
+}
+
+@keyframes typing {
+    from {
+        width: 0%
+    }
+    to {
+        width: 100%
+    }
+}
+
+$translateX: 300px;
+@-webkit-keyframes slide-right {
+    0% {
+        -webkit-transform: translateX(-$translateX);
+        transform: translateX(-$translateX);
+    }
+    100% {
+        -webkit-transform: translateX(0);
+        transform: translateX(0);
+    }
+}
+
+@keyframes slide-right {
+    0% {
+        -webkit-transform: translateX(-$translateX);
+        transform: translateX(-$translateX);
+    }
+    100% {
+        -webkit-transform: translateX(0);
+        transform: translateX(0);
+    }
+}
+
+@mixin slide-right($translateX: 100px, $duration: .5s) {
+    -webkit-animation: slide-right $duration cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+    animation: slide-right $duration cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+
+@mixin short-color-fadein {
+    -webkit-animation: opacity-fade .5s ease-in;
+    animation: opacity-fade .5s ease-in;
+}
+
+// style
 .disk-area-wrapper {
+    min-height: 20rem;
     .classify-simple-logo {
         width: 100%;
-        max-width: 468px;
+        max-width: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        @include slide-right;
+        img {
+            max-width: 468px;
+            max-width: 80%;
+            &:hover {
+                animation: scaleInSmall 2s cubic-bezier(.36, .11, .11, .32);
+            }
+            &:active {
+                animation: scaleInLarge .5s cubic-bezier(.36, .11, .11, .32);
+            }
+        }
+    }
+}
+
+.file-selection-wrapper {
+    h2 {
+        overflow: hidden;
+        /* Ensures the content is not revealed until the animation */
+        /* The typwriter cursor */
+        white-space: nowrap;
+        /* Keeps the content on a single line */
+        margin: 0 auto;
+        /* Gives that scrolling effect as the typing happens */
+        letter-spacing: .01em;
+        /* Adjust as needed */
+        font-weight: lighter;
+        font-family: $font-title-regular;
+        animation: typing 1.5s steps(40, end);
+    }
+    .upload-predict-wrapper {
+        @include short-color-fadein;
     }
 }

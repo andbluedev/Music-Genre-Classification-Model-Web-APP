@@ -26,12 +26,6 @@ export function LinksPage() {
                 https://github.com/andbluedev/Music-Genre-Classification-Notebooks
               </a>
             </p>
-            <p>
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Animi facere
-              quasi consectetur blanditiis odio rerum beatae laboriosam ad quod
-              cumque vitae similique, quis asperiores placeat sit, voluptates vero
-              soluta ab?
-            </p>
           </div>
         </div>
         <div className='row'>

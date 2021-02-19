@@ -22,7 +22,8 @@ export function AboutPage() {
               {' '}
               Matthieu JACQUAND.
             </a>{' '}
-            Classify's project source code and associated jupyter notebooks can be found <Link to='/links'> here. </Link>
+            Classify's project source code and associated jupyter notebooks can be
+            found <Link to='/links'> here. </Link>
           </span>
         </div>
         <div className='row'>
@@ -32,18 +33,18 @@ export function AboutPage() {
           vitae similique, quis asperiores placeat sit, voluptates vero soluta ab?
           <br />
           Project Goal
-          <img src={OverallWorkflowImage} class="img-fluid" alt="overall_workflow" />
+          <img src={OverallWorkflowImage} class='img-fluid' alt='overall_workflow' />
         </div>
         <div className='row'>
           <SubTitle>Data Science and Technical Implementation</SubTitle>
-
-          <img src={FeatureExtractionImage} class="img-fluid" alt="feature_extaction_csv_v2" />
-
-
+          <img
+            src={FeatureExtractionImage}
+            class='img-fluid'
+            alt='feature_extaction_csv_v2'
+          />
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum dolore
           adipisci suscipit labore incidunt, omnis corrupti hic est dolorum cum nemo
           ipsam provident asperiores sequi tempore quis numquam rerum exercitationem.
-
         </div>
       </div>
     </div>
