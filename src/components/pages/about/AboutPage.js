@@ -40,13 +40,13 @@ export function AboutPage() {
             </p>
             <p>
               This is why we decided to conduct our project on music, in order to see
-              how data and data analysis and prediction techniques can be used in
+              how data, data analysis and prediction techniques can be used in
               this field. It is also fascinating to wonder how music, which in
               essence is sound, can be numerized, quantified, and thus analyzed.
             </p>
             <p>
               In this project, we will be turning towards a concept of music that
-              applies to every piece ever produced : genre. We will be using data and
+              applies to every piece ever produced: genre. We will be using data and
               techniques tailored towards the prediction of which genre a piece of
               sample audio belongs to, studying which machine learning models are
               most appropriate and pinpointing which boundaries we run into.
@@ -73,14 +73,14 @@ export function AboutPage() {
               </a>
             </p>
             <p>
-              The dataset can be found here :{' '}
+              The dataset can be found here:{' '}
               <a href='https://www.kaggle.com/carlthome/gtzan-genre-collection'>
                 https://www.kaggle.com/carlthome/gtzan-genre-collection
               </a>
             </p>
             <p>
-              It consists of 1000 audio samples, each 30 seconds long. It is divided
-              in 10 sections, each consisting of 100 samples from a specific genre :
+              It is made of 1000 audio samples, each 30 seconds long. It is divided
+              in 10 sections, each consisting of 100 samples from a specific genre:
             </p>
             <ul>
               <li>Blues</li>
@@ -95,15 +95,15 @@ export function AboutPage() {
               <li>Rock</li>
             </ul>
             <p>
-              Orginally, each sample is in a ".au" format, a format used with the
+              Orginally, each sample is in a ".au" format, the format used with the
               software "Audacity" (
               <a href='https://www.audacityteam.org/'>
                 https://www.audacityteam.org/
               </a>
-              ), a free to use software used to treat sound.
+              ), which is a free software used to treat sound.
             </p>
             <p>
-              However, for later on production purposes, we've decide to transform
+              However, for production purposes, we've decide to transform
               these files into ".mp3" files, a more widespread format. This will
               enable us to perform sample evaluation using any song.
             </p>
@@ -118,13 +118,13 @@ export function AboutPage() {
               </strong>
             </p>
             <p>
-              To supplement this question and further interrogate ourselves in our
-              approach, we can ask ourselves :
+              To answer this question and further interrogate ourselves in our
+              approach, we can ask ourselves:
             </p>
             <ul>
               <li>Which are the most important features to predict a genre?</li>
               <li>
-                Looking at the features, what differentiates each music genre (e.g :
+                Looking at the features, what differentiates each music genre (e.g.
                 classical music from disco and disco from pop)?
               </li>
               <li>
@@ -164,10 +164,10 @@ export function AboutPage() {
         </div>
         <div className='row'>
           <div className='col'>
-            <SubTitle>Hypothesis</SubTitle>
+            <SubTitle>Hypotheses</SubTitle>
             <p>
-              Our approach will be guided by these four hypothesis, which we will
-              confront throughout this work with our results :
+              Our approach will be guided by these four hypotheses, which we will
+              confront throughout this work with our results:
             </p>
             <ul>
               <li>
@@ -179,7 +179,7 @@ export function AboutPage() {
                 as our data consists of 10 distinct genres.
               </li>
               <li>
-                Since we require classification : Support Vector Machines, K-Nearest
+                Since we require classification: Support Vector Machines, K-Nearest
                 Neighbors and Neural Networks will be tested.
               </li>
               <li>
@@ -195,7 +195,7 @@ export function AboutPage() {
             <SubTitle>Workflow</SubTitle>
             <p>
               The data consists solely of the audio samples. The process we now have
-              to follow is as presented in the graphic below :
+              to follow is as presented in the graphic below:
             </p>
             <ul>
               <li>Extracting features from the mp3 file</li>
@@ -218,7 +218,7 @@ export function AboutPage() {
           <div className='col'>
             <SubTitle>Feature Extraction</SubTitle>
             <p>In order to extract numeric features from our data, we will use a Python library called Librosa.  Librosa "is a python package for music and audio analysis. It provides the building blocks necessary to create music information retrieval systems." (<a href="https://librosa.org/doc/latest/index.html">https://librosa.org/doc/latest/index.html</a>)</p>
-            <p>Using this library, we will extract a total of 66 features for each audio sample. These features will be inserted inside a CSV file alongside filename and genre label, thus leading to a CSV file of 1000 lines for 68 columns. Among the features we will extract are :</p>
+            <p>Using this library, we will extract a total of 66 features for each audio sample. These features will be inserted inside a CSV file alongside filename and genre label, thus leading to a CSV file of 1000 lines for 68 columns. Among the features we will extract are:</p>
             <ul>
               <li>Mel-frequency cepstral coefficients (MFCCs)</li>
               <li>Spectral contrast</li>
@@ -239,8 +239,9 @@ export function AboutPage() {
           <div className='row'>
           <div className='col'>
             <SubTitle>Production</SubTitle>
-            <p>After training multiple models and trying different approches (like using a CNN on the track's spectrogram), we've found that the best model was a Neural Network built with Tensorflow and Keras.</p>
+            <p>After training multiple models and trying different approches (like using a Convolutional Neural Network on the track's spectrogram), we found that the best model was a Neural Network built with Tensorflow and Keras.</p>
             <p>For production we've built a React.js web app consuming a Python3 REST API. The REST API is built using Fast API and serves the Tensorflow model and librosa to extract features from uploaded MP3 files. The production environment uses Docker and an on-premise Kubernetes cluster.</p>
+            <p>In terms of data usage the uploaded files are never stored. The application is a 100% stateless (no database) and doesn't track users. The only data that is stored in the server logs are the filename, the processed features fed into the model and the predicted class.</p>
           </div>
 
 
