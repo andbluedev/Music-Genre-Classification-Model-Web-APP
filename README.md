@@ -9,9 +9,22 @@ This repository contains the React.js webapp.
 The project also uses sass (`.scss`) files instead of` .css`. Overall it works the same, any classic css will work fine but it is possible to use functions and variables for the css (very useful).
 
 
-## Online Version
+## Context
 
-Demo version of the application: https://classify.k8s.pouretadev.com
+This project aims to predict the genre of a given song file using Data Science and Machine Learning techniques.
+
+This repository contains the REST API built using Fast API that serves the [Tensorflow](https://github.com/tensorflow/tensorflow) model and [librosa](https://github.com/librosa/librosa) to extract features from uploaded MP3 files.
+
+## Live Demo
+
+![https://res.cloudinary.com/djeszd2cw/image/upload/v1613837192/classify/classify-screen_egx3at.png](https://res.cloudinary.com/djeszd2cw/image/upload/v1613837192/classify/classify-screen_egx3at.png)
+
+- Web application: [https://classify.k8s.pouretadev.com/](https://classify.k8s.pouretadev.com/)
+
+## Related Repositories
+
+- Backend - REST API: [https://github.com/andbluedev/Music-Genre-Classification-Model-REST-API](https://github.com/andbluedev/Music-Genre-Classification-Model-REST-API)
+- Project Notebooks: [https://github.com/andbluedev/Music-Genre-Classification-Notebooks](https://github.com/andbluedev/Music-Genre-Classification-Notebooks)
 
 
 ## Development
