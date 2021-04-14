@@ -1,6 +1,6 @@
 # Music-Genre-Classification-Model-Web-APP
 
-## Context
+## Overview
 
 This project is a React.js webapp based on a Python Fast API seving a Tensorflow Neural Network ([link](https://github.com/andbluedevMusic-Genre-Classification-Model-REST-API)).
 
